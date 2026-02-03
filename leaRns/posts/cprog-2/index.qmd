@@ -1,0 +1,163 @@
+---
+title: 2 Fundamentals 
+subtitle: Notes from C Programming a Modern Approach
+date: "02/02/2026"
+date-modified: "02/02/2026"
+categories: [code, C, CPMA]
+---
+
+## Writing a simple program
+
+First program:
+
+``` c
+#include <stdio.h>
+
+int main(void)
+{
+  print("To C, or not to C: That is the question.\n");
+  return 0;
+}
+```
+
+-   The `#include <stdio.h>`includes information from C's standard I/O library.
+-   The executable portion of the code goes into `main`
+-   `printf` comes from the stdio
+-   `return  0;` returns the value 0 to the operating system when the program terminates.
+
+### Compiling and linking
+
+Before the program can run we have three steps:
+
+1.  **Preprocessing** - The program is given to the [preprocessor](.underline) which follows the commands that begin with `#` (directives).
+    -   The preprocessor can add/modify the program
+2.  **Compliling** - The modified program from the preprocessor goes to the [compiler](.underline), which translates it to machine instructions (object code)
+3.  **Linking** - A [linker](.underline) combines the object code with any necessarily additional code (e.g. functions from a library) that are used in the program.
+
+We can compile the code in terminal by navigating to the folder and running:
+
+```         
+cc pun.c
+```
+
+-   This creates a file `a.out`, which is an executable that can be run (default)
+
+We could specify the name of the output file if we did:
+
+```         
+cc -o pun pun.c
+```
+
+-   This produces `pun.out`
+
+The `a.out` file can be run with the following in terminal:
+
+```         
+./a.out
+```
+### The General Form of a Simple Program
+A basic C program follows the following form:
+```c
+directives
+
+int main(void)
+{
+  statements
+}
+```
+
+The simplist C programs rely on three language features:
+
+- **Directives**: Editing commands that modify the program prior to compliation
+- **Functions**: Named blocks of executable code (e.g. `main`)
+- **Statements**: Commands to be performed when the program is run
+
+#### Directives
+Before a C program is complied, it is edited by the preprocessor.
+- Commands for the preprocessor are called directives
+
+The `punc.c` program begins with:
+```c
+#include <stdio.h>
+```
+- This directive states that the informatoin in `<stdio.h>` is to be included in the program before it is compiled.
+  - `<stdio.h>` contains infomration about the standard I/O library.
+  - C has a number of these **headers** as there are no built-in commands for things like read/write.
+- Directives always begin with a # character
+- By default, they are one line long, without a semicolon at the end.
+
+#### Functions
+**Functions** are procedures/subroutines that are the building blocks from which programs are built. Functions fall into two categories:
+- Written by the programmer
+- Provided by C (**library functions**)
+
+In C, a function is a series of statements that are group together and given a name. 
+- Some compute values
+- Some return values using the `return` statement.
+
+All C programs are required to have the `main` function.
+- `main` is a function, which can also return a value.
+
+Looking at the `pun.c program:
+```c
+#include <stdio.h>
+
+int main(void)
+{
+  print("To C, or not to C: That is the question. \n");
+  return 0;
+}
+```
+- `int` indicates that `main` will return an integer value.
+- `void` indicates that `main` has no arguments.
+- `return 0` has two effects:
+  - Causes `main` to terminates
+  - Indicates that `main` returns the value 0
+
+  If there is no `return` statement, the program will still terminate, but the compiler may throw a warning.
+
+  #### Statements
+  A **statement** is a command to be executed when the program runs.
+  
+  The `pun.c` program has two kinds of statements: 
+  `return` and the **function call**
+ 
+ - A function performing an assigned task is **calling** the function.
+  - C requires each statement to end with a semicolon.
+    - A compound statment, doesn't require a semicolon.
+    - The semicolon tells the compiler where the statement ends.
+
+### Comments
+The original comment syntax `/* This is a comment */`
+
+- These are essentially block quotes until there's a closing `*/`
+
+With C99, we can use `//`, which is just for a single line.
+
+### Variables and Assignment
+Every variable must have a **type**, which is the kind of data it will hold.
+
+- Chosing the proper type is critical because operations are different depending on the variable's type.
+- Integers for example, can only go up to 2.1M, 
+- `float` numbers stores more digits as well as numbers after the decimals.
+  - The down side is that float are slower for arithmetic and the value tends to have a rounding error (e.g 0.1 could be 0.0999..)
+
+#### Declarations
+Variables must be **declared** for the complier, before they are used. 
+
+- To declare a variable, first specify the *type* and then it's name (e.g. `int height;`).
+- If several variables have the same type, they can be declared at once:
+```c
+int height, length, width, volume;
+float profit, loss;
+```
+- Declarations always end with a semicolon. 
+
+When `main` contains declarations, they must be preceded by statements:
+```c
+int main(void)
+{
+  Declarations
+  statments
+}
+```

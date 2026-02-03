@@ -1,0 +1,15 @@
+---
+title: 1 Introduction
+subtitle: Notes from Database System Concepts
+date: "02/02/2026"
+date-modified: "02/02/2026"
+categories: [code, database, data, dsc]
+---
+
+A database-management system (DBMS) is a collection of interrelated data and a set of programs to access that data.
+
+- The collection of data is generally referred to as the database.
+
+### Database-System Applications
+The key to the management of complexity is **abstraction**.
+- Abstraction allows
