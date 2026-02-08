@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -187,7 +187,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#writing-a-simple-program" id="toc-writing-a-simple-program" class="nav-link active" data-scroll-target="#writing-a-simple-program">Writing a simple program</a>
+  <ul class="collapse">
+  <li><a href="#compiling-and-linking" id="toc-compiling-and-linking" class="nav-link" data-scroll-target="#compiling-and-linking">Compiling and linking</a></li>
+  <li><a href="#the-general-form-of-a-simple-program" id="toc-the-general-form-of-a-simple-program" class="nav-link" data-scroll-target="#the-general-form-of-a-simple-program">The General Form of a Simple Program</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
+  <li><a href="#variables-and-assignment" id="toc-variables-and-assignment" class="nav-link" data-scroll-target="#variables-and-assignment">Variables and Assignment</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -268,8 +282,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="functions" class="level4">
 <h4 class="anchored" data-anchor-id="functions">Functions</h4>
 <p><strong>Functions</strong> are procedures/subroutines that are the building blocks from which programs are built. Functions fall into two categories: - Written by the programmer - Provided by C (<strong>library functions</strong>)</p>
-<p>In C, a function is a series of statements that are group together and given a name. - Some compute values - Some return values using the <code>return</code> statement.</p>
-<p>All C programs are required to have the <code>main</code> function. - <code>main</code> is a function, which can also return a value.</p>
+<p>In C, a function is a series of statements that are group together and given a name.</p>
+<ul>
+<li>Some compute values</li>
+<li>Some return values using the <code>return</code> statement.</li>
+</ul>
+<p>All C programs are required to have the <code>main</code> function.</p>
+<ul>
+<li><code>main</code> is a function, which can also return a value.</li>
+</ul>
 <p>Looking at the `pun.c program:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -333,9 +354,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When <code>main</code> contains declarations, they must be preceded by statements:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  Declarations</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  declarations</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  statments</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>In C99, declarations don’t have to come before statements.
+<ul>
+<li><code>main</code> might contain a declaration, then statement, then another declaration.</li>
+</ul></li>
+</ul>
+</section>
+<section id="assignment" class="level4">
+<h4 class="anchored" data-anchor-id="assignment">Assignment</h4>
+<p>A variable can be given a value through <strong>assignment</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In general, the right side of of an assignment can be a formulat (<strong>expression</strong>) involving constants, variables, and operators.</p>
+</section>
+<section id="printing-the-value-of-a-variable" class="level4">
+<h4 class="anchored" data-anchor-id="printing-the-value-of-a-variable">Printing the value of a variable</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Height: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> height<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>%d</code> is a placeholder for <code>height</code>
+<ul>
+<li>By default, <code>%f</code> displays a number with 6 digits after the decimal point</li>
+<li>To force <code>%f</code> to display <code>p</code> digits after the decimal point, we can put <code>.p</code> between the <code>%</code> and the <code>f</code>:</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Profit: $</span><span class="sc">%.2f\n</span><span class="st">"</span><span class="op">,</span> profit<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="initialization" class="level4">
+<h4 class="anchored" data-anchor-id="initialization">Initialization</h4>
+<p>Some variables are automatically set to zero when the program begins, but most are not. - A variable that doesn’t have a default value or is assigned one, is said to be <strong>uninitialized</strong></p>
+<p><strong>NOTE:</strong> If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number. - It’s also possible that it crashes the program.</p>
+<p>We can declare the variable <code>height</code> and initilaize it in one step:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> height <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The value <code>8</code> is said to be an <strong>initializer</strong></li>
+</ul>
+<p>Multiple variables can be initialized in the same declaration:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> height <span class="op">=</span> <span class="dv">8</span><span class="op">,</span> length <span class="op">=</span> <span class="dv">12</span><span class="op">,</span> width <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Each variable requires its own initializer.</li>
+</ul>
 
 
 </section>
@@ -416,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/your-website-url\.example\.com");
+        var filterRegex = new RegExp("https:\/\/jonbry\.github\.io\/leaRns\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
