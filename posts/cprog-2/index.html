@@ -195,10 +195,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#writing-a-simple-program" id="toc-writing-a-simple-program" class="nav-link active" data-scroll-target="#writing-a-simple-program">Writing a simple program</a>
   <ul class="collapse">
   <li><a href="#compiling-and-linking" id="toc-compiling-and-linking" class="nav-link" data-scroll-target="#compiling-and-linking">Compiling and linking</a></li>
-  <li><a href="#the-general-form-of-a-simple-program" id="toc-the-general-form-of-a-simple-program" class="nav-link" data-scroll-target="#the-general-form-of-a-simple-program">The General Form of a Simple Program</a></li>
-  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
-  <li><a href="#variables-and-assignment" id="toc-variables-and-assignment" class="nav-link" data-scroll-target="#variables-and-assignment">Variables and Assignment</a></li>
   </ul></li>
+  <li><a href="#the-general-form-of-a-simple-program" id="toc-the-general-form-of-a-simple-program" class="nav-link" data-scroll-target="#the-general-form-of-a-simple-program">The General Form of a Simple Program</a>
+  <ul class="collapse">
+  <li><a href="#directives" id="toc-directives" class="nav-link" data-scroll-target="#directives">Directives</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  </ul></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
+  <li><a href="#variables-and-assignment" id="toc-variables-and-assignment" class="nav-link" data-scroll-target="#variables-and-assignment">Variables and Assignment</a>
+  <ul class="collapse">
+  <li><a href="#declarations" id="toc-declarations" class="nav-link" data-scroll-target="#declarations">Declarations</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  <li><a href="#printing-the-value-of-a-variable" id="toc-printing-the-value-of-a-variable" class="nav-link" data-scroll-target="#printing-the-value-of-a-variable">Printing the value of a variable</a></li>
+  <li><a href="#initialization" id="toc-initialization" class="nav-link" data-scroll-target="#initialization">Initialization</a></li>
+  </ul></li>
+  <li><a href="#reading-input" id="toc-reading-input" class="nav-link" data-scroll-target="#reading-input">Reading Input</a></li>
   </ul>
 </nav>
     </div>
@@ -233,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The preprocessor can add/modify the program</li>
 </ul></li>
-<li><strong>Compliling</strong> - The modified program from the preprocessor goes to the <a href=".underline">compiler</a>, which translates it to machine instructions (object code)</li>
+<li><strong>Compiling</strong> - The modified program from the preprocessor goes to the <a href=".underline">compiler</a>, which translates it to machine instructions (object code)</li>
 <li><strong>Linking</strong> - A <a href=".underline">linker</a> combines the object code with any necessarily additional code (e.g.&nbsp;functions from a library) that are used in the program.</li>
 </ol>
 <p>We can compile the code in terminal by navigating to the folder and running:</p>
@@ -249,8 +260,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>a.out</code> file can be run with the following in terminal:</p>
 <pre><code>./a.out</code></pre>
 </section>
-<section id="the-general-form-of-a-simple-program" class="level3">
-<h3 class="anchored" data-anchor-id="the-general-form-of-a-simple-program">The General Form of a Simple Program</h3>
+</section>
+<section id="the-general-form-of-a-simple-program" class="level2">
+<h2 class="anchored" data-anchor-id="the-general-form-of-a-simple-program">The General Form of a Simple Program</h2>
 <p>A basic C program follows the following form:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>directives</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -260,27 +272,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The simplist C programs rely on three language features:</p>
 <ul>
-<li><strong>Directives</strong>: Editing commands that modify the program prior to compliation</li>
+<li><strong>Directives</strong>: Editing commands that modify the program prior to compilation</li>
 <li><strong>Functions</strong>: Named blocks of executable code (e.g.&nbsp;<code>main</code>)</li>
 <li><strong>Statements</strong>: Commands to be performed when the program is run</li>
 </ul>
-<section id="directives" class="level4">
-<h4 class="anchored" data-anchor-id="directives">Directives</h4>
+<section id="directives" class="level3">
+<h3 class="anchored" data-anchor-id="directives">Directives</h3>
 <p>Before a C program is complied, it is edited by the preprocessor. - Commands for the preprocessor are called directives</p>
 <p>The <code>punc.c</code> program begins with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>This directive states that the informatoin in <code>&lt;stdio.h&gt;</code> is to be included in the program before it is compiled.
+<li>This directive states that the information in <code>&lt;stdio.h&gt;</code> is to be included in the program before it is compiled.
 <ul>
-<li><code>&lt;stdio.h&gt;</code> contains infomration about the standard I/O library.</li>
+<li><code>&lt;stdio.h&gt;</code> contains information about the standard I/O library.</li>
 <li>C has a number of these <strong>headers</strong> as there are no built-in commands for things like read/write.</li>
 </ul></li>
 <li>Directives always begin with a # character</li>
 <li>By default, they are one line long, without a semicolon at the end.</li>
 </ul>
 </section>
-<section id="functions" class="level4">
-<h4 class="anchored" data-anchor-id="functions">Functions</h4>
+<section id="functions" class="level3">
+<h3 class="anchored" data-anchor-id="functions">Functions</h3>
 <p><strong>Functions</strong> are procedures/subroutines that are the building blocks from which programs are built. Functions fall into two categories: - Written by the programmer - Provided by C (<strong>library functions</strong>)</p>
 <p>In C, a function is a series of statements that are group together and given a name.</p>
 <ul>
@@ -308,40 +320,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Indicates that <code>main</code> returns the value 0</li>
 </ul>
 <p>If there is no <code>return</code> statement, the program will still terminate, but the compiler may throw a warning.</p>
-<h4 id="statements" class="anchored">Statements</h4>
+<h3 id="statements" class="anchored">Statements</h3>
 <p>A <strong>statement</strong> is a command to be executed when the program runs.</p>
 <p>The <code>pun.c</code> program has two kinds of statements: <code>return</code> and the <strong>function call</strong></p></li>
 <li><p>A function performing an assigned task is <strong>calling</strong> the function.</p></li>
 <li><p>C requires each statement to end with a semicolon.</p>
 <ul>
-<li>A compound statment, doesn’t require a semicolon.</li>
+<li>A compound statement, doesn’t require a semicolon.</li>
 <li>The semicolon tells the compiler where the statement ends.</li>
 </ul></li>
 </ul>
 </section>
 </section>
-<section id="comments" class="level3">
-<h3 class="anchored" data-anchor-id="comments">Comments</h3>
+<section id="comments" class="level2">
+<h2 class="anchored" data-anchor-id="comments">Comments</h2>
 <p>The original comment syntax <code>/* This is a comment */</code></p>
 <ul>
 <li>These are essentially block quotes until there’s a closing <code>*/</code></li>
 </ul>
 <p>With C99, we can use <code>//</code>, which is just for a single line.</p>
 </section>
-<section id="variables-and-assignment" class="level3">
-<h3 class="anchored" data-anchor-id="variables-and-assignment">Variables and Assignment</h3>
+<section id="variables-and-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="variables-and-assignment">Variables and Assignment</h2>
 <p>Every variable must have a <strong>type</strong>, which is the kind of data it will hold.</p>
 <ul>
-<li>Chosing the proper type is critical because operations are different depending on the variable’s type.</li>
+<li>Choosing the proper type is critical because operations are different depending on the variable’s type.</li>
 <li>Integers for example, can only go up to 2.1M,</li>
 <li><code>float</code> numbers stores more digits as well as numbers after the decimals.
 <ul>
 <li>The down side is that float are slower for arithmetic and the value tends to have a rounding error (e.g 0.1 could be 0.0999..)</li>
 </ul></li>
 </ul>
-<section id="declarations" class="level4">
-<h4 class="anchored" data-anchor-id="declarations">Declarations</h4>
-<p>Variables must be <strong>declared</strong> for the complier, before they are used.</p>
+<section id="declarations" class="level3">
+<h3 class="anchored" data-anchor-id="declarations">Declarations</h3>
+<p>Variables must be <strong>declared</strong> for the compiler, before they are used.</p>
 <ul>
 <li>To declare a variable, first specify the <em>type</em> and then it’s name (e.g.&nbsp;<code>int height;</code>).</li>
 <li>If several variables have the same type, they can be declared at once:</li>
@@ -364,16 +376,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="assignment" class="level4">
-<h4 class="anchored" data-anchor-id="assignment">Assignment</h4>
+<section id="assignment" class="level3">
+<h3 class="anchored" data-anchor-id="assignment">Assignment</h3>
 <p>A variable can be given a value through <strong>assignment</strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In general, the right side of of an assignment can be a formulat (<strong>expression</strong>) involving constants, variables, and operators.</p>
+<p>In general, the right side of of an assignment can be a formulate (<strong>expression</strong>) involving constants, variables, and operators.</p>
 </section>
-<section id="printing-the-value-of-a-variable" class="level4">
-<h4 class="anchored" data-anchor-id="printing-the-value-of-a-variable">Printing the value of a variable</h4>
+<section id="printing-the-value-of-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="printing-the-value-of-a-variable">Printing the value of a variable</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Height: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> height<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>%d</code> is a placeholder for <code>height</code>
@@ -384,11 +396,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Profit: $</span><span class="sc">%.2f\n</span><span class="st">"</span><span class="op">,</span> profit<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="initialization" class="level4">
-<h4 class="anchored" data-anchor-id="initialization">Initialization</h4>
+<section id="initialization" class="level3">
+<h3 class="anchored" data-anchor-id="initialization">Initialization</h3>
 <p>Some variables are automatically set to zero when the program begins, but most are not. - A variable that doesn’t have a default value or is assigned one, is said to be <strong>uninitialized</strong></p>
 <p><strong>NOTE:</strong> If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number. - It’s also possible that it crashes the program.</p>
-<p>We can declare the variable <code>height</code> and initilaize it in one step:</p>
+<p>We can declare the variable <code>height</code> and initialize it in one step:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> height <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>The value <code>8</code> is said to be an <strong>initializer</strong></li>
@@ -398,10 +410,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Each variable requires its own initializer.</li>
 </ul>
-
-
 </section>
 </section>
+<section id="reading-input" class="level2">
+<h2 class="anchored" data-anchor-id="reading-input">Reading Input</h2>
+<p><code>scanf</code>, the counterpart of <code>printf</code> can be used to read inputs.</p>
+<ul>
+<li>The <code>f</code> in <code>scanf</code>/<code>readf</code> stands for “formatted” as both require the use of a <strong>format string</strong> to specify the appearance of the input or output data.</li>
+<li><code>scanf</code> needs to know what kind of input data will be entered and <code>printf</code> needs to know how to display the output data.</li>
+</ul>
+<p>For example, reading an <code>int</code> value:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">, &amp;i"</span><span class="op">);</span> <span class="co">/* reads an integer; stores into i */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>%d</code> tells <code>scanf</code> to read the input that represents an integer.</li>
+<li><code>i</code> is an <code>int</code> variable where <code>scanf</code> will store the input.</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->

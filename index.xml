@@ -105,7 +105,7 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <ul>
 <li>The preprocessor can add/modify the program</li>
 </ul></li>
-<li><strong>Compliling</strong> - The modified program from the preprocessor goes to the <a href=".underline">compiler</a>, which translates it to machine instructions (object code)</li>
+<li><strong>Compiling</strong> - The modified program from the preprocessor goes to the <a href=".underline">compiler</a>, which translates it to machine instructions (object code)</li>
 <li><strong>Linking</strong> - A <a href=".underline">linker</a> combines the object code with any necessarily additional code (e.g.&nbsp;functions from a library) that are used in the program.</li>
 </ol>
 <p>We can compile the code in terminal by navigating to the folder and running:</p>
@@ -121,8 +121,9 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <p>The <code>a.out</code> file can be run with the following in terminal:</p>
 <pre><code>./a.out</code></pre>
 </section>
-<section id="the-general-form-of-a-simple-program" class="level3">
-<h3 class="anchored" data-anchor-id="the-general-form-of-a-simple-program">The General Form of a Simple Program</h3>
+</section>
+<section id="the-general-form-of-a-simple-program" class="level2">
+<h2 class="anchored" data-anchor-id="the-general-form-of-a-simple-program">The General Form of a Simple Program</h2>
 <p>A basic C program follows the following form:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1">directives</span>
 <span id="cb5-2"></span>
@@ -144,12 +145,12 @@ background-color: null;
 font-style: inherit;">}</span></span></code></pre></div></div>
 <p>The simplist C programs rely on three language features:</p>
 <ul>
-<li><strong>Directives</strong>: Editing commands that modify the program prior to compliation</li>
+<li><strong>Directives</strong>: Editing commands that modify the program prior to compilation</li>
 <li><strong>Functions</strong>: Named blocks of executable code (e.g.&nbsp;<code>main</code>)</li>
 <li><strong>Statements</strong>: Commands to be performed when the program is run</li>
 </ul>
-<section id="directives" class="level4">
-<h4 class="anchored" data-anchor-id="directives">Directives</h4>
+<section id="directives" class="level3">
+<h3 class="anchored" data-anchor-id="directives">Directives</h3>
 <p>Before a C program is complied, it is edited by the preprocessor. - Commands for the preprocessor are called directives</p>
 <p>The <code>punc.c</code> program begins with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><span class="pp" style="color: #AD0000;
@@ -158,17 +159,17 @@ font-style: inherit;">#include </span><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">&lt;stdio.h&gt;</span></span></code></pre></div></div>
 <ul>
-<li>This directive states that the informatoin in <code>&lt;stdio.h&gt;</code> is to be included in the program before it is compiled.
+<li>This directive states that the information in <code>&lt;stdio.h&gt;</code> is to be included in the program before it is compiled.
 <ul>
-<li><code>&lt;stdio.h&gt;</code> contains infomration about the standard I/O library.</li>
+<li><code>&lt;stdio.h&gt;</code> contains information about the standard I/O library.</li>
 <li>C has a number of these <strong>headers</strong> as there are no built-in commands for things like read/write.</li>
 </ul></li>
 <li>Directives always begin with a # character</li>
 <li>By default, they are one line long, without a semicolon at the end.</li>
 </ul>
 </section>
-<section id="functions" class="level4">
-<h4 class="anchored" data-anchor-id="functions">Functions</h4>
+<section id="functions" class="level3">
+<h3 class="anchored" data-anchor-id="functions">Functions</h3>
 <p><strong>Functions</strong> are procedures/subroutines that are the building blocks from which programs are built. Functions fall into two categories: - Written by the programmer - Provided by C (<strong>library functions</strong>)</p>
 <p>In C, a function is a series of statements that are group together and given a name.</p>
 <ul>
@@ -229,40 +230,40 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <li>Indicates that <code>main</code> returns the value 0</li>
 </ul>
 <p>If there is no <code>return</code> statement, the program will still terminate, but the compiler may throw a warning.</p>
-<h4 id="statements" class="anchored">Statements</h4>
+<h3 id="statements" class="anchored">Statements</h3>
 <p>A <strong>statement</strong> is a command to be executed when the program runs.</p>
 <p>The <code>pun.c</code> program has two kinds of statements: <code>return</code> and the <strong>function call</strong></p></li>
 <li><p>A function performing an assigned task is <strong>calling</strong> the function.</p></li>
 <li><p>C requires each statement to end with a semicolon.</p>
 <ul>
-<li>A compound statment, doesn’t require a semicolon.</li>
+<li>A compound statement, doesn’t require a semicolon.</li>
 <li>The semicolon tells the compiler where the statement ends.</li>
 </ul></li>
 </ul>
 </section>
 </section>
-<section id="comments" class="level3">
-<h3 class="anchored" data-anchor-id="comments">Comments</h3>
+<section id="comments" class="level2">
+<h2 class="anchored" data-anchor-id="comments">Comments</h2>
 <p>The original comment syntax <code>/* This is a comment */</code></p>
 <ul>
 <li>These are essentially block quotes until there’s a closing <code>*/</code></li>
 </ul>
 <p>With C99, we can use <code>//</code>, which is just for a single line.</p>
 </section>
-<section id="variables-and-assignment" class="level3">
-<h3 class="anchored" data-anchor-id="variables-and-assignment">Variables and Assignment</h3>
+<section id="variables-and-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="variables-and-assignment">Variables and Assignment</h2>
 <p>Every variable must have a <strong>type</strong>, which is the kind of data it will hold.</p>
 <ul>
-<li>Chosing the proper type is critical because operations are different depending on the variable’s type.</li>
+<li>Choosing the proper type is critical because operations are different depending on the variable’s type.</li>
 <li>Integers for example, can only go up to 2.1M,</li>
 <li><code>float</code> numbers stores more digits as well as numbers after the decimals.
 <ul>
 <li>The down side is that float are slower for arithmetic and the value tends to have a rounding error (e.g 0.1 could be 0.0999..)</li>
 </ul></li>
 </ul>
-<section id="declarations" class="level4">
-<h4 class="anchored" data-anchor-id="declarations">Declarations</h4>
-<p>Variables must be <strong>declared</strong> for the complier, before they are used.</p>
+<section id="declarations" class="level3">
+<h3 class="anchored" data-anchor-id="declarations">Declarations</h3>
+<p>Variables must be <strong>declared</strong> for the compiler, before they are used.</p>
 <ul>
 <li>To declare a variable, first specify the <em>type</em> and then it’s name (e.g.&nbsp;<code>int height;</code>).</li>
 <li>If several variables have the same type, they can be declared at once:</li>
@@ -313,8 +314,8 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 </ul></li>
 </ul>
 </section>
-<section id="assignment" class="level4">
-<h4 class="anchored" data-anchor-id="assignment">Assignment</h4>
+<section id="assignment" class="level3">
+<h3 class="anchored" data-anchor-id="assignment">Assignment</h3>
 <p>A variable can be given a value through <strong>assignment</strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1">height <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -337,10 +338,10 @@ background-color: null;
 font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span></code></pre></div></div>
-<p>In general, the right side of of an assignment can be a formulat (<strong>expression</strong>) involving constants, variables, and operators.</p>
+<p>In general, the right side of of an assignment can be a formulate (<strong>expression</strong>) involving constants, variables, and operators.</p>
 </section>
-<section id="printing-the-value-of-a-variable" class="level4">
-<h4 class="anchored" data-anchor-id="printing-the-value-of-a-variable">Printing the value of a variable</h4>
+<section id="printing-the-value-of-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="printing-the-value-of-a-variable">Printing the value of a variable</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1">printf<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">(</span><span class="st" style="color: #20794D;
@@ -375,11 +376,11 @@ font-style: inherit;">,</span> profit<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span></code></pre></div></div>
 </section>
-<section id="initialization" class="level4">
-<h4 class="anchored" data-anchor-id="initialization">Initialization</h4>
+<section id="initialization" class="level3">
+<h3 class="anchored" data-anchor-id="initialization">Initialization</h3>
 <p>Some variables are automatically set to zero when the program begins, but most are not. - A variable that doesn’t have a default value or is assigned one, is said to be <strong>uninitialized</strong></p>
 <p><strong>NOTE:</strong> If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number. - It’s also possible that it crashes the program.</p>
-<p>We can declare the variable <code>height</code> and initilaize it in one step:</p>
+<p>We can declare the variable <code>height</code> and initialize it in one step:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">int</span> height <span class="op" style="color: #5E5E5E;
@@ -417,10 +418,35 @@ font-style: inherit;">;</span></span></code></pre></div></div>
 <ul>
 <li>Each variable requires its own initializer.</li>
 </ul>
-
-
 </section>
 </section>
+<section id="reading-input" class="level2">
+<h2 class="anchored" data-anchor-id="reading-input">Reading Input</h2>
+<p><code>scanf</code>, the counterpart of <code>printf</code> can be used to read inputs.</p>
+<ul>
+<li>The <code>f</code> in <code>scanf</code>/<code>readf</code> stands for “formatted” as both require the use of a <strong>format string</strong> to specify the appearance of the input or output data.</li>
+<li><code>scanf</code> needs to know what kind of input data will be entered and <code>printf</code> needs to know how to display the output data.</li>
+</ul>
+<p>For example, reading an <code>int</code> value:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1">scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">, &amp;i"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* reads an integer; stores into i */</span></span></code></pre></div></div>
+<ul>
+<li><code>%d</code> tells <code>scanf</code> to read the input that represents an integer.</li>
+<li><code>i</code> is an <code>int</code> variable where <code>scanf</code> will store the input.</li>
+</ul>
+
+
 </section>
 
  ]]></description>
