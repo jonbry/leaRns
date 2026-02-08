@@ -3,6 +3,7 @@ title: 2 Fundamentals
 subtitle: Notes from C Programming a Modern Approach
 date: "02/02/2026"
 date-modified: "02/02/2026"
+toc: true
 categories: [code, C, CPMA]
 ---
 
@@ -92,10 +93,12 @@ The `punc.c` program begins with:
 - Provided by C (**library functions**)
 
 In C, a function is a series of statements that are group together and given a name. 
+
 - Some compute values
 - Some return values using the `return` statement.
 
 All C programs are required to have the `main` function.
+
 - `main` is a function, which can also return a value.
 
 Looking at the `pun.c program:
@@ -157,7 +160,50 @@ When `main` contains declarations, they must be preceded by statements:
 ```c
 int main(void)
 {
-  Declarations
+  declarations
   statments
 }
 ```
+- In C99, declarations don't have to come before statements.
+  - `main` might contain a declaration, then statement, then another declaration.
+
+#### Assignment
+A variable can be given a value through **assignment**:
+```c
+height = 8;
+length = 12;
+width = 10;
+```
+
+In general, the right side of of an assignment can be a formulat (**expression**) involving constants, variables, and operators.
+
+#### Printing the value of a variable
+
+```c
+printf("Height: %d\n", height);
+```
+- `%d` is a placeholder for `height`
+  - By default, `%f` displays a number with 6 digits after the decimal point
+  - To force `%f` to display `p` digits after the decimal point, we can put `.p` between the `%` and the `f`:
+
+```c
+printf("Profit: $%.2f\n", profit)
+```
+#### Initialization
+Some variables are automatically set to zero when the program begins, but most are not.
+- A variable that doesn't have a default value or is assigned one, is said to be **uninitialized**
+
+**NOTE:** If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number.
+- It's also possible that it crashes the program.
+
+We can declare the variable `height` and initilaize it in one step:
+```c
+int height = 8;
+```
+- The value `8` is said to be an **initializer**
+
+Multiple variables can be initialized in the same declaration:
+```c
+int height = 8, length = 12, width = 10;
+```
+- Each variable requires its own initializer.
