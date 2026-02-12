@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>leaRns</title>
+<link>https://jonbry.github.io/leaRns/</link>
+<atom:link href="https://jonbry.github.io/leaRns/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog built with Quarto</description>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Mon, 02 Feb 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>1 Introduction</title>
+  <link>https://jonbry.github.io/leaRns/posts/database_systems-1/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>A database-management system (DBMS) is a collection of interrelated data and a set of programs to access that data.</p>
+<ul>
+<li>The collection of data is generally referred to as the database.</li>
+</ul>
+<section id="database-system-applications" class="level3">
+<h3 class="anchored" data-anchor-id="database-system-applications">Database-System Applications</h3>
+<p>The key to the management of complexity is <strong>abstraction</strong>. - Abstraction allows</p>
+
+
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <category>database</category>
+  <category>data</category>
+  <category>dsc</category>
+  <guid>https://jonbry.github.io/leaRns/posts/database_systems-1/</guid>
+  <pubDate>Mon, 02 Feb 2026 05:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>2 Fundamentals</title>
+  <link>https://jonbry.github.io/leaRns/posts/cprog-2/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="writing-a-simple-program" class="level2">
+<h2 class="anchored" data-anchor-id="writing-a-simple-program">Writing a simple program</h2>
+<p>First program:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-4"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-5">  print<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"To C, or not to C: That is the question.</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-6">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-7"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<ul>
+<li>The <code>#include &lt;stdio.h&gt;</code>includes information from C’s standard I/O library.</li>
+<li>The executable portion of the code goes into <code>main</code></li>
+<li><code>printf</code> comes from the stdio</li>
+<li><code>return  0;</code> returns the value 0 to the operating system when the program terminates.</li>
+</ul>
+<section id="compiling-and-linking" class="level3">
+<h3 class="anchored" data-anchor-id="compiling-and-linking">Compiling and linking</h3>
+<p>Before the program can run we have three steps:</p>
+<ol type="1">
+<li><strong>Preprocessing</strong> - The program is given to the <a href=".underline">preprocessor</a> which follows the commands that begin with <code>#</code> (directives).
+<ul>
+<li>The preprocessor can add/modify the program</li>
+</ul></li>
+<li><strong>Compliling</strong> - The modified program from the preprocessor goes to the <a href=".underline">compiler</a>, which translates it to machine instructions (object code)</li>
+<li><strong>Linking</strong> - A <a href=".underline">linker</a> combines the object code with any necessarily additional code (e.g.&nbsp;functions from a library) that are used in the program.</li>
+</ol>
+<p>We can compile the code in terminal by navigating to the folder and running:</p>
+<pre><code>cc pun.c</code></pre>
+<ul>
+<li>This creates a file <code>a.out</code>, which is an executable that can be run (default)</li>
+</ul>
+<p>We could specify the name of the output file if we did:</p>
+<pre><code>cc -o pun pun.c</code></pre>
+<ul>
+<li>This produces <code>pun.out</code></li>
+</ul>
+<p>The <code>a.out</code> file can be run with the following in terminal:</p>
+<pre><code>./a.out</code></pre>
+</section>
+<section id="the-general-form-of-a-simple-program" class="level3">
+<h3 class="anchored" data-anchor-id="the-general-form-of-a-simple-program">The General Form of a Simple Program</h3>
+<p>A basic C program follows the following form:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1">directives</span>
+<span id="cb5-2"></span>
+<span id="cb5-3"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb5-4"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb5-5">  statements</span>
+<span id="cb5-6"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<p>The simplist C programs rely on three language features:</p>
+<ul>
+<li><strong>Directives</strong>: Editing commands that modify the program prior to compliation</li>
+<li><strong>Functions</strong>: Named blocks of executable code (e.g.&nbsp;<code>main</code>)</li>
+<li><strong>Statements</strong>: Commands to be performed when the program is run</li>
+</ul>
+<section id="directives" class="level4">
+<h4 class="anchored" data-anchor-id="directives">Directives</h4>
+<p>Before a C program is complied, it is edited by the preprocessor. - Commands for the preprocessor are called directives</p>
+<p>The <code>punc.c</code> program begins with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span></code></pre></div></div>
+<ul>
+<li>This directive states that the informatoin in <code>&lt;stdio.h&gt;</code> is to be included in the program before it is compiled.
+<ul>
+<li><code>&lt;stdio.h&gt;</code> contains infomration about the standard I/O library.</li>
+<li>C has a number of these <strong>headers</strong> as there are no built-in commands for things like read/write.</li>
+</ul></li>
+<li>Directives always begin with a # character</li>
+<li>By default, they are one line long, without a semicolon at the end.</li>
+</ul>
+</section>
+<section id="functions" class="level4">
+<h4 class="anchored" data-anchor-id="functions">Functions</h4>
+<p><strong>Functions</strong> are procedures/subroutines that are the building blocks from which programs are built. Functions fall into two categories: - Written by the programmer - Provided by C (<strong>library functions</strong>)</p>
+<p>In C, a function is a series of statements that are group together and given a name.</p>
+<ul>
+<li>Some compute values</li>
+<li>Some return values using the <code>return</code> statement.</li>
+</ul>
+<p>All C programs are required to have the <code>main</code> function.</p>
+<ul>
+<li><code>main</code> is a function, which can also return a value.</li>
+</ul>
+<p>Looking at the `pun.c program:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb7-2"></span>
+<span id="cb7-3"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb7-4"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb7-5">  print<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"To C, or not to C: That is the question. </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb7-6">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb7-7"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<ul>
+<li><p><code>int</code> indicates that <code>main</code> will return an integer value.</p></li>
+<li><p><code>void</code> indicates that <code>main</code> has no arguments.</p></li>
+<li><p><code>return 0</code> has two effects:</p>
+<ul>
+<li>Causes <code>main</code> to terminates</li>
+<li>Indicates that <code>main</code> returns the value 0</li>
+</ul>
+<p>If there is no <code>return</code> statement, the program will still terminate, but the compiler may throw a warning.</p>
+<h4 id="statements" class="anchored">Statements</h4>
+<p>A <strong>statement</strong> is a command to be executed when the program runs.</p>
+<p>The <code>pun.c</code> program has two kinds of statements: <code>return</code> and the <strong>function call</strong></p></li>
+<li><p>A function performing an assigned task is <strong>calling</strong> the function.</p></li>
+<li><p>C requires each statement to end with a semicolon.</p>
+<ul>
+<li>A compound statment, doesn’t require a semicolon.</li>
+<li>The semicolon tells the compiler where the statement ends.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="comments" class="level3">
+<h3 class="anchored" data-anchor-id="comments">Comments</h3>
+<p>The original comment syntax <code>/* This is a comment */</code></p>
+<ul>
+<li>These are essentially block quotes until there’s a closing <code>*/</code></li>
+</ul>
+<p>With C99, we can use <code>//</code>, which is just for a single line.</p>
+</section>
+<section id="variables-and-assignment" class="level3">
+<h3 class="anchored" data-anchor-id="variables-and-assignment">Variables and Assignment</h3>
+<p>Every variable must have a <strong>type</strong>, which is the kind of data it will hold.</p>
+<ul>
+<li>Chosing the proper type is critical because operations are different depending on the variable’s type.</li>
+<li>Integers for example, can only go up to 2.1M,</li>
+<li><code>float</code> numbers stores more digits as well as numbers after the decimals.
+<ul>
+<li>The down side is that float are slower for arithmetic and the value tends to have a rounding error (e.g 0.1 could be 0.0999..)</li>
+</ul></li>
+</ul>
+<section id="declarations" class="level4">
+<h4 class="anchored" data-anchor-id="declarations">Declarations</h4>
+<p>Variables must be <strong>declared</strong> for the complier, before they are used.</p>
+<ul>
+<li>To declare a variable, first specify the <em>type</em> and then it’s name (e.g.&nbsp;<code>int height;</code>).</li>
+<li>If several variables have the same type, they can be declared at once:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> length<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> volume<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb8-2"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">float</span> profit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> loss<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<ul>
+<li>Declarations always end with a semicolon.</li>
+</ul>
+<p>When <code>main</code> contains declarations, they must be preceded by statements:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb9-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb9-3">  declarations</span>
+<span id="cb9-4">  statments</span>
+<span id="cb9-5"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<ul>
+<li>In C99, declarations don’t have to come before statements.
+<ul>
+<li><code>main</code> might contain a declaration, then statement, then another declaration.</li>
+</ul></li>
+</ul>
+</section>
+<section id="assignment" class="level4">
+<h4 class="anchored" data-anchor-id="assignment">Assignment</h4>
+<p>A variable can be given a value through <strong>assignment</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1">height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-2">length <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-3">width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<p>In general, the right side of of an assignment can be a formulat (<strong>expression</strong>) involving constants, variables, and operators.</p>
+</section>
+<section id="printing-the-value-of-a-variable" class="level4">
+<h4 class="anchored" data-anchor-id="printing-the-value-of-a-variable">Printing the value of a variable</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1">printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Height: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span></code></pre></div></div>
+<ul>
+<li><code>%d</code> is a placeholder for <code>height</code>
+<ul>
+<li>By default, <code>%f</code> displays a number with 6 digits after the decimal point</li>
+<li>To force <code>%f</code> to display <code>p</code> digits after the decimal point, we can put <code>.p</code> between the <code>%</code> and the <code>f</code>:</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb12-1">printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Profit: $</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%.2f\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> profit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+</section>
+<section id="initialization" class="level4">
+<h4 class="anchored" data-anchor-id="initialization">Initialization</h4>
+<p>Some variables are automatically set to zero when the program begins, but most are not. - A variable that doesn’t have a default value or is assigned one, is said to be <strong>uninitialized</strong></p>
+<p><strong>NOTE:</strong> If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number. - It’s also possible that it crashes the program.</p>
+<p>We can declare the variable <code>height</code> and initilaize it in one step:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<ul>
+<li>The value <code>8</code> is said to be an <strong>initializer</strong></li>
+</ul>
+<p>Multiple variables can be initialized in the same declaration:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> length <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<ul>
+<li>Each variable requires its own initializer.</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <category>C</category>
+  <category>CPMA</category>
+  <guid>https://jonbry.github.io/leaRns/posts/cprog-2/</guid>
+  <pubDate>Mon, 02 Feb 2026 05:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

@@ -32,7 +32,7 @@ Before the program can run we have three steps:
 
 1.  **Preprocessing** - The program is given to the [preprocessor](.underline) which follows the commands that begin with `#` (directives).
     -   The preprocessor can add/modify the program
-2.  **Compliling** - The modified program from the preprocessor goes to the [compiler](.underline), which translates it to machine instructions (object code)
+2.  **Compiling** - The modified program from the preprocessor goes to the [compiler](.underline), which translates it to machine instructions (object code)
 3.  **Linking** - A [linker](.underline) combines the object code with any necessarily additional code (e.g. functions from a library) that are used in the program.
 
 We can compile the code in terminal by navigating to the folder and running:
@@ -56,9 +56,12 @@ The `a.out` file can be run with the following in terminal:
 ```         
 ./a.out
 ```
-### The General Form of a Simple Program
+
+## The General Form of a Simple Program
+
 A basic C program follows the following form:
-```c
+
+``` c
 directives
 
 int main(void)
@@ -69,40 +72,42 @@ int main(void)
 
 The simplist C programs rely on three language features:
 
-- **Directives**: Editing commands that modify the program prior to compliation
-- **Functions**: Named blocks of executable code (e.g. `main`)
-- **Statements**: Commands to be performed when the program is run
+-   **Directives**: Editing commands that modify the program prior to compilation
+-   **Functions**: Named blocks of executable code (e.g. `main`)
+-   **Statements**: Commands to be performed when the program is run
 
-#### Directives
-Before a C program is complied, it is edited by the preprocessor.
-- Commands for the preprocessor are called directives
+### Directives
+
+Before a C program is complied, it is edited by the preprocessor. - Commands for the preprocessor are called directives
 
 The `punc.c` program begins with:
-```c
+
+``` c
 #include <stdio.h>
 ```
-- This directive states that the informatoin in `<stdio.h>` is to be included in the program before it is compiled.
-  - `<stdio.h>` contains infomration about the standard I/O library.
-  - C has a number of these **headers** as there are no built-in commands for things like read/write.
-- Directives always begin with a # character
-- By default, they are one line long, without a semicolon at the end.
 
-#### Functions
-**Functions** are procedures/subroutines that are the building blocks from which programs are built. Functions fall into two categories:
-- Written by the programmer
-- Provided by C (**library functions**)
+-   This directive states that the information in `<stdio.h>` is to be included in the program before it is compiled.
+    -   `<stdio.h>` contains information about the standard I/O library.
+    -   C has a number of these **headers** as there are no built-in commands for things like read/write.
+-   Directives always begin with a \# character
+-   By default, they are one line long, without a semicolon at the end.
 
-In C, a function is a series of statements that are group together and given a name. 
+### Functions
 
-- Some compute values
-- Some return values using the `return` statement.
+**Functions** are procedures/subroutines that are the building blocks from which programs are built. Functions fall into two categories: - Written by the programmer - Provided by C (**library functions**)
+
+In C, a function is a series of statements that are group together and given a name.
+
+-   Some compute values
+-   Some return values using the `return` statement.
 
 All C programs are required to have the `main` function.
 
-- `main` is a function, which can also return a value.
+-   `main` is a function, which can also return a value.
 
-Looking at the `pun.c program:
-```c
+Looking at the \`pun.c program:
+
+``` c
 #include <stdio.h>
 
 int main(void)
@@ -111,99 +116,220 @@ int main(void)
   return 0;
 }
 ```
-- `int` indicates that `main` will return an integer value.
-- `void` indicates that `main` has no arguments.
-- `return 0` has two effects:
-  - Causes `main` to terminates
-  - Indicates that `main` returns the value 0
 
-  If there is no `return` statement, the program will still terminate, but the compiler may throw a warning.
+-   `int` indicates that `main` will return an integer value.
 
-  #### Statements
-  A **statement** is a command to be executed when the program runs.
-  
-  The `pun.c` program has two kinds of statements: 
-  `return` and the **function call**
- 
- - A function performing an assigned task is **calling** the function.
-  - C requires each statement to end with a semicolon.
-    - A compound statment, doesn't require a semicolon.
-    - The semicolon tells the compiler where the statement ends.
+-   `void` indicates that `main` has no arguments.
 
-### Comments
+-   `return 0` has two effects:
+
+    -   Causes `main` to terminates
+    -   Indicates that `main` returns the value 0
+
+    If there is no `return` statement, the program will still terminate, but the compiler may throw a warning.
+
+    ### Statements
+
+    A **statement** is a command to be executed when the program runs.
+
+    The `pun.c` program has two kinds of statements: `return` and the **function call**
+
+-   A function performing an assigned task is **calling** the function.
+
+-   C requires each statement to end with a semicolon.
+
+    -   A compound statement, doesn't require a semicolon.
+    -   The semicolon tells the compiler where the statement ends.
+
+## Comments
+
 The original comment syntax `/* This is a comment */`
 
-- These are essentially block quotes until there's a closing `*/`
+-   These are essentially block quotes until there's a closing `*/`
 
 With C99, we can use `//`, which is just for a single line.
 
-### Variables and Assignment
+## Variables and Assignment
+
 Every variable must have a **type**, which is the kind of data it will hold.
 
-- Chosing the proper type is critical because operations are different depending on the variable's type.
-- Integers for example, can only go up to 2.1M, 
-- `float` numbers stores more digits as well as numbers after the decimals.
-  - The down side is that float are slower for arithmetic and the value tends to have a rounding error (e.g 0.1 could be 0.0999..)
+-   Choosing the proper type is critical because operations are different depending on the variable's type.
+-   Integers for example, can only go up to 2.1M,
+-   `float` numbers stores more digits as well as numbers after the decimals.
+    -   The down side is that float are slower for arithmetic and the value tends to have a rounding error (e.g 0.1 could be 0.0999..)
 
-#### Declarations
-Variables must be **declared** for the complier, before they are used. 
+### Declarations
 
-- To declare a variable, first specify the *type* and then it's name (e.g. `int height;`).
-- If several variables have the same type, they can be declared at once:
-```c
+Variables must be **declared** for the compiler, before they are used.
+
+-   To declare a variable, first specify the *type* and then it's name (e.g. `int height;`).
+-   If several variables have the same type, they can be declared at once:
+
+``` c
 int height, length, width, volume;
 float profit, loss;
 ```
-- Declarations always end with a semicolon. 
+
+-   Declarations always end with a semicolon.
 
 When `main` contains declarations, they must be preceded by statements:
-```c
+
+``` c
 int main(void)
 {
   declarations
   statments
 }
 ```
-- In C99, declarations don't have to come before statements.
-  - `main` might contain a declaration, then statement, then another declaration.
 
-#### Assignment
+-   In C99, declarations don't have to come before statements.
+    -   `main` might contain a declaration, then statement, then another declaration.
+
+### Assignment
+
 A variable can be given a value through **assignment**:
-```c
+
+``` c
 height = 8;
 length = 12;
 width = 10;
 ```
 
-In general, the right side of of an assignment can be a formulat (**expression**) involving constants, variables, and operators.
+In general, the right side of of an assignment can be a formulate (**expression**) involving constants, variables, and operators.
 
-#### Printing the value of a variable
+### Printing the value of a variable
 
-```c
+``` c
 printf("Height: %d\n", height);
 ```
-- `%d` is a placeholder for `height`
-  - By default, `%f` displays a number with 6 digits after the decimal point
-  - To force `%f` to display `p` digits after the decimal point, we can put `.p` between the `%` and the `f`:
 
-```c
+-   `%d` is a placeholder for `height`
+    -   By default, `%f` displays a number with 6 digits after the decimal point
+    -   To force `%f` to display `p` digits after the decimal point, we can put `.p` between the `%` and the `f`:
+
+``` c
 printf("Profit: $%.2f\n", profit)
 ```
-#### Initialization
-Some variables are automatically set to zero when the program begins, but most are not.
-- A variable that doesn't have a default value or is assigned one, is said to be **uninitialized**
+
+### Initialization
+
+Some variables are automatically set to zero when the program begins, but most are not. - A variable that doesn't have a default value or is assigned one, is said to be **uninitialized**
 
 **NOTE:** If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number.
-- It's also possible that it crashes the program.
 
-We can declare the variable `height` and initilaize it in one step:
-```c
+-   It's also possible that it crashes the program.
+
+We can declare the variable `height` and initialize it in one step:
+
+``` c
 int height = 8;
 ```
-- The value `8` is said to be an **initializer**
+
+-   The value `8` is said to be an **initializer**
 
 Multiple variables can be initialized in the same declaration:
-```c
+
+``` c
 int height = 8, length = 12, width = 10;
 ```
-- Each variable requires its own initializer.
+
+-   Each variable requires its own initializer.
+
+## Reading Input
+
+`scanf`, the counterpart of `printf` can be used to read inputs.
+
+-   The `f` in `scanf`/`readf` stands for "formatted" as both require the use of a **format string** to specify the appearance of the input or output data.
+-   `scanf` needs to know what kind of input data will be entered and `printf` needs to know how to display the output data.
+
+For example, reading an `int` value:
+
+``` c
+scanf("%d, &i"); /* reads an integer; stores into i */
+```
+
+-   `%d` tells `scanf` to read the input that represents an integer.
+-   `i` is an `int` variable where `scanf` will store the input.
+
+Reading a `float` value is slightly different with `scanf`:
+
+``` c
+scanf("%f, &x"); /* reads a float value; stores into x */
+```
+
+-   `%f` only works with variables of type `float`
+
+## Defining Names for Constants
+
+We can define constants used within a program by giving them a **macro definition**
+
+``` c
+#define INCHES_PER_POUND 166
+```
+
+-   This macro definiton defines INCHES_PER_POUND to equal 166
+-   `#define` is a preprocessing directive
+
+We can now use replace the value in our program using the macro:
+
+``` c
+weight = (volume + INCHES_PER_POUND - 1) / INCHES_PER_POUND;
+```
+
+-   C convenion is to use only upper-case letters for macro names.
+
+#### Program to convert Fahrenheit to Celsius
+
+``` c
+/* Converts Fahrenheit to Celsius */
+
+#include <stdio.h>
+
+#define FREESZING_PT 32.0f
+#define SCALE_FACTOR (5.0f/9.0F)
+
+int main(void) {
+    float fahrenheit, celsius;
+
+    printf("Enter Fahrenheit temp: ");
+    scanf("%f", &fahrenheit);
+
+    celsius = (fahrenheit - FREESZING_PT) * SCALE_FACTOR;
+
+    printf("Celsius equivalent: %.1f\n", celsius);
+
+    return(0);
+}
+```
+
+## Identifiers
+
+The names we give variables in C are called **identifiers**. Identifiers can include letters, numbers, and underscores, but must begin with a letter or underscore.
+
+### Keywords
+
+These are the keyworks (can't be used as identifiers) through C99:
+
+![](images/Screenshot%20from%202026-02-11%2021-57-22.png){fig-align="center" width="400"}
+
+## FAQ
+
+What happens if a program doesn't have a `return` statement?
+
+-   `return` isn't mandatory and the program will still terminate.
+
+    -   In C89, the value returned to the OS is undefined.
+
+    -   In C99, if `main` is supposed to return an `int`, it returns 0 to the OS. Otherwise, undefined.
+
+How does the compiler handle comments? Does it remove them or enter a blank space (e.g. `a/**/b = 0;`)?
+
+-   The C standard requires the compiler to replace each comment with a space, so the example code would be invalid (`a b = 0`).
+
+Can comments be nested?
+
+-   Old style comments (`/* */`) cannot be nested but C99 comments (`//`) can be nested within the old ones.
+
+Are there limits to the length of an identifier?
+
+-   C89 compilers are only required to remember the first 31 characters (C99 is 63), so if the first 31/63 characters are the same, the compiler may run into issues.
