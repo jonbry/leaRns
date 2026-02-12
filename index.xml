@@ -379,7 +379,10 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 <section id="initialization" class="level3">
 <h3 class="anchored" data-anchor-id="initialization">Initialization</h3>
 <p>Some variables are automatically set to zero when the program begins, but most are not. - A variable that doesn’t have a default value or is assigned one, is said to be <strong>uninitialized</strong></p>
-<p><strong>NOTE:</strong> If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number. - It’s also possible that it crashes the program.</p>
+<p><strong>NOTE:</strong> If we try to access the value of an uninitialized variable, it is likely to return a random value such as 2567, -30891, or some other random number.</p>
+<ul>
+<li>It’s also possible that it crashes the program.</li>
+</ul>
 <p>We can declare the variable <code>height</code> and initialize it in one step:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><span class="dt" style="color: #AD0000;
 background-color: null;
@@ -444,6 +447,214 @@ font-style: inherit;">/* reads an integer; stores into i */</span></span></code>
 <ul>
 <li><code>%d</code> tells <code>scanf</code> to read the input that represents an integer.</li>
 <li><code>i</code> is an <code>int</code> variable where <code>scanf</code> will store the input.</li>
+</ul>
+<p>Reading a <code>float</code> value is slightly different with <code>scanf</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1">scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%f</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">, &amp;x"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* reads a float value; stores into x */</span></span></code></pre></div></div>
+<ul>
+<li><code>%f</code> only works with variables of type <code>float</code></li>
+</ul>
+</section>
+<section id="defining-names-for-constants" class="level2">
+<h2 class="anchored" data-anchor-id="defining-names-for-constants">Defining Names for Constants</h2>
+<p>We can define constants used within a program by giving them a <strong>macro definition</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb17-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#define INCHES_PER_POUND </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">166</span></span></code></pre></div></div>
+<ul>
+<li>This macro definiton defines INCHES_PER_POUND to equal 166</li>
+<li><code>#define</code> is a preprocessing directive</li>
+</ul>
+<p>We can now use replace the value in our program using the macro:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1">weight <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>volume <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> INCHES_PER_POUND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> INCHES_PER_POUND<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<ul>
+<li>C convenion is to use only upper-case letters for macro names.</li>
+</ul>
+<section id="program-to-convert-fahrenheit-to-celsius" class="level4">
+<h4 class="anchored" data-anchor-id="program-to-convert-fahrenheit-to-celsius">Program to convert Fahrenheit to Celsius</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* Converts Fahrenheit to Celsius */</span></span>
+<span id="cb19-2"></span>
+<span id="cb19-3"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb19-4"></span>
+<span id="cb19-5"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#define FREESZING_PT </span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">32.0</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">f</span></span>
+<span id="cb19-6"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#define SCALE_FACTOR </span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.0</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">f</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9.0</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">F</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb19-7"></span>
+<span id="cb19-8"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb19-9">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">float</span> fahrenheit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> celsius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb19-10"></span>
+<span id="cb19-11">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter Fahrenheit temp: "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb19-12">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%f</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>fahrenheit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb19-13"></span>
+<span id="cb19-14">    celsius <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>fahrenheit <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> FREESZING_PT<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> SCALE_FACTOR<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb19-15"></span>
+<span id="cb19-16">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Celsius equivalent: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%.1f\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> celsius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb19-17"></span>
+<span id="cb19-18">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb19-19"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="identifiers">Identifiers</h2>
+<p>The names we give variables in C are called <strong>identifiers</strong>. Identifiers can include letters, numbers, and underscores, but must begin with a letter or underscore.</p>
+<section id="keywords" class="level3">
+<h3 class="anchored" data-anchor-id="keywords">Keywords</h3>
+<p>These are the keyworks (can’t be used as identifiers) through C99:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jonbry.github.io/leaRns/posts/cprog-2/images/Screenshot from 2026-02-11 21-57-22.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="faq" class="level2">
+<h2 class="anchored" data-anchor-id="faq">FAQ</h2>
+<p>What happens if a program doesn’t have a <code>return</code> statement?</p>
+<ul>
+<li><p><code>return</code> isn’t mandatory and the program will still terminate.</p>
+<ul>
+<li><p>In C89, the value returned to the OS is undefined.</p></li>
+<li><p>In C99, if <code>main</code> is supposed to return an <code>int</code>, it returns 0 to the OS. Otherwise, undefined.</p></li>
+</ul></li>
+</ul>
+<p>How does the compiler handle comments? Does it remove them or enter a blank space (e.g.&nbsp;<code>a/**/b = 0;</code>)?</p>
+<ul>
+<li>The C standard requires the compiler to replace each comment with a space, so the example code would be invalid (<code>a b = 0</code>).</li>
+</ul>
+<p>Can comments be nested?</p>
+<ul>
+<li>Old style comments (<code>/* */</code>) cannot be nested but C99 comments (<code>//</code>) can be nested within the old ones.</li>
+</ul>
+<p>Are there limits to the length of an identifier?</p>
+<ul>
+<li>C89 compilers are only required to remember the first 31 characters (C99 is 63), so if the first 31/63 characters are the same, the compiler may run into issues.</li>
 </ul>
 
 
