@@ -216,6 +216,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#keywords" id="toc-keywords" class="nav-link" data-scroll-target="#keywords">Keywords</a></li>
   </ul></li>
   <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq">FAQ</a></li>
+  <li><a href="#excerises" id="toc-excerises" class="nav-link" data-scroll-target="#excerises">Excerises</a></li>
+  <li><a href="#programing-problems" id="toc-programing-problems" class="nav-link" data-scroll-target="#programing-problems">Programing Problems</a></li>
   </ul>
 </nav>
     </div>
@@ -511,6 +513,111 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>C89 compilers are only required to remember the first 31 characters (C99 is 63), so if the first 31/63 characters are the same, the compiler may run into issues.</li>
 </ul>
+</section>
+<section id="excerises" class="level2">
+<h2 class="anchored" data-anchor-id="excerises">Excerises</h2>
+<p>1. Create and run K&amp;R’s famous “hello, world” program:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"hello, world</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Did you get any warning messages from the compiler?</p>
+<ul>
+<li>No issues from <code>cc</code></li>
+</ul>
+<p>2. Consider the following program:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp"># include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Parkinson's Law:</span><span class="sc">\n</span><span class="st">Work exands so as to "</span><span class="op">);</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"fill the time</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"available for its completion.</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>a) Identify the directives and statements in the program.</p>
+<ul>
+<li><p>The derective is <code>#include &lt;stdio.h&gt;</code>, which loads the standard library</p></li>
+<li><p>The statements are the <code>printf</code> and <code>return</code> statements.</p></li>
+</ul>
+<p>b) What output does the program produce?</p>
+<blockquote class="blockquote">
+<p>Parkinson’s Law:</p>
+<p>Work expands so as to fill the time</p>
+<p>available for its completion.</p>
+</blockquote>
+<p>3. Condense the dweight.c program by:</p>
+<ul>
+<li><p>Replacing the assignments to <code>height</code>, <code>length</code>, and <code>width</code> with initializers</p></li>
+<li><p>Removing the <code>weight</code> variable, instead calculating <code>(volume + 165)/166</code> within the last <code>printf</code></p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> height <span class="op">=</span> <span class="dv">8</span><span class="op">,</span> length <span class="op">=</span> <span class="dv">12</span><span class="op">,</span> width <span class="op">=</span> <span class="dv">10</span><span class="op">,</span> volume<span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    volume <span class="op">=</span> height <span class="op">*</span> length <span class="op">*</span> width<span class="op">;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Dimensions: </span><span class="sc">%d</span><span class="st">x</span><span class="sc">%d</span><span class="st">x</span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> height<span class="op">,</span> length<span class="op">,</span> width<span class="op">);</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Volume: (cubic inches): </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> volume<span class="op">);</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Dimensional weight (pounds): </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> <span class="op">(</span>volume <span class="op">+</span> <span class="dv">165</span><span class="op">)/</span><span class="dv">166</span><span class="op">);</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>Dimensions: 8x12x10
+Volume: (cubic inches): 960
+Dimensional weight (pounds): 6</code></pre>
+<p>4. Write a program that declares several <code>int</code> and <code>float</code> variables - without initializing them - then prints their value. Is there any patterns?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a<span class="op">,</span> b<span class="op">,</span> c<span class="op">;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> d<span class="op">,</span> e<span class="op">,</span> f<span class="op">;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"a = </span><span class="sc">%d</span><span class="st">, b = </span><span class="sc">%d</span><span class="st">, c = </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"d = </span><span class="sc">%f</span><span class="st">, e = </span><span class="sc">%f</span><span class="st">, f = </span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> d<span class="op">,</span> e<span class="op">,</span> f<span class="op">);</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>a = -2100233488, b = 31449, c = -1547096624
+d = 0.000000, e = -0.000000, f = 0.000000</code></pre>
+<ul>
+<li>They are random values</li>
+</ul>
+<p>5. Which of the following are not valid C initializers?</p>
+<p>a) <code>100_bottles</code></p>
+<p>b) <code>_100_bottles</code></p>
+<p>c) <code>one__hundred__bottles</code></p>
+<p>d) <code>bottles_by_the_hundred_</code></p>
+<ul>
+<li>(a) is not valid because you can’t start a variable name with a number</li>
+</ul>
+<p>8. How many tokens are there in the following statement</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>answer <span class="op">=</span> <span class="op">(</span><span class="dv">3</span><span class="op">*</span>q<span class="op">-</span>p<span class="op">*</span>p<span class="op">)/</span><span class="dv">3</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>14 tokens (everything is a token besides spaces)</li>
+</ul>
+</section>
+<section id="programing-problems" class="level2">
+<h2 class="anchored" data-anchor-id="programing-problems">Programing Problems</h2>
+<p>4. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:</p>
+<pre><code>Enter an amount: 100.00
+With tax added: $105.00</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> amount<span class="op">;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> amount_with_tax<span class="op">;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Enter an amount: "</span><span class="op">);</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    scanf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> <span class="op">&amp;</span>amount<span class="op">);</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    amount_with_tax <span class="op">=</span> amount <span class="op">*</span> <span class="fl">1.05</span><span class="op">;</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"With tax added: $</span><span class="sc">%.2f\n</span><span class="st">"</span><span class="op">,</span> amount_with_tax<span class="op">);</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

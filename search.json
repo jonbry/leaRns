@@ -70,6 +70,20 @@
     "text": "FAQ\nWhat happens if a program doesn’t have a return statement?\n\nreturn isn’t mandatory and the program will still terminate.\n\nIn C89, the value returned to the OS is undefined.\nIn C99, if main is supposed to return an int, it returns 0 to the OS. Otherwise, undefined.\n\n\nHow does the compiler handle comments? Does it remove them or enter a blank space (e.g. a/**/b = 0;)?\n\nThe C standard requires the compiler to replace each comment with a space, so the example code would be invalid (a b = 0).\n\nCan comments be nested?\n\nOld style comments (/* */) cannot be nested but C99 comments (//) can be nested within the old ones.\n\nAre there limits to the length of an identifier?\n\nC89 compilers are only required to remember the first 31 characters (C99 is 63), so if the first 31/63 characters are the same, the compiler may run into issues."
   },
   {
+    "objectID": "posts/cprog-2/index.html#excerises",
+    "href": "posts/cprog-2/index.html#excerises",
+    "title": "2 Fundamentals",
+    "section": "Excerises",
+    "text": "Excerises\n1. Create and run K&R’s famous “hello, world” program:\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    printf(\"hello, world\\n\");\n}\nDid you get any warning messages from the compiler?\n\nNo issues from cc\n\n2. Consider the following program:\n# include &lt;stdio.h&gt;\n\nint main(void)\n{\n    printf(\"Parkinson's Law:\\nWork exands so as to \");\n    printf(\"fill the time\\n\");\n    printf(\"available for its completion.\\n\");\n    return(0)\n}\na) Identify the directives and statements in the program.\n\nThe derective is #include &lt;stdio.h&gt;, which loads the standard library\nThe statements are the printf and return statements.\n\nb) What output does the program produce?\n\nParkinson’s Law:\nWork expands so as to fill the time\navailable for its completion.\n\n3. Condense the dweight.c program by:\n\nReplacing the assignments to height, length, and width with initializers\nRemoving the weight variable, instead calculating (volume + 165)/166 within the last printf\n\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int height = 8, length = 12, width = 10, volume;\n    volume = height * length * width;\n\n    printf(\"Dimensions: %dx%dx%d\\n\", height, length, width);\n    printf(\"Volume: (cubic inches): %d\\n\", volume);\n    printf(\"Dimensional weight (pounds): %d\\n\", (volume + 165)/166);\n\n    return(0);\n}\nDimensions: 8x12x10\nVolume: (cubic inches): 960\nDimensional weight (pounds): 6\n4. Write a program that declares several int and float variables - without initializing them - then prints their value. Is there any patterns?\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int a, b, c;\n    float d, e, f;\n\n    printf(\"a = %d, b = %d, c = %d\\n\", a, b, c);\n    printf(\"d = %f, e = %f, f = %f\\n\", d, e, f);\n    return(0);\n}\na = -2100233488, b = 31449, c = -1547096624\nd = 0.000000, e = -0.000000, f = 0.000000\n\nThey are random values\n\n5. Which of the following are not valid C initializers?\na) 100_bottles\nb) _100_bottles\nc) one__hundred__bottles\nd) bottles_by_the_hundred_\n\n(a) is not valid because you can’t start a variable name with a number\n\n8. How many tokens are there in the following statement\nanswer = (3*q-p*p)/3;\n\n14 tokens (everything is a token besides spaces)"
+  },
+  {
+    "objectID": "posts/cprog-2/index.html#programing-problems",
+    "href": "posts/cprog-2/index.html#programing-problems",
+    "title": "2 Fundamentals",
+    "section": "Programing Problems",
+    "text": "Programing Problems\n4. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:\nEnter an amount: 100.00\nWith tax added: $105.00\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int amount;\n    float amount_with_tax;\n\n    printf(\"Enter an amount: \");\n    scanf(\"%d\", &amount);\n    amount_with_tax = amount * 1.05;\n    printf(\"With tax added: $%.2f\\n\", amount_with_tax);\n    return(0);\n}"
+  },
+  {
     "objectID": "posts/database_systems-1/index.html",
     "href": "posts/database_systems-1/index.html",
     "title": "1 Introduction",
