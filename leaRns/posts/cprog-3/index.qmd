@@ -148,3 +148,134 @@ scanf("%d%d%f%f", &i, &j, &x, &y);
     -   This is generally required and forgetting it will likely to unpredictable results.
 
     -   It could crash, the input not updating the variables value, etc.
+
+### How `scanf` works
+
+`scanf` is essentially a pattern-matching function that tries to match groups of input characters with conversion specifications.
+
+-   For each conversion specification in the format string, `scanf` tries to locate an item of the appropriate type in the input data, skipping blank space if necessary.
+
+-   `scanf` then reads the item, topping when it encounters a character that can't belong to the item.
+
+-   If the item is successful read, `scanf` continues processing the rest of the string format.
+
+-   If any item is not read successfully, `scanf` returns immediately without looking at the rest of the format string.
+
+-   `scanf` ignores white space characters so it will read items even is spread over multiple lines.
+
+-   `scanf` "peeks" at the final new-line character without actually reading it. The new-line will be the character read by the next call to `scanf`
+
+-   When reading an integer, `scanf` first looks for a digit, a `+`, or `-`, then it reads digits until it reaches a non-digit.
+
+-   When reading a floating-point number, `scanf` looks for a `+` or `-` followed by a series of digits (optional decimal point), followed by a possible exponent.
+
+    -   The exponent would be an `e` or `E` with a possible sign/digits
+
+#### Example of how `scanf` works
+
+We write a program to read the following 4 numbers: 1, -20.3, -4.0e3 \\n. The `scanf` could look like:
+
+``` c
+scanf("%d%d%f%f", &i, &j, &x, &y)
+```
+
+`scanf`'s processes:
+
+1.  Conversion specification: `%d`
+    -   The first non-blank character is 1, which can be an integer.
+
+    -   It reads the next character which is a `-`, which `scanf` knows cannot be within an integer, so it puts it back.
+2.  Conversion specification: `%d`
+    -   `scanf` reads the `-`, which is an acceptable start to an integer. It will continue going until it reads a character that cannot be included in an integer: `2` and `0`
+
+        -   `scanf` stops when it reaches `.` because it is not a valid value for an integer. It puts it back.
+3.  Conversion specification: `%f`
+    -   `scanf` reads the characters `.`, which is a valid character for the beginning of a float, then `3`, and stops at the `-` because it is not a valid character for the middle of a float.
+
+    -   `scanf` stores 0.3 in to `x` and puts back the `-` character
+4.  Conversion specification `%f`
+    -   `scanf` now reads `-`,`4`, `.`,`0`, `e`, `3`. `\n`
+
+    -   It stores all values but the `\n`, which it puts back.
+
+### Ordinary characters in Format strings
+
+The action `scanf` takes when it process ordinary characters depends on whether it is a white-space character:
+
+-   **White-space characters**
+
+    -   When `scanf` reads all the white-space characters until it reaches a non-white-space character, which it puts back.
+
+    -   `scanf` doesn't differentiate between one or more white-space characters, even the fact of having none.
+
+-   **Non-white-space characters**
+
+    -   When `scanf` encounters a non-white-space character, it compares it to the next input character.
+
+    -   If the two characters match, it disregards it and continues processing the format string.
+
+    -   If the characters do not match, `scanf` puts the offending character back into the input, and aborts without further processing the format string.
+
+#### `scanf` white-space example
+
+Suppose the format string is `" %d/ %d"` with an input of "`5/ 96"`. `scanf`
+
+1.  Skips the first space since it is looking for an integer
+2.  Matches `%d` with 5
+3.  Attempts to match `/` because it is in the format string
+4.  Skips the space
+5.  Matches `%d` with 96 because it is a valid integer.
+
+If the input is `" 5 / 96"` on the other hand, `scanf`
+
+1.  Skips the first space
+2.  Matches %`d` with 5
+3.  Attempts to match the `/` with `/` but there is no match with a space before a `/` in the format string.
+4.  The `/ 96` characters remain to be read by the next call of `scanf`
+    -   We should have used the format string `%d /d%` to properly read this string.
+
+#### Adding fractions
+
+``` c
+/* Adds two fractions */
+
+#include <stdio.h>
+
+int main(void)
+{
+    int num1, denom1, num2, denom2, result_num, result_denom;
+
+    printf("Enter first fraction: ");
+    scanf("%d/%d", &num1, &denom1);
+
+    printf("Enter second fraction: ");
+    scanf("%d/%d", &num2, &denom2);
+
+    result_num = num1 * denom2 + num2 * denom1;
+    result_denom = denom1 * denom2;
+
+    printf("The sum is %d/%d\n", result_num, result_denom);
+
+    return 0;
+}
+```
+
+## Q&A
+
+The `\t` escape causes `printf` to advance to the next tab stop. How does one know how far apart the tabs are?
+
+-   We don't as it isn't defined by C, but the operating system. It is typically 8 characters.
+
+What happens when a `scanf` is expecting a number but is given a non-numeric input?
+
+-   If it starts with a number followed by character, it reads in the number and leaves the characters for the next `scanif`
+
+-   If it is just characters, then `scanf` will likely store a random value in the variable.
+
+What does it mean when `scanf` puts back characters and reads them again later?
+
+-   Programs don't actually read user input as its typed.
+
+-   The input is actually stored in a hidden buffer that `scanf` can access.
+
+-   `scanf` can put characters back into the buffer for subsequent reading.
