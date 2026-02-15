@@ -1,0 +1,150 @@
+---
+title: 3 Formatted I/O 
+subtitle: Notes from C Programming a Modern Approach
+date: "02/14/2026"
+date-modified: "02/14/2026"
+toc: true
+categories: [code, C, CPMA]
+---
+
+## The `printf` function
+
+The `printf` function is designed to change the contents of a string with values inserted at specific points in the string.
+
+-   This is known as the **format string**
+
+-   `printf(string, exp1, exp2, ...)`
+
+The format string contains standard characters as well as **conversion specifications**, which begin with `%`.
+
+-   The conversion specification is a placeholder that is filled when printing.
+
+-   The `%` character specifies how the value is converted from the internal from (binary) to the printed form (character).
+
+    -   The conversion specification `%d` is used to convert an `int` from binary to a string of decimal digits .
+
+    -   `%f` does the same for a `float` value.
+
+-   C compilers are not required to check the number of conversion specifications with the number of output types.
+
+    -   If there are more output items, they will print a random value.
+
+    -   If there are more conversion specifications, it will likely not print the values
+
+-   Compilers are also not required to check if the conversion spec matches the the output type. The wrong type will print a random value.
+
+### Conversion specifications
+
+Conversion specifications have the form `%m.pX` or `%-m.pX` , where `m` and `p` are integers and `X` is a letter.
+
+-   `m` is the **minimum field width**, specifies the minimum number of characters to print.
+
+    -   If there are less values than `m`, the value will be right justified with the remaining being spaces on the left.
+
+        -   e.g. `%4d` will display the number 123 as `123`.
+
+    -   If the value is greater than `m`, the value will expand to display all the digits.
+
+        -   e.g. `%4` will display the number 12345 as `12345`
+
+    -   Putting a minus sign before `m` will left justify.
+
+        -   e.g `-%4` will display the number 123 as `123`
+
+-   `p` is the **precision**, which depends on the conversion specifier (`X`). The most common specifiers:
+
+-   `d` displays the integer as a decimal (base 10).
+
+    -   `p` is the number of digits to display, adding extra zeros to the beginning of the number.
+
+        -   The default is `p` is 1 (`%d = %.1d` )
+
+-   `e` displays a floating-point number in an exponential format (scientific notification).
+
+    -   `p` shows the number of digits that appear after the decimal point.
+
+        -   The default is 6.
+
+-   `f` displays a floating-point number in a "fixed-decimal" format, without an exponent.
+
+    -   `p` means the same for the `e` specifier.
+
+-   `g` displays a floating-point number as either an exponent or a decimal format depending on the number's size.
+
+    -   `p` indicates the maximum number of *significant digits*, not digits after the decimal point.
+
+    -   Will also not display trailing zeros like `f`
+
+    -   If there are no digits after the decimal, it won't show the decimal point.
+
+    -   `g` is very helpful when displaying number when you don't know the length of the numbers beforehand or very in size.
+
+#### Using `printf` to format numbers
+
+``` c
+ /* Prints int and float values in various formats*/
+
+ #include <stdio.h>
+
+ int main(void)
+ {
+     int i;
+     float x;
+
+     i = 40;
+     x = 839.21f;
+
+     printf("|%d|%5d|%-5d|%5.3d|\n", i, i, i, i);
+     printf("|%10.3f|%10.3e|%-10g|\n", x, x, x);
+
+     return(0);
+ }
+```
+
+```         
+|40|   40|40   |  040|
+|   839.210| 8.392e+02|839.21    |
+```
+
+-   `%10.3f` , displays `x` in a fixed format using 10 characters, 3 before the decimial, 3 after, and one for the actual decimal point.
+
+    -   That means `p = 3` in this example takes up 7 characters, 3 before, 3 after, and the decimal.
+
+## Escape sequences
+
+Here's a few of the common escape sequences used in format strings:
+
+-   Alert (bell) - `\a`
+
+-   Backspace = `\b`
+
+-   New line - `\n`
+
+-   Horizontal tab - `\t`
+
+Another common escape sequence is `\"`, which represents the " character.
+
+-   Since " is used for the beginning/end of strings, it needs to be escaped.
+
+## The `scanf` function
+
+`scanf` reads inputs according to a particular format.
+
+-   A `scanf` format string can contain both ordinary and conversion specifications, essentially the same as `printf`.
+
+For example:
+
+``` c
+int i, j;
+float x, y;
+
+scanf("%d%d%f%f", &i, &j, &x, &y);
+```
+
+-   If a user inputs `1, -20, 0.3, -4.0e3`, the results will be `1,-20, 0.3 and -4000.0` tightly packed because of the format string.
+
+-   The format string for `scanf` is very similar to `print`, except the `&` , which precedes each variable in the call.
+
+    -   This is generally required and forgetting it will likely to unpredictable results.
+
+    -   It could crash, the input not updating the variables value, etc.
