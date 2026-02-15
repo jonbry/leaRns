@@ -279,3 +279,114 @@ What does it mean when `scanf` puts back characters and reads them again later?
 -   The input is actually stored in a hidden buffer that `scanf` can access.
 
 -   `scanf` can put characters back into the buffer for subsequent reading.
+
+## Exercises
+
+2\. What calls of `printf` that display a `float` variable `x` in the following formats:
+
+a\) Exponential notation; left-justified in a field of size 8, one digit after the decimal point.
+
+-   `printf("%-8.1e", x)`
+
+b\) Exponential notation; right-justified in a field size 10; 6 digits after the decimal point
+
+-   `printf("%10.6e", x)`
+
+c\) Fixed decimal notation; left-justified of a field size 8, with 3 digits after the decimal point.
+
+-   `printf("-8.3f", x)`
+
+d\) Fixed decimal notation; right justified of size 6; no digits after the decimal point.
+
+-   `printf("6.0f", x)`
+
+5\. Suppose that we call `scanf` as follows:
+
+``` c
+scanf("%f%d%f", &x, &i, &y)
+```
+
+And the user enters: `12.3 45.6 789`
+
+What are the values of `x`, `i`, and `y` after each call? Assume `x` and `y` are `float` and `i` is an `in`t
+
+-   `x = 12.3`
+
+-   `i = 45`
+
+-   `y = 0.6` `scanf` stops after the 6 because of the space.
+
+## Programming projects
+
+1\. Write a program that accepts a date from a user in the form of *mm/dd/yyyy* and responds back in the form *yyyymmdd*:
+
+```         
+Enter a date (mm/dd/yyyy): 2/17/2011
+You entered the date 20110217
+```
+
+``` c
+/* Convert date from mm/dd/yyyy to yyyymmdd
+ * NOTE: 2/02/1999 should be 19990202
+ */
+
+ #include <stdio.h>
+
+ int main(void)
+ {
+    int day, month, year;
+
+    printf("Enter a date (mm/dd/yyyy): ");
+    scanf("%2d/%2d/%4d", &month, &day, &year );
+    printf("You entered, %4d%2.2d%2.2d \n", year, month, day);
+
+    return 0;
+ }
+```
+
+3\. Books are identified by the ISBN, which after 01/01/07 contain 13 digits that are arranged in 5 groups (e.g. 978-0-393-97950-3).
+
+-   The first group (GSI prefix) is either 978 or 979
+
+-   The next is group identifier for language of origin
+
+    -   0 and 1 are for English speaking countries
+
+-   The publisher code identifies the publisher (393 is W. W. Norton)
+
+-   The item number is assigned by the publisher to identify the book
+
+-   The last digit is a check digit to verify the accuracy of the of the preceding digits.
+
+Write a program that parse the ISBN number:
+
+```         
+Enter ISBN: 978-0-393-97850-3
+GSI prefix: 978
+Group identifier: 0
+Publisher code: 393
+Item number: 97950
+Check digit: 3
+```
+
+``` c
+/* Create a program that parses */
+
+#include <stdio.h>
+
+int main(void)
+{
+    int gsi, group, pub, item, check;
+    printf("Enter ISBN: ");
+    scanf("%3d-%d-%3d-%5d-%3d", &gsi, &group, &pub, &item, &check);
+    printf("GSI prefix: %3d \n", gsi);
+    printf("Group identifier: %d\n", group);
+    printf("Publisher code: %3d\n", pub);
+    printf("Item number: %5d\n", item);
+    printf("Check digit: %d\n", check);
+
+    return 0;
+}
+```
+
+-   Note: the `printf` statements could be combined into one statement

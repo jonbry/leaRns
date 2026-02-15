@@ -450,7 +450,7 @@ answer = (3*q-p*p)/3;
 
 -   14 tokens (everything is a token besides spaces)
 
-## Programing Problems
+## Programming Problems
 
 4\. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:
 
