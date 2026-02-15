@@ -10,7 +10,307 @@
 <atom:link href="https://jonbry.github.io/leaRns/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Mon, 02 Feb 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 14 Feb 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>3 Formatted I/O</title>
+  <link>https://jonbry.github.io/leaRns/posts/cprog-3/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="the-printf-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-printf-function">The <code>printf</code> function</h2>
+<p>The <code>printf</code> function is designed to change the contents of a string with values inserted at specific points in the string.</p>
+<ul>
+<li><p>This is known as the <strong>format string</strong></p></li>
+<li><p><code>printf(string, exp1, exp2, ...)</code></p></li>
+</ul>
+<p>The format string contains standard characters as well as <strong>conversion specifications</strong>, which begin with <code>%</code>.</p>
+<ul>
+<li><p>The conversion specification is a placeholder that is filled when printing.</p></li>
+<li><p>The <code>%</code> character specifies how the value is converted from the internal from (binary) to the printed form (character).</p>
+<ul>
+<li><p>The conversion specification <code>%d</code> is used to convert an <code>int</code> from binary to a string of decimal digits .</p></li>
+<li><p><code>%f</code> does the same for a <code>float</code> value.</p></li>
+</ul></li>
+<li><p>C compilers are not required to check the number of conversion specifications with the number of output types.</p>
+<ul>
+<li><p>If there are more output items, they will print a random value.</p></li>
+<li><p>If there are more conversion specifications, it will likely not print the values</p></li>
+</ul></li>
+<li><p>Compilers are also not required to check if the conversion spec matches the the output type. The wrong type will print a random value.</p></li>
+</ul>
+<section id="conversion-specifications" class="level3">
+<h3 class="anchored" data-anchor-id="conversion-specifications">Conversion specifications</h3>
+<p>Conversion specifications have the form <code>%m.pX</code> or <code>%-m.pX</code> , where <code>m</code> and <code>p</code> are integers and <code>X</code> is a letter.</p>
+<ul>
+<li><p><code>m</code> is the <strong>minimum field width</strong>, specifies the minimum number of characters to print.</p>
+<ul>
+<li><p>If there are less values than <code>m</code>, the value will be right justified with the remaining being spaces on the left.</p>
+<ul>
+<li>e.g.&nbsp;<code>%4d</code> will display the number 123 as <code>123</code>.</li>
+</ul></li>
+<li><p>If the value is greater than <code>m</code>, the value will expand to display all the digits.</p>
+<ul>
+<li>e.g.&nbsp;<code>%4</code> will display the number 12345 as <code>12345</code></li>
+</ul></li>
+<li><p>Putting a minus sign before <code>m</code> will left justify.</p>
+<ul>
+<li>e.g <code>-%4</code> will display the number 123 as <code>123</code></li>
+</ul></li>
+</ul></li>
+<li><p><code>p</code> is the <strong>precision</strong>, which depends on the conversion specifier (<code>X</code>). The most common specifiers:</p></li>
+<li><p><code>d</code> displays the integer as a decimal (base 10).</p>
+<ul>
+<li><p><code>p</code> is the number of digits to display, adding extra zeros to the beginning of the number.</p>
+<ul>
+<li>The default is <code>p</code> is 1 (<code>%d = %.1d</code> )</li>
+</ul></li>
+</ul></li>
+<li><p><code>e</code> displays a floating-point number in an exponential format (scientific notification).</p>
+<ul>
+<li><p><code>p</code> shows the number of digits that appear after the decimal point.</p>
+<ul>
+<li>The default is 6.</li>
+</ul></li>
+</ul></li>
+<li><p><code>f</code> displays a floating-point number in a “fixed-decimal” format, without an exponent.</p>
+<ul>
+<li><code>p</code> means the same for the <code>e</code> specifier.</li>
+</ul></li>
+<li><p><code>g</code> displays a floating-point number as either an exponent or a decimal format depending on the number’s size.</p>
+<ul>
+<li><p><code>p</code> indicates the maximum number of <em>significant digits</em>, not digits after the decimal point.</p></li>
+<li><p>Will also not display trailing zeros like <code>f</code></p></li>
+<li><p>If there are no digits after the decimal, it won’t show the decimal point.</p></li>
+<li><p><code>g</code> is very helpful when displaying number when you don’t know the length of the numbers beforehand or very in size.</p></li>
+</ul></li>
+</ul>
+<section id="using-printf-to-format-numbers" class="level4">
+<h4 class="anchored" data-anchor-id="using-printf-to-format-numbers">Using <code>printf</code> to format numbers</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* Prints int and float values in various formats*/</span></span>
+<span id="cb1-2"></span>
+<span id="cb1-3"> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-6"> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-7">     <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-8">     <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">float</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-9"></span>
+<span id="cb1-10">     i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">40</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-11">     x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">839.21</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">f</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-12"></span>
+<span id="cb1-13">     printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%5d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%-5d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%5.3d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-14">     printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%10.3f</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%10.3e</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%-10g</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">|</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-15"></span>
+<span id="cb1-16">     <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb1-17"> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<pre><code>|40|   40|40   |  040|
+|   839.210| 8.392e+02|839.21    |</code></pre>
+<ul>
+<li><p><code>%10.3f</code> , displays <code>x</code> in a fixed format using 10 characters, 3 before the decimial, 3 after, and one for the actual decimal point.</p>
+<ul>
+<li>That means <code>p = 3</code> in this example takes up 7 characters, 3 before, 3 after, and the decimal.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="escape-sequences" class="level2">
+<h2 class="anchored" data-anchor-id="escape-sequences">Escape sequences</h2>
+<p>Here’s a few of the common escape sequences used in format strings:</p>
+<ul>
+<li><p>Alert (bell) - <code>\a</code></p></li>
+<li><p>Backspace = <code>\b</code></p></li>
+<li><p>New line - <code>\n</code></p></li>
+<li><p>Horizontal tab - <code>\t</code></p></li>
+</ul>
+<p>Another common escape sequence is <code>\"</code>, which represents the ” character.</p>
+<ul>
+<li>Since ” is used for the beginning/end of strings, it needs to be escaped.</li>
+</ul>
+</section>
+<section id="the-scanf-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-scanf-function">The <code>scanf</code> function</h2>
+<p><code>scanf</code> reads inputs according to a particular format.</p>
+<ul>
+<li>A <code>scanf</code> format string can contain both ordinary and conversion specifications, essentially the same as <code>printf</code>.</li>
+</ul>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> j<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb3-2"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">float</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb3-3"></span>
+<span id="cb3-4">scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d%d%f%f</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>j<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span></code></pre></div></div>
+<ul>
+<li><p>If a user inputs <code>1, -20, 0.3, -4.0e3</code>, the results will be <code>1,-20, 0.3 and -4000.0</code> tightly packed because of the format string.</p></li>
+<li><p>The format string for <code>scanf</code> is very similar to <code>print</code>, except the <code>&amp;</code> , which precedes each variable in the call.</p>
+<ul>
+<li><p>This is generally required and forgetting it will likely to unpredictable results.</p></li>
+<li><p>It could crash, the input not updating the variables value, etc.</p></li>
+</ul></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <category>C</category>
+  <category>CPMA</category>
+  <guid>https://jonbry.github.io/leaRns/posts/cprog-3/</guid>
+  <pubDate>Sat, 14 Feb 2026 05:00:00 GMT</pubDate>
+</item>
 <item>
   <title>1 Introduction</title>
   <link>https://jonbry.github.io/leaRns/posts/database_systems-1/</link>

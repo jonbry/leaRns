@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/cprog-3/index.html",
       "/posts/database_systems-1/index.html",
       "/posts/cprog-2/index.html"
     ]

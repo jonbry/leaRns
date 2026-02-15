@@ -7,6 +7,41 @@
     "text": "About this blog"
   },
   {
+    "objectID": "posts/cprog-3/index.html",
+    "href": "posts/cprog-3/index.html",
+    "title": "3 Formatted I/O",
+    "section": "",
+    "text": "The printf function is designed to change the contents of a string with values inserted at specific points in the string.\n\nThis is known as the format string\nprintf(string, exp1, exp2, ...)\n\nThe format string contains standard characters as well as conversion specifications, which begin with %.\n\nThe conversion specification is a placeholder that is filled when printing.\nThe % character specifies how the value is converted from the internal from (binary) to the printed form (character).\n\nThe conversion specification %d is used to convert an int from binary to a string of decimal digits .\n%f does the same for a float value.\n\nC compilers are not required to check the number of conversion specifications with the number of output types.\n\nIf there are more output items, they will print a random value.\nIf there are more conversion specifications, it will likely not print the values\n\nCompilers are also not required to check if the conversion spec matches the the output type. The wrong type will print a random value.\n\n\n\nConversion specifications have the form %m.pX or %-m.pX , where m and p are integers and X is a letter.\n\nm is the minimum field width, specifies the minimum number of characters to print.\n\nIf there are less values than m, the value will be right justified with the remaining being spaces on the left.\n\ne.g. %4d will display the number 123 as 123.\n\nIf the value is greater than m, the value will expand to display all the digits.\n\ne.g. %4 will display the number 12345 as 12345\n\nPutting a minus sign before m will left justify.\n\ne.g -%4 will display the number 123 as 123\n\n\np is the precision, which depends on the conversion specifier (X). The most common specifiers:\nd displays the integer as a decimal (base 10).\n\np is the number of digits to display, adding extra zeros to the beginning of the number.\n\nThe default is p is 1 (%d = %.1d )\n\n\ne displays a floating-point number in an exponential format (scientific notification).\n\np shows the number of digits that appear after the decimal point.\n\nThe default is 6.\n\n\nf displays a floating-point number in a “fixed-decimal” format, without an exponent.\n\np means the same for the e specifier.\n\ng displays a floating-point number as either an exponent or a decimal format depending on the number’s size.\n\np indicates the maximum number of significant digits, not digits after the decimal point.\nWill also not display trailing zeros like f\nIf there are no digits after the decimal, it won’t show the decimal point.\ng is very helpful when displaying number when you don’t know the length of the numbers beforehand or very in size.\n\n\n\n\n /* Prints int and float values in various formats*/\n\n #include &lt;stdio.h&gt;\n\n int main(void)\n {\n     int i;\n     float x;\n\n     i = 40;\n     x = 839.21f;\n\n     printf(\"|%d|%5d|%-5d|%5.3d|\\n\", i, i, i, i);\n     printf(\"|%10.3f|%10.3e|%-10g|\\n\", x, x, x);\n\n     return(0);\n }\n|40|   40|40   |  040|\n|   839.210| 8.392e+02|839.21    |\n\n%10.3f , displays x in a fixed format using 10 characters, 3 before the decimial, 3 after, and one for the actual decimal point.\n\nThat means p = 3 in this example takes up 7 characters, 3 before, 3 after, and the decimal."
+  },
+  {
+    "objectID": "posts/cprog-3/index.html#the-printf-function",
+    "href": "posts/cprog-3/index.html#the-printf-function",
+    "title": "3 Formatted I/O",
+    "section": "",
+    "text": "The printf function is designed to change the contents of a string with values inserted at specific points in the string.\n\nThis is known as the format string\nprintf(string, exp1, exp2, ...)\n\nThe format string contains standard characters as well as conversion specifications, which begin with %.\n\nThe conversion specification is a placeholder that is filled when printing.\nThe % character specifies how the value is converted from the internal from (binary) to the printed form (character).\n\nThe conversion specification %d is used to convert an int from binary to a string of decimal digits .\n%f does the same for a float value.\n\nC compilers are not required to check the number of conversion specifications with the number of output types.\n\nIf there are more output items, they will print a random value.\nIf there are more conversion specifications, it will likely not print the values\n\nCompilers are also not required to check if the conversion spec matches the the output type. The wrong type will print a random value.\n\n\n\nConversion specifications have the form %m.pX or %-m.pX , where m and p are integers and X is a letter.\n\nm is the minimum field width, specifies the minimum number of characters to print.\n\nIf there are less values than m, the value will be right justified with the remaining being spaces on the left.\n\ne.g. %4d will display the number 123 as 123.\n\nIf the value is greater than m, the value will expand to display all the digits.\n\ne.g. %4 will display the number 12345 as 12345\n\nPutting a minus sign before m will left justify.\n\ne.g -%4 will display the number 123 as 123\n\n\np is the precision, which depends on the conversion specifier (X). The most common specifiers:\nd displays the integer as a decimal (base 10).\n\np is the number of digits to display, adding extra zeros to the beginning of the number.\n\nThe default is p is 1 (%d = %.1d )\n\n\ne displays a floating-point number in an exponential format (scientific notification).\n\np shows the number of digits that appear after the decimal point.\n\nThe default is 6.\n\n\nf displays a floating-point number in a “fixed-decimal” format, without an exponent.\n\np means the same for the e specifier.\n\ng displays a floating-point number as either an exponent or a decimal format depending on the number’s size.\n\np indicates the maximum number of significant digits, not digits after the decimal point.\nWill also not display trailing zeros like f\nIf there are no digits after the decimal, it won’t show the decimal point.\ng is very helpful when displaying number when you don’t know the length of the numbers beforehand or very in size.\n\n\n\n\n /* Prints int and float values in various formats*/\n\n #include &lt;stdio.h&gt;\n\n int main(void)\n {\n     int i;\n     float x;\n\n     i = 40;\n     x = 839.21f;\n\n     printf(\"|%d|%5d|%-5d|%5.3d|\\n\", i, i, i, i);\n     printf(\"|%10.3f|%10.3e|%-10g|\\n\", x, x, x);\n\n     return(0);\n }\n|40|   40|40   |  040|\n|   839.210| 8.392e+02|839.21    |\n\n%10.3f , displays x in a fixed format using 10 characters, 3 before the decimial, 3 after, and one for the actual decimal point.\n\nThat means p = 3 in this example takes up 7 characters, 3 before, 3 after, and the decimal."
+  },
+  {
+    "objectID": "posts/cprog-3/index.html#escape-sequences",
+    "href": "posts/cprog-3/index.html#escape-sequences",
+    "title": "3 Formatted I/O",
+    "section": "Escape sequences",
+    "text": "Escape sequences\nHere’s a few of the common escape sequences used in format strings:\n\nAlert (bell) - \\a\nBackspace = \\b\nNew line - \\n\nHorizontal tab - \\t\n\nAnother common escape sequence is \\\", which represents the ” character.\n\nSince ” is used for the beginning/end of strings, it needs to be escaped."
+  },
+  {
+    "objectID": "posts/cprog-3/index.html#the-scanf-function",
+    "href": "posts/cprog-3/index.html#the-scanf-function",
+    "title": "3 Formatted I/O",
+    "section": "The scanf function",
+    "text": "The scanf function\nscanf reads inputs according to a particular format.\n\nA scanf format string can contain both ordinary and conversion specifications, essentially the same as printf.\n\nFor example:\nint i, j;\nfloat x, y;\n\nscanf(\"%d%d%f%f\", &i, &j, &x, &y);\n\nIf a user inputs 1, -20, 0.3, -4.0e3, the results will be 1,-20, 0.3 and -4000.0 tightly packed because of the format string.\nThe format string for scanf is very similar to print, except the & , which precedes each variable in the call.\n\nThis is generally required and forgetting it will likely to unpredictable results.\nIt could crash, the input not updating the variables value, etc."
+  },
+  {
+    "objectID": "posts/database_systems-1/index.html",
+    "href": "posts/database_systems-1/index.html",
+    "title": "1 Introduction",
+    "section": "",
+    "text": "A database-management system (DBMS) is a collection of interrelated data and a set of programs to access that data.\n\nThe collection of data is generally referred to as the database.\n\n\nDatabase-System Applications\nThe key to the management of complexity is abstraction. - Abstraction allows"
+  },
+  {
     "objectID": "posts/cprog-2/index.html",
     "href": "posts/cprog-2/index.html",
     "title": "2 Fundamentals",
@@ -84,17 +119,10 @@
     "text": "Programing Problems\n4. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:\nEnter an amount: 100.00\nWith tax added: $105.00\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int amount;\n    float amount_with_tax;\n\n    printf(\"Enter an amount: \");\n    scanf(\"%d\", &amount);\n    amount_with_tax = amount * 1.05;\n    printf(\"With tax added: $%.2f\\n\", amount_with_tax);\n    return(0);\n}"
   },
   {
-    "objectID": "posts/database_systems-1/index.html",
-    "href": "posts/database_systems-1/index.html",
-    "title": "1 Introduction",
-    "section": "",
-    "text": "A database-management system (DBMS) is a collection of interrelated data and a set of programs to access that data.\n\nThe collection of data is generally referred to as the database.\n\n\nDatabase-System Applications\nThe key to the management of complexity is abstraction. - Abstraction allows"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "leaRns",
     "section": "",
-    "text": "1 Introduction\n\n\nNotes from Database System Concepts\n\n\n\ncode\n\ndatabase\n\ndata\n\ndsc\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n2 Fundamentals\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\nNo matching items"
+    "text": "3 Formatted I/O\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n1 Introduction\n\n\nNotes from Database System Concepts\n\n\n\ncode\n\ndatabase\n\ndata\n\ndsc\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n2 Fundamentals\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\nNo matching items"
   }
 ]
