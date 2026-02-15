@@ -300,6 +300,649 @@ font-style: inherit;">);</span></span></code></pre></div></div>
 <li><p>It could crash, the input not updating the variables value, etc.</p></li>
 </ul></li>
 </ul>
+<section id="how-scanf-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-scanf-works">How <code>scanf</code> works</h3>
+<p><code>scanf</code> is essentially a pattern-matching function that tries to match groups of input characters with conversion specifications.</p>
+<ul>
+<li><p>For each conversion specification in the format string, <code>scanf</code> tries to locate an item of the appropriate type in the input data, skipping blank space if necessary.</p></li>
+<li><p><code>scanf</code> then reads the item, topping when it encounters a character that can’t belong to the item.</p></li>
+<li><p>If the item is successful read, <code>scanf</code> continues processing the rest of the string format.</p></li>
+<li><p>If any item is not read successfully, <code>scanf</code> returns immediately without looking at the rest of the format string.</p></li>
+<li><p><code>scanf</code> ignores white space characters so it will read items even is spread over multiple lines.</p></li>
+<li><p><code>scanf</code> “peeks” at the final new-line character without actually reading it. The new-line will be the character read by the next call to <code>scanf</code></p></li>
+<li><p>When reading an integer, <code>scanf</code> first looks for a digit, a <code>+</code>, or <code>-</code>, then it reads digits until it reaches a non-digit.</p></li>
+<li><p>When reading a floating-point number, <code>scanf</code> looks for a <code>+</code> or <code>-</code> followed by a series of digits (optional decimal point), followed by a possible exponent.</p>
+<ul>
+<li>The exponent would be an <code>e</code> or <code>E</code> with a possible sign/digits</li>
+</ul></li>
+</ul>
+<section id="example-of-how-scanf-works" class="level4">
+<h4 class="anchored" data-anchor-id="example-of-how-scanf-works">Example of how <code>scanf</code> works</h4>
+<p>We write a program to read the following 4 numbers: 1, -20.3, -4.0e3 \n.&nbsp;The <code>scanf</code> could look like:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1">scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d%d%f%f</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>j<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+<p><code>scanf</code>’s processes:</p>
+<ol type="1">
+<li>Conversion specification: <code>%d</code>
+<ul>
+<li><p>The first non-blank character is 1, which can be an integer.</p></li>
+<li><p>It reads the next character which is a <code>-</code>, which <code>scanf</code> knows cannot be within an integer, so it puts it back.</p></li>
+</ul></li>
+<li>Conversion specification: <code>%d</code>
+<ul>
+<li><p><code>scanf</code> reads the <code>-</code>, which is an acceptable start to an integer. It will continue going until it reads a character that cannot be included in an integer: <code>2</code> and <code>0</code></p>
+<ul>
+<li><code>scanf</code> stops when it reaches <code>.</code> because it is not a valid value for an integer. It puts it back.</li>
+</ul></li>
+</ul></li>
+<li>Conversion specification: <code>%f</code>
+<ul>
+<li><p><code>scanf</code> reads the characters <code>.</code>, which is a valid character for the beginning of a float, then <code>3</code>, and stops at the <code>-</code> because it is not a valid character for the middle of a float.</p></li>
+<li><p><code>scanf</code> stores 0.3 in to <code>x</code> and puts back the <code>-</code> character</p></li>
+</ul></li>
+<li>Conversion specification <code>%f</code>
+<ul>
+<li><p><code>scanf</code> now reads <code>-</code>,<code>4</code>, <code>.</code>,<code>0</code>, <code>e</code>, <code>3</code>. <code>\n</code></p></li>
+<li><p>It stores all values but the <code>\n</code>, which it puts back.</p></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="ordinary-characters-in-format-strings" class="level3">
+<h3 class="anchored" data-anchor-id="ordinary-characters-in-format-strings">Ordinary characters in Format strings</h3>
+<p>The action <code>scanf</code> takes when it process ordinary characters depends on whether it is a white-space character:</p>
+<ul>
+<li><p><strong>White-space characters</strong></p>
+<ul>
+<li><p>When <code>scanf</code> reads all the white-space characters until it reaches a non-white-space character, which it puts back.</p></li>
+<li><p><code>scanf</code> doesn’t differentiate between one or more white-space characters, even the fact of having none.</p></li>
+</ul></li>
+<li><p><strong>Non-white-space characters</strong></p>
+<ul>
+<li><p>When <code>scanf</code> encounters a non-white-space character, it compares it to the next input character.</p></li>
+<li><p>If the two characters match, it disregards it and continues processing the format string.</p></li>
+<li><p>If the characters do not match, <code>scanf</code> puts the offending character back into the input, and aborts without further processing the format string.</p></li>
+</ul></li>
+</ul>
+<section id="scanf-white-space-example" class="level4">
+<h4 class="anchored" data-anchor-id="scanf-white-space-example"><code>scanf</code> white-space example</h4>
+<p>Suppose the format string is <code>" %d/ %d"</code> with an input of “<code>5/ 96"</code>. <code>scanf</code></p>
+<ol type="1">
+<li>Skips the first space since it is looking for an integer</li>
+<li>Matches <code>%d</code> with 5</li>
+<li>Attempts to match <code>/</code> because it is in the format string</li>
+<li>Skips the space</li>
+<li>Matches <code>%d</code> with 96 because it is a valid integer.</li>
+</ol>
+<p>If the input is <code>" 5 / 96"</code> on the other hand, <code>scanf</code></p>
+<ol type="1">
+<li>Skips the first space</li>
+<li>Matches %<code>d</code> with 5</li>
+<li>Attempts to match the <code>/</code> with <code>/</code> but there is no match with a space before a <code>/</code> in the format string.</li>
+<li>The <code>/ 96</code> characters remain to be read by the next call of <code>scanf</code>
+<ul>
+<li>We should have used the format string <code>%d /d%</code> to properly read this string.</li>
+</ul></li>
+</ol>
+</section>
+<section id="adding-fractions" class="level4">
+<h4 class="anchored" data-anchor-id="adding-fractions">Adding fractions</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* Adds two fractions */</span></span>
+<span id="cb5-2"></span>
+<span id="cb5-3"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb5-4"></span>
+<span id="cb5-5"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb5-6"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb5-7">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> num1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> denom1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> num2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> denom2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> result_num<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> result_denom<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb5-8"></span>
+<span id="cb5-9">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter first fraction: "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb5-10">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>num1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>denom1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb5-11"></span>
+<span id="cb5-12">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter second fraction: "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb5-13">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>num2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>denom2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb5-14"></span>
+<span id="cb5-15">    result_num <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> num1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> denom2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> num2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> denom1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb5-16">    result_denom <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> denom1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> denom2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb5-17"></span>
+<span id="cb5-18">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"The sum is </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> result_num<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> result_denom<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb5-19"></span>
+<span id="cb5-20">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb5-21"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+</section>
+</section>
+</section>
+<section id="qa" class="level2">
+<h2 class="anchored" data-anchor-id="qa">Q&amp;A</h2>
+<p>The <code>\t</code> escape causes <code>printf</code> to advance to the next tab stop. How does one know how far apart the tabs are?</p>
+<ul>
+<li>We don’t as it isn’t defined by C, but the operating system. It is typically 8 characters.</li>
+</ul>
+<p>What happens when a <code>scanf</code> is expecting a number but is given a non-numeric input?</p>
+<ul>
+<li><p>If it starts with a number followed by character, it reads in the number and leaves the characters for the next <code>scanif</code></p></li>
+<li><p>If it is just characters, then <code>scanf</code> will likely store a random value in the variable.</p></li>
+</ul>
+<p>What does it mean when <code>scanf</code> puts back characters and reads them again later?</p>
+<ul>
+<li><p>Programs don’t actually read user input as its typed.</p></li>
+<li><p>The input is actually stored in a hidden buffer that <code>scanf</code> can access.</p></li>
+<li><p><code>scanf</code> can put characters back into the buffer for subsequent reading.</p></li>
+</ul>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>2. What calls of <code>printf</code> that display a <code>float</code> variable <code>x</code> in the following formats:</p>
+<p>a) Exponential notation; left-justified in a field of size 8, one digit after the decimal point.</p>
+<ul>
+<li><code>printf("%-8.1e", x)</code></li>
+</ul>
+<p>b) Exponential notation; right-justified in a field size 10; 6 digits after the decimal point</p>
+<ul>
+<li><code>printf("%10.6e", x)</code></li>
+</ul>
+<p>c) Fixed decimal notation; left-justified of a field size 8, with 3 digits after the decimal point.</p>
+<ul>
+<li><code>printf("-8.3f", x)</code></li>
+</ul>
+<p>d) Fixed decimal notation; right justified of size 6; no digits after the decimal point.</p>
+<ul>
+<li><code>printf("6.0f", x)</code></li>
+</ul>
+<p>5. Suppose that we call <code>scanf</code> as follows:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1">scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%f%d%f</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+<p>And the user enters: <code>12.3 45.6 789</code></p>
+<p>What are the values of <code>x</code>, <code>i</code>, and <code>y</code> after each call? Assume <code>x</code> and <code>y</code> are <code>float</code> and <code>i</code> is an <code>in</code>t</p>
+<ul>
+<li><p><code>x = 12.3</code></p></li>
+<li><p><code>i = 45</code></p></li>
+<li><p><code>y = 0.6</code> <code>scanf</code> stops after the 6 because of the space.</p></li>
+</ul>
+</section>
+<section id="programming-projects" class="level2">
+<h2 class="anchored" data-anchor-id="programming-projects">Programming projects</h2>
+<p>1. Write a program that accepts a date from a user in the form of <em>mm/dd/yyyy</em> and responds back in the form <em>yyyymmdd</em>:</p>
+<pre><code>Enter a date (mm/dd/yyyy): 2/17/2011
+You entered the date 20110217</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* Convert date from mm/dd/yyyy to yyyymmdd</span></span>
+<span id="cb8-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> * </span><span class="al" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NOTE</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">: 2/02/1999 should be 19990202</span></span>
+<span id="cb8-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> */</span></span>
+<span id="cb8-4"></span>
+<span id="cb8-5"> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb8-6"></span>
+<span id="cb8-7"> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb8-8"> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb8-9">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> day<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> month<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> year<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb8-10"></span>
+<span id="cb8-11">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter a date (mm/dd/yyyy): "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb8-12">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%2d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%2d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%4d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>month<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>day<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>year <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb8-13">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"You entered, </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%4d%2.2d%2.2d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> year<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> month<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> day<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb8-14"></span>
+<span id="cb8-15">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb8-16"> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<p>3. Books are identified by the ISBN, which after 01/01/07 contain 13 digits that are arranged in 5 groups (e.g.&nbsp;978-0-393-97950-3).</p>
+<ul>
+<li><p>The first group (GSI prefix) is either 978 or 979</p></li>
+<li><p>The next is group identifier for language of origin</p>
+<ul>
+<li>0 and 1 are for English speaking countries</li>
+</ul></li>
+<li><p>The publisher code identifies the publisher (393 is W. W. Norton)</p></li>
+<li><p>The item number is assigned by the publisher to identify the book</p></li>
+<li><p>The last digit is a check digit to verify the accuracy of the of the preceding digits.</p></li>
+</ul>
+<p>Write a program that parse the ISBN number:</p>
+<pre><code>Enter ISBN: 978-0-393-97850-3
+GSI prefix: 978
+Group identifier: 0
+Publisher code: 393
+Item number: 97950
+Check digit: 3</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* Create a program that parses */</span></span>
+<span id="cb10-2"></span>
+<span id="cb10-3"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb10-4"></span>
+<span id="cb10-5"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb10-6"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-7">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> gsi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> group<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> pub<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> item<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> check<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-8">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter ISBN: "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb10-9">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%3d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%3d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%5d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%3d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>gsi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>group<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>pub<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>item<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>check<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb10-10">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GSI prefix: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%3d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> gsi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb10-11">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Group identifier: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> group<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb10-12">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Publisher code: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%3d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> pub<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb10-13">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Item number: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%5d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> item<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb10-14">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Check digit: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> check<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb10-15"></span>
+<span id="cb10-16">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-17"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<ul>
+<li>Note: the <code>printf</code> statements could be combined into one statement</li>
+</ul>
 
 
 </section>
@@ -1344,8 +1987,8 @@ font-style: inherit;">;</span></span></code></pre></div></div>
 <li>14 tokens (everything is a token besides spaces)</li>
 </ul>
 </section>
-<section id="programing-problems" class="level2">
-<h2 class="anchored" data-anchor-id="programing-problems">Programing Problems</h2>
+<section id="programming-problems" class="level2">
+<h2 class="anchored" data-anchor-id="programming-problems">Programming Problems</h2>
 <p>4. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:</p>
 <pre><code>Enter an amount: 100.00
 With tax added: $105.00</code></pre>
