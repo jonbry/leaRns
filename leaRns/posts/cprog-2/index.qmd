@@ -333,3 +333,144 @@ Can comments be nested?
 Are there limits to the length of an identifier?
 
 -   C89 compilers are only required to remember the first 31 characters (C99 is 63), so if the first 31/63 characters are the same, the compiler may run into issues.
+
+## Excerises
+
+1\. Create and run K&R's famous "hello, world" program:
+
+``` c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("hello, world\n");
+}
+```
+
+Did you get any warning messages from the compiler?
+
+-   No issues from `cc`
+
+2\. Consider the following program:
+
+``` c
+# include <stdio.h>
+
+int main(void)
+{
+    printf("Parkinson's Law:\nWork exands so as to ");
+    printf("fill the time\n");
+    printf("available for its completion.\n");
+    return(0)
+}
+```
+
+a\) Identify the directives and statements in the program.
+
+-   The derective is `#include <stdio.h>`, which loads the standard library
+
+-   The statements are the `printf` and `return` statements.
+
+b\) What output does the program produce?
+
+> Parkinson's Law:
+>
+> Work expands so as to fill the time
+>
+> available for its completion.
+
+3\. Condense the dweight.c program by:
+
+-   Replacing the assignments to `height`, `length`, and `width` with initializers
+
+-   Removing the `weight` variable, instead calculating `(volume + 165)/166` within the last `printf`
+
+``` c
+#include <stdio.h>
+
+int main(void)
+{
+    int height = 8, length = 12, width = 10, volume;
+    volume = height * length * width;
+
+    printf("Dimensions: %dx%dx%d\n", height, length, width);
+    printf("Volume: (cubic inches): %d\n", volume);
+    printf("Dimensional weight (pounds): %d\n", (volume + 165)/166);
+
+    return(0);
+}
+```
+
+```         
+Dimensions: 8x12x10
+Volume: (cubic inches): 960
+Dimensional weight (pounds): 6
+```
+
+4\. Write a program that declares several `int` and `float` variables - without initializing them - then prints their value. Is there any patterns?
+
+``` c
+#include <stdio.h>
+
+int main(void)
+{
+    int a, b, c;
+    float d, e, f;
+
+    printf("a = %d, b = %d, c = %d\n", a, b, c);
+    printf("d = %f, e = %f, f = %f\n", d, e, f);
+    return(0);
+}
+```
+
+```         
+a = -2100233488, b = 31449, c = -1547096624
+d = 0.000000, e = -0.000000, f = 0.000000
+```
+
+-   They are random values
+
+5\. Which of the following are not valid C initializers?
+
+a\) `100_bottles`
+
+b\) `_100_bottles`
+
+c\) `one__hundred__bottles`
+
+d\) `bottles_by_the_hundred_`
+
+-   \(a\) is not valid because you can't start a variable name with a number
+
+8\. How many tokens are there in the following statement
+
+``` c
+answer = (3*q-p*p)/3;
+```
+
+-   14 tokens (everything is a token besides spaces)
+
+## Programing Problems
+
+4\. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:
+
+```         
+Enter an amount: 100.00
+With tax added: $105.00
+```
+
+``` c
+#include <stdio.h>
+
+int main(void)
+{
+    int amount;
+    float amount_with_tax;
+
+    printf("Enter an amount: ");
+    scanf("%d", &amount);
+    amount_with_tax = amount * 1.05;
+    printf("With tax added: $%.2f\n", amount_with_tax);
+    return(0);
+}
+```
