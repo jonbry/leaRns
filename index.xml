@@ -12,6 +12,108 @@
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Sat, 14 Feb 2026 05:00:00 GMT</lastBuildDate>
 <item>
+  <title>4 Expressions</title>
+  <link>https://jonbry.github.io/leaRns/posts/cprog-4/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="arithmatic-operators" class="level2">
+<h2 class="anchored" data-anchor-id="arithmatic-operators">Arithmatic Operators</h2>
+<p>The arithmetic operators:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jonbry.github.io/leaRns/posts/cprog-4/images/paste-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+<ul>
+<li><p>Additive and multiplicative operators are binary because they require <em>two</em> operands.</p></li>
+<li><p>The unary operators require <em>one</em> operand:</p>
+<ul>
+<li><p><code>i = +1</code> where <code>+</code> is used as a unary operator</p></li>
+<li><p><code>j = -i</code> where <code>-</code> is used as a unary operator</p></li>
+</ul></li>
+</ul>
+<p>Unary + operator does nothing, and wasn’t even included in K&amp;R’s C. It is generally used to emphasize that it is a constant is positive.</p>
+<p>Binary operators, with the exception of <code>%</code>, allow for mixing integers and floating-point numbers.</p>
+<ul>
+<li><p>When an <code>int</code> and <code>float</code> are mixed, the result is of type <code>float</code></p>
+<ul>
+<li>e.g.&nbsp;<code>9 + 2.5 = 11.5</code></li>
+</ul></li>
+</ul>
+<p>The <code>/</code> and <code>%</code> operators are a bit different:</p>
+<ul>
+<li><p>The <code>/</code> can produce unusual results, because when both operands are integers, the <code>/</code> truncates the result by dropping the fractional part</p>
+<ul>
+<li>e.g.&nbsp;<code>1/2 = 0</code></li>
+</ul></li>
+<li><p>The <code>%</code> operator require integer operands, otherwise it won’t compile.</p></li>
+<li><p>A zero on either side of <code>/</code> or <code>%</code> will cause undefined behavior.</p></li>
+<li><p>C89 and C99 handle negative numbers with <code>/</code> and <code>&amp;</code> different:</p>
+<ul>
+<li><p>C98: If either operand is negative, the result can be rounded up or down (depends on implementation)</p></li>
+<li><p>C99: The results if either operand is negative are always truncated down towards zero</p>
+<ul>
+<li>e.g.&nbsp;<code>-9/7 = -1</code> and <code>-9%7 = -2</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="implementation-defined-behavior" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-defined-behavior">Implementation defined behavior</h4>
+<p>The C standard deliberately left parts of the language unspecified with the understanding that “implementation”, or the software needed to compile, link, and execute program on a specific platform, will fill in the details.</p>
+<ul>
+<li><p>Because of this, some programs may behave differently on different platforms.</p></li>
+<li><p>This is a bit dangerous but it reflect’s C’s philosophy - keep it efficient.</p></li>
+</ul>
+</section>
+<section id="operator-precedence-and-associativity" class="level3">
+<h3 class="anchored" data-anchor-id="operator-precedence-and-associativity">Operator Precedence and Associativity</h3>
+<p>C uses <strong>operator precedence</strong> to resolve ambiguity in how expressions are evaluated It follows the following relative precedence:</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Highest</td>
+<td style="text-align: center;"><code>+</code> , <code>-</code></td>
+<td style="text-align: center;">(unary)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><code>*</code> , <code>/</code>, <code>%</code></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Lowest</td>
+<td style="text-align: center;"><code>+</code>, <code>-</code></td>
+<td style="text-align: center;">(binary)</td>
+</tr>
+</tbody>
+</table>
+<p>An operand is said to be <strong>left associative</strong> if it groups from left to right.</p>
+<ul>
+<li><p>The binary arithmetic operators (<code>*</code>, <code>/</code>, <code>%</code>, <code>+</code>, and <code>-</code>) are all left associative. Therefore,</p></li>
+<li><p><code>i - j - k == (i - j) - k</code></p></li>
+<li><p><code>i * j / k == (i * j / k)</code></p></li>
+</ul>
+<p>Operands are said to be <strong>right associative</strong> if it groups from right to left. The unary operators <code>+</code> and <code>-</code> are right associative, therefore:</p>
+<ul>
+<li><code>- + i == -(+i)</code></li>
+</ul>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <category>C</category>
+  <category>CPMA</category>
+  <guid>https://jonbry.github.io/leaRns/posts/cprog-4/</guid>
+  <pubDate>Sat, 14 Feb 2026 05:00:00 GMT</pubDate>
+</item>
+<item>
   <title>3 Formatted I/O</title>
   <link>https://jonbry.github.io/leaRns/posts/cprog-3/</link>
   <description><![CDATA[ 

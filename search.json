@@ -56,13 +56,6 @@
     "text": "Programming projects\n1. Write a program that accepts a date from a user in the form of mm/dd/yyyy and responds back in the form yyyymmdd:\nEnter a date (mm/dd/yyyy): 2/17/2011\nYou entered the date 20110217\n/* Convert date from mm/dd/yyyy to yyyymmdd\n * NOTE: 2/02/1999 should be 19990202\n */\n\n #include &lt;stdio.h&gt;\n\n int main(void)\n {\n    int day, month, year;\n\n    printf(\"Enter a date (mm/dd/yyyy): \");\n    scanf(\"%2d/%2d/%4d\", &month, &day, &year );\n    printf(\"You entered, %4d%2.2d%2.2d \\n\", year, month, day);\n\n    return 0;\n }\n3. Books are identified by the ISBN, which after 01/01/07 contain 13 digits that are arranged in 5 groups (e.g. 978-0-393-97950-3).\n\nThe first group (GSI prefix) is either 978 or 979\nThe next is group identifier for language of origin\n\n0 and 1 are for English speaking countries\n\nThe publisher code identifies the publisher (393 is W. W. Norton)\nThe item number is assigned by the publisher to identify the book\nThe last digit is a check digit to verify the accuracy of the of the preceding digits.\n\nWrite a program that parse the ISBN number:\nEnter ISBN: 978-0-393-97850-3\nGSI prefix: 978\nGroup identifier: 0\nPublisher code: 393\nItem number: 97950\nCheck digit: 3\n/* Create a program that parses */\n\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int gsi, group, pub, item, check;\n    printf(\"Enter ISBN: \");\n    scanf(\"%3d-%d-%3d-%5d-%3d\", &gsi, &group, &pub, &item, &check);\n    printf(\"GSI prefix: %3d \\n\", gsi);\n    printf(\"Group identifier: %d\\n\", group);\n    printf(\"Publisher code: %3d\\n\", pub);\n    printf(\"Item number: %5d\\n\", item);\n    printf(\"Check digit: %d\\n\", check);\n\n    return 0;\n}\n\nNote: the printf statements could be combined into one statement"
   },
   {
-    "objectID": "posts/database_systems-1/index.html",
-    "href": "posts/database_systems-1/index.html",
-    "title": "1 Introduction",
-    "section": "",
-    "text": "A database-management system (DBMS) is a collection of interrelated data and a set of programs to access that data.\n\nThe collection of data is generally referred to as the database.\n\n\nDatabase-System Applications\nThe key to the management of complexity is abstraction. - Abstraction allows"
-  },
-  {
     "objectID": "posts/cprog-2/index.html",
     "href": "posts/cprog-2/index.html",
     "title": "2 Fundamentals",
@@ -140,10 +133,31 @@
     "text": "Programming Problems\n4. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:\nEnter an amount: 100.00\nWith tax added: $105.00\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int amount;\n    float amount_with_tax;\n\n    printf(\"Enter an amount: \");\n    scanf(\"%d\", &amount);\n    amount_with_tax = amount * 1.05;\n    printf(\"With tax added: $%.2f\\n\", amount_with_tax);\n    return(0);\n}"
   },
   {
+    "objectID": "posts/database_systems-1/index.html",
+    "href": "posts/database_systems-1/index.html",
+    "title": "1 Introduction",
+    "section": "",
+    "text": "A database-management system (DBMS) is a collection of interrelated data and a set of programs to access that data.\n\nThe collection of data is generally referred to as the database.\n\n\nDatabase-System Applications\nThe key to the management of complexity is abstraction. - Abstraction allows"
+  },
+  {
+    "objectID": "posts/cprog-4/index.html",
+    "href": "posts/cprog-4/index.html",
+    "title": "4 Expressions",
+    "section": "",
+    "text": "The arithmetic operators:\n\n\n\n\n\n\nAdditive and multiplicative operators are binary because they require two operands.\nThe unary operators require one operand:\n\ni = +1 where + is used as a unary operator\nj = -i where - is used as a unary operator\n\n\nUnary + operator does nothing, and wasn’t even included in K&R’s C. It is generally used to emphasize that it is a constant is positive.\nBinary operators, with the exception of %, allow for mixing integers and floating-point numbers.\n\nWhen an int and float are mixed, the result is of type float\n\ne.g. 9 + 2.5 = 11.5\n\n\nThe / and % operators are a bit different:\n\nThe / can produce unusual results, because when both operands are integers, the / truncates the result by dropping the fractional part\n\ne.g. 1/2 = 0\n\nThe % operator require integer operands, otherwise it won’t compile.\nA zero on either side of / or % will cause undefined behavior.\nC89 and C99 handle negative numbers with / and & different:\n\nC98: If either operand is negative, the result can be rounded up or down (depends on implementation)\nC99: The results if either operand is negative are always truncated down towards zero\n\ne.g. -9/7 = -1 and -9%7 = -2\n\n\n\n\n\nThe C standard deliberately left parts of the language unspecified with the understanding that “implementation”, or the software needed to compile, link, and execute program on a specific platform, will fill in the details.\n\nBecause of this, some programs may behave differently on different platforms.\nThis is a bit dangerous but it reflect’s C’s philosophy - keep it efficient.\n\n\n\n\nC uses operator precedence to resolve ambiguity in how expressions are evaluated It follows the following relative precedence:\n\n\n\nHighest\n+ , -\n(unary)\n\n\n\n* , /, %\n\n\n\nLowest\n+, -\n(binary)\n\n\n\nAn operand is said to be left associative if it groups from left to right.\n\nThe binary arithmetic operators (*, /, %, +, and -) are all left associative. Therefore,\ni - j - k == (i - j) - k\ni * j / k == (i * j / k)\n\nOperands are said to be right associative if it groups from right to left. The unary operators + and - are right associative, therefore:\n\n- + i == -(+i)"
+  },
+  {
+    "objectID": "posts/cprog-4/index.html#arithmatic-operators",
+    "href": "posts/cprog-4/index.html#arithmatic-operators",
+    "title": "4 Expressions",
+    "section": "",
+    "text": "The arithmetic operators:\n\n\n\n\n\n\nAdditive and multiplicative operators are binary because they require two operands.\nThe unary operators require one operand:\n\ni = +1 where + is used as a unary operator\nj = -i where - is used as a unary operator\n\n\nUnary + operator does nothing, and wasn’t even included in K&R’s C. It is generally used to emphasize that it is a constant is positive.\nBinary operators, with the exception of %, allow for mixing integers and floating-point numbers.\n\nWhen an int and float are mixed, the result is of type float\n\ne.g. 9 + 2.5 = 11.5\n\n\nThe / and % operators are a bit different:\n\nThe / can produce unusual results, because when both operands are integers, the / truncates the result by dropping the fractional part\n\ne.g. 1/2 = 0\n\nThe % operator require integer operands, otherwise it won’t compile.\nA zero on either side of / or % will cause undefined behavior.\nC89 and C99 handle negative numbers with / and & different:\n\nC98: If either operand is negative, the result can be rounded up or down (depends on implementation)\nC99: The results if either operand is negative are always truncated down towards zero\n\ne.g. -9/7 = -1 and -9%7 = -2\n\n\n\n\n\nThe C standard deliberately left parts of the language unspecified with the understanding that “implementation”, or the software needed to compile, link, and execute program on a specific platform, will fill in the details.\n\nBecause of this, some programs may behave differently on different platforms.\nThis is a bit dangerous but it reflect’s C’s philosophy - keep it efficient.\n\n\n\n\nC uses operator precedence to resolve ambiguity in how expressions are evaluated It follows the following relative precedence:\n\n\n\nHighest\n+ , -\n(unary)\n\n\n\n* , /, %\n\n\n\nLowest\n+, -\n(binary)\n\n\n\nAn operand is said to be left associative if it groups from left to right.\n\nThe binary arithmetic operators (*, /, %, +, and -) are all left associative. Therefore,\ni - j - k == (i - j) - k\ni * j / k == (i * j / k)\n\nOperands are said to be right associative if it groups from right to left. The unary operators + and - are right associative, therefore:\n\n- + i == -(+i)"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "leaRns",
     "section": "",
-    "text": "3 Formatted I/O\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n1 Introduction\n\n\nNotes from Database System Concepts\n\n\n\ncode\n\ndatabase\n\ndata\n\ndsc\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n2 Fundamentals\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\nNo matching items"
+    "text": "4 Expressions\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n3 Formatted I/O\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n1 Introduction\n\n\nNotes from Database System Concepts\n\n\n\ncode\n\ndatabase\n\ndata\n\ndsc\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n2 Fundamentals\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\nNo matching items"
   }
 ]

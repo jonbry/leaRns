@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-02-14">
 
-<title>leaRns</title>
+<title>4 Expressions – leaRns</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b72432a189393b58ac8845199a034cd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b72432a189393b58ac8845199a034cd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,68 +69,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="leaRns" href="index.xml" data-external="1"></head>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
 <body class="nav-fixed quarto-light">
 
@@ -140,9 +81,9 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">leaRns</span>
     </a>
   </div>
@@ -153,7 +94,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -176,180 +117,147 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">leaRns</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">4 Expressions</h1>
+            <p class="subtitle lead">Notes from C Programming a Modern Approach</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">C</div>
+                <div class="quarto-category">CPMA</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 14, 2026</p>
+      </div>
+    </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">February 15, 2026</p>
+      </div>
+    </div>
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Qw==">C <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q1BNQQ==">CPMA <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZGF0YQ==">data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YWJhc2U=">database <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZHNj">dsc <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#arithmatic-operators" id="toc-arithmatic-operators" class="nav-link active" data-scroll-target="#arithmatic-operators">Arithmatic Operators</a>
+  <ul class="collapse">
+  <li><a href="#operator-precedence-and-associativity" id="toc-operator-precedence-and-associativity" class="nav-link" data-scroll-target="#operator-precedence-and-associativity">Operator Precedence and Associativity</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Y29kZSUyQ0MlMkNDUE1B" data-listing-date-sort="1771045200000" data-listing-file-modified-sort="1771206453903" data-listing-date-modified-sort="1771131600000" data-listing-reading-time-sort="3" data-listing-word-count-sort="526">
-<div class="thumbnail"><a href="./posts/cprog-4/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/cprog-4/images/paste-2.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/cprog-4/index.html" class="no-external">4 Expressions</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/cprog-4/index.html" class="no-external">Notes from C Programming a Modern Approach</a>
+<section id="arithmatic-operators" class="level2">
+<h2 class="anchored" data-anchor-id="arithmatic-operators">Arithmatic Operators</h2>
+<p>The arithmetic operators:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/paste-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
 </div>
-<div class="listing-categories">
+<ul>
+<li><p>Additive and multiplicative operators are binary because they require <em>two</em> operands.</p></li>
+<li><p>The unary operators require <em>one</em> operand:</p>
+<ul>
+<li><p><code>i = +1</code> where <code>+</code> is used as a unary operator</p></li>
+<li><p><code>j = -i</code> where <code>-</code> is used as a unary operator</p></li>
+</ul></li>
+</ul>
+<p>Unary + operator does nothing, and wasn’t even included in K&amp;R’s C. It is generally used to emphasize that it is a constant is positive.</p>
+<p>Binary operators, with the exception of <code>%</code>, allow for mixing integers and floating-point numbers.</p>
+<ul>
+<li><p>When an <code>int</code> and <code>float</code> are mixed, the result is of type <code>float</code></p>
+<ul>
+<li>e.g.&nbsp;<code>9 + 2.5 = 11.5</code></li>
+</ul></li>
+</ul>
+<p>The <code>/</code> and <code>%</code> operators are a bit different:</p>
+<ul>
+<li><p>The <code>/</code> can produce unusual results, because when both operands are integers, the <code>/</code> truncates the result by dropping the fractional part</p>
+<ul>
+<li>e.g.&nbsp;<code>1/2 = 0</code></li>
+</ul></li>
+<li><p>The <code>%</code> operator require integer operands, otherwise it won’t compile.</p></li>
+<li><p>A zero on either side of <code>/</code> or <code>%</code> will cause undefined behavior.</p></li>
+<li><p>C89 and C99 handle negative numbers with <code>/</code> and <code>&amp;</code> different:</p>
+<ul>
+<li><p>C98: If either operand is negative, the result can be rounded up or down (depends on implementation)</p></li>
+<li><p>C99: The results if either operand is negative are always truncated down towards zero</p>
+<ul>
+<li>e.g.&nbsp;<code>-9/7 = -1</code> and <code>-9%7 = -2</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="implementation-defined-behavior" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-defined-behavior">Implementation defined behavior</h4>
+<p>The C standard deliberately left parts of the language unspecified with the understanding that “implementation”, or the software needed to compile, link, and execute program on a specific platform, will fill in the details.</p>
+<ul>
+<li><p>Because of this, some programs may behave differently on different platforms.</p></li>
+<li><p>This is a bit dangerous but it reflect’s C’s philosophy - keep it efficient.</p></li>
+</ul>
+</section>
+<section id="operator-precedence-and-associativity" class="level3">
+<h3 class="anchored" data-anchor-id="operator-precedence-and-associativity">Operator Precedence and Associativity</h3>
+<p>C uses <strong>operator precedence</strong> to resolve ambiguity in how expressions are evaluated It follows the following relative precedence:</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Highest</td>
+<td style="text-align: center;"><code>+</code> , <code>-</code></td>
+<td style="text-align: center;">(unary)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><code>*</code> , <code>/</code>, <code>%</code></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Lowest</td>
+<td style="text-align: center;"><code>+</code>, <code>-</code></td>
+<td style="text-align: center;">(binary)</td>
+</tr>
+</tbody>
+</table>
+<p>An operand is said to be <strong>left associative</strong> if it groups from left to right.</p>
+<ul>
+<li><p>The binary arithmetic operators (<code>*</code>, <code>/</code>, <code>%</code>, <code>+</code>, and <code>-</code>) are all left associative. Therefore,</p></li>
+<li><p><code>i - j - k == (i - j) - k</code></p></li>
+<li><p><code>i * j / k == (i * j / k)</code></p></li>
+</ul>
+<p>Operands are said to be <strong>right associative</strong> if it groups from right to left. The unary operators <code>+</code> and <code>-</code> are right associative, therefore:</p>
+<ul>
+<li><code>- + i == -(+i)</code></li>
+</ul>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Qw=='); return false;">C</div>
+</section>
+</section>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Q1BNQQ=='); return false;">CPMA</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/cprog-4/index.html" class="no-external">
-The arithmetic operators:
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/cprog-4/index.html" class="no-external">
-<div class="listing-date">
-Feb 14, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Y29kZSUyQ0MlMkNDUE1B" data-listing-date-sort="1771045200000" data-listing-file-modified-sort="1771196412552" data-listing-date-modified-sort="1771131600000" data-listing-reading-time-sort="12" data-listing-word-count-sort="2385">
-<div class="thumbnail"><a href="./posts/cprog-3/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/cprog-3/index.html" class="no-external">3 Formatted I/O</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/cprog-3/index.html" class="no-external">Notes from C Programming a Modern Approach</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Qw=='); return false;">C</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q1BNQQ=='); return false;">CPMA</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/cprog-3/index.html" class="no-external">
-The <code>printf</code> function is designed to change the contents of a string with values inserted at specific points in the string.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/cprog-3/index.html" class="no-external">
-<div class="listing-date">
-Feb 14, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Y29kZSUyQ2RhdGFiYXNlJTJDZGF0YSUyQ2RzYw==" data-listing-date-sort="1770008400000" data-listing-file-modified-sort="1770086531628" data-listing-date-modified-sort="1770008400000" data-listing-reading-time-sort="1" data-listing-word-count-sort="40">
-<div class="thumbnail"><a href="./posts/database_systems-1/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/database_systems-1/index.html" class="no-external">1 Introduction</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/database_systems-1/index.html" class="no-external">Notes from Database System Concepts</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YWJhc2U='); return false;">database</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YQ=='); return false;">data</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZHNj'); return false;">dsc</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/database_systems-1/index.html" class="no-external">
-A database-management system (DBMS) is a collection of interrelated data and a set of programs to access that data.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/database_systems-1/index.html" class="no-external">
-<div class="listing-date">
-Feb 2, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Y29kZSUyQ0MlMkNDUE1B" data-listing-date-sort="1770008400000" data-listing-file-modified-sort="1771193594433" data-listing-date-modified-sort="1771045200000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2043">
-<div class="thumbnail"><a href="./posts/cprog-2/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/cprog-2/images/Screenshot from 2026-02-11 21-57-22.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/cprog-2/index.html" class="no-external">2 Fundamentals</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/cprog-2/index.html" class="no-external">Notes from C Programming a Modern Approach</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Qw=='); return false;">C</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q1BNQQ=='); return false;">CPMA</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/cprog-2/index.html" class="no-external">
-First program:
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/cprog-2/index.html" class="no-external">
-<div class="listing-date">
-Feb 2, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
