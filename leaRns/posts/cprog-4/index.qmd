@@ -1,0 +1,78 @@
+---
+title: 4 Expressions 
+subtitle: Notes from C Programming a Modern Approach
+date: "02/14/2026"
+date-modified: "02/15/2026"
+toc: true
+categories: [code, C, CPMA]
+---
+
+## Arithmatic Operators
+
+The arithmetic operators:
+
+![](images/paste-2.png){fig-align="center" width="350"}
+
+-   Additive and multiplicative operators are binary because they require *two* operands.
+
+-   The unary operators require *one* operand:
+
+    -   `i = +1` where `+` is used as a unary operator
+
+    -   `j = -i` where `-` is used as a unary operator
+
+Unary + operator does nothing, and wasn't even included in K&R's C. It is generally used to emphasize that it is a constant is positive.
+
+Binary operators, with the exception of `%`, allow for mixing integers and floating-point numbers.
+
+-   When an `int` and `float` are mixed, the result is of type `float`
+
+    -   e.g. `9 + 2.5 = 11.5`
+
+The `/` and `%` operators are a bit different:
+
+-   The `/` can produce unusual results, because when both operands are integers, the `/` truncates the result by dropping the fractional part
+
+    -   e.g. `1/2 = 0`
+
+-   The `%` operator require integer operands, otherwise it won't compile.
+
+-   A zero on either side of `/` or `%` will cause undefined behavior.
+
+-   C89 and C99 handle negative numbers with `/` and `&` different:
+
+    -   C98: If either operand is negative, the result can be rounded up or down (depends on implementation)
+
+    -   C99: The results if either operand is negative are always truncated down towards zero
+
+        -   e.g. `-9/7 = -1` and `-9%7 = -2`
+
+#### Implementation defined behavior
+
+The C standard deliberately left parts of the language unspecified with the understanding that "implementation", or the software needed to compile, link, and execute program on a specific platform, will fill in the details.
+
+-   Because of this, some programs may behave differently on different platforms.
+
+-   This is a bit dangerous but it reflect's C's philosophy - keep it efficient.
+
+### Operator Precedence and Associativity
+
+C uses **operator precedence** to resolve ambiguity in how expressions are evaluated It follows the following relative precedence:
+
+|         |                |          |
+|:-------:|:--------------:|:--------:|
+| Highest |   `+` , `-`    | (unary)  |
+|         | `*` , `/`, `%` |          |
+| Lowest  |    `+`, `-`    | (binary) |
+
+An operand is said to be **left associative** if it groups from left to right.
+
+-   The binary arithmetic operators (`*`, `/`, `%`, `+`, and `-`) are all left associative. Therefore,
+
+-   `i - j - k == (i - j) - k`
+
+-   `i * j / k == (i * j / k)`
+
+Operands are said to be **right associative** if it groups from right to left. The unary operators `+` and `-` are right associative, therefore:
+
+-   `- + i == -(+i)`
