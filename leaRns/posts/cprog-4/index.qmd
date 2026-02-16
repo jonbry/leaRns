@@ -1,0 +1,8 @@
+---
+title: 4 Expressions 
+subtitle: Notes from C Programming a Modern Approach
+date: "02/14/2026"
+date-modified: "02/15/2026"
+toc: true
+categories: [code, C, CPMA]
+---
