@@ -76,3 +76,45 @@ An operand is said to be **left associative** if it groups from left to right.
 Operands are said to be **right associative** if it groups from right to left. The unary operators `+` and `-` are right associative, therefore:
 
 -   `- + i == -(+i)`
+
+#### Computing a UPC Check Digit
+
+Products in US and Canada have a bar code, a Universal Product Code (UPC), that identifies the manufacturer and the product.
+
+-   Each barcode is a 12-digit number, that is usually printed underneath the bars.
+-   For example, 0 13800 15173 5 are the digits for a package of Stouffer's French Bread Pepperoni Pizza.
+    -   The first digit identifies the type of item (0-7)
+        -   2 that needs to be weighed, 3 for drugs/health, 6 for coupons
+    -   The next group of 5 digits is the manufacturer code (e.g. 13800 is Nestle)
+    -   The next 5 digits identifies the product (including the size)
+    -   The final digit is the *check digit* that helps identify errors in the preceding digits.
+        -   If the UPC is scanned incorrectly, the first 11 digits won't be consistent with the check digit, and it will be rejected.
+
+How the check digit is calculated:
+
+1.  Add the first, third, fifth, seventh, ninth, and eleventh digits
+2.  Add the second, fourth, sixth, eighth, and tenth digits
+3.  Multiply the first sum by 3 and add it to the second sum
+4.  Subtract 1 from the total
+5.  Divide by 10
+6.  Subtract the remainder from 9
+
+For the Stouffer's example:
+
+1.  0 + 3 + 0 +1 +1 +3 = 8
+2.  1 + 8 + 0 + 5 + 7 = 21
+3.  24 + 21 = 45
+4.  45 - 1 = 44
+5.  44 / 10 = 4.4 or 4
+6.  9 - 4 = 5
+
+We can write a program that creates a check digit based on UPC groups:
+
+```         
+Enter the first (single) digit: 0
+Enter the first group of five digits: 13800
+Enter the second group of five digits: 15173
+Check digit: 5
+```
+
+-   We will read each 5-digit grouping as five 1-digit numbers.
