@@ -101,9 +101,653 @@
 <ul>
 <li><code>- + i == -(+i)</code></li>
 </ul>
-
-
+<section id="computing-a-upc-check-digit" class="level4">
+<h4 class="anchored" data-anchor-id="computing-a-upc-check-digit">Computing a UPC Check Digit</h4>
+<p>Products in US and Canada have a bar code, a Universal Product Code (UPC), that identifies the manufacturer and the product.</p>
+<ul>
+<li>Each barcode is a 12-digit number, that is usually printed underneath the bars.</li>
+<li>For example, 0 13800 15173 5 are the digits for a package of Stouffer’s French Bread Pepperoni Pizza.
+<ul>
+<li>The first digit identifies the type of item (0-7)
+<ul>
+<li>2 that needs to be weighed, 3 for drugs/health, 6 for coupons</li>
+</ul></li>
+<li>The next group of 5 digits is the manufacturer code (e.g.&nbsp;13800 is Nestle)</li>
+<li>The next 5 digits identifies the product (including the size)</li>
+<li>The final digit is the <em>check digit</em> that helps identify errors in the preceding digits.
+<ul>
+<li>If the UPC is scanned incorrectly, the first 11 digits won’t be consistent with the check digit, and it will be rejected.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>How the check digit is calculated:</p>
+<ol type="1">
+<li>Add the first, third, fifth, seventh, ninth, and eleventh digits</li>
+<li>Add the second, fourth, sixth, eighth, and tenth digits</li>
+<li>Multiply the first sum by 3 and add it to the second sum</li>
+<li>Subtract 1 from the total</li>
+<li>Divide by 10</li>
+<li>Subtract the remainder from 9</li>
+</ol>
+<p>For the Stouffer’s example:</p>
+<ol type="1">
+<li>0 + 3 + 0 +1 +1 +3 = 8</li>
+<li>1 + 8 + 0 + 5 + 7 = 21</li>
+<li>24 + 21 = 45</li>
+<li>45 - 1 = 44</li>
+<li>44 / 10 = 4.4 or 4</li>
+<li>9 - 4 = 5</li>
+</ol>
+<p>We can write a program that creates a check digit based on UPC groups:</p>
+<pre><code>Enter the first (single) digit: 0
+Enter the first group of five digits: 13800
+Enter the second group of five digits: 15173
+Check digit: 5</code></pre>
+<ul>
+<li>We will read each 5-digit grouping as five 1-digit numbers.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* Computes a Universal Product Code check digit */</span></span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">#include </span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">&lt;stdio.h&gt;</span></span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">void</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-6"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-7">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i4<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i5<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> j1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> j2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> j3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> j4<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> j5<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-8">        first_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> second_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> total<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-9"></span>
+<span id="cb2-10">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter the first (single) digit: "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-11">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%1d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>d<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-12">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter first group of five digits: "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-13">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%1d%1d%1d%1d%1d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i4<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>i5<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-14">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter second group of five digits: "</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-15">    scanf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%1d%1d%1d%1d%1d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>j1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>j2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>j3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>j4<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>j5<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb2-16"></span>
+<span id="cb2-17">    first_sum <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> i2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> i4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> j1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> j3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> j5<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-18">    second_sum <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> i1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> i3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> i5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> j2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> j4<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-19">    total <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> first_sum <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> second_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-20"></span>
+<span id="cb2-21">    printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Check digit: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">((</span>total <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">));</span></span>
+<span id="cb2-22"></span>
+<span id="cb2-23">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb2-24"></span>
+<span id="cb2-25"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
 </section>
+</section>
+</section>
+<section id="assignment-operators" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-operators">Assignment Operators</h2>
+<p>C’s <code>=</code> (simple assignment) operator is used to store a value in a variable to use later.</p>
+<ul>
+<li>For updating a value that is already stored n a variable, C has compound assignment operators.</li>
+</ul>
+<section id="simple-assignment" class="level3">
+<h3 class="anchored" data-anchor-id="simple-assignment">Simple assignment</h3>
+<ul>
+<li><p><code>v = e</code> evaluates the expression <code>e</code> and copies its value into <code>v</code></p></li>
+<li><p><code>v</code> and <code>e</code> doesn’t have to be the same type. The value of <code>e</code> will be converted to type <code>v</code> when the assignment takes place.</p></li>
+</ul>
+<p>While many languages treat assignment as a statement, in C, assignment is an <strong>operator</strong>, just like <code>+</code>.</p>
+<ul>
+<li><p>The act of assignment produces a result, just as adding two numbers produces a result.</p></li>
+<li><p>The value of an assignment <code>v = e</code> is the value <code>v</code> <em>after</em> the assignment.</p>
+<ul>
+<li>e.g.&nbsp;The value <code>i = 72.99f</code> is 72 not 72.99</li>
+</ul></li>
+</ul>
+<section id="side-effects" class="level4">
+<h4 class="anchored" data-anchor-id="side-effects">Side effects</h4>
+<ul>
+<li><p>Most operators don’t modify their operands - <code>i + j</code> doesn’t modify <code>i</code> or <code>j</code>, just, computes the sum of <code>i</code> and <code>j</code>.</p></li>
+<li><p>Some operators have <strong>side effects</strong> as they do more than just compute their value.</p>
+<ul>
+<li><p>The assignment operator has side effects as it modifies the left operand.</p>
+<ul>
+<li><code>i = 0</code> produces the result 0 with a side effect of assigning 0 to <code>i</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Since assignment is an operator, several can be changed together: <code>i = j = k = 0;</code></p>
+<ul>
+<li>The <code>=</code> operator is right associative, so <code>i = j = k = 0;</code> is equal to <code>i = (j = (k = 0));</code></li>
+</ul>
+<p><strong>Note</strong> - Be careful of unexpected results in chained assignments as a result of type conversion:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">int</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb3-2"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">float</span> f<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb3-3"></span>
+<span id="cb3-4">f <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">33.3</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">f</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<ul>
+<li><code>i</code> is assigned the value of 33, then <code>f</code> is assigned 33.0 (not 33.3)</li>
+</ul>
+<p>The form <code>v = e</code> is generally allowed whenever a value of type <code>v</code> would be permitted. For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1">i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb4-2">k <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>j <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span>
+<span id="cb4-3">printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> j <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> k<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* prints "1 1 2" */</span></span></code></pre></div></div>
+<ul>
+<li><p><code>j = i</code> copies <code>i</code> to <code>j</code></p></li>
+<li><p>The new value of <code>j</code> is then added to <code>1</code>, giving <code>k</code> the value of 2.</p></li>
+<li><p>This is not a recommend way of assignment as “embedded assignments” are hard to read and can be a source of subtle bugs.</p></li>
+</ul>
+</section>
+</section>
+<section id="lvalues" class="level3">
+<h3 class="anchored" data-anchor-id="lvalues">Lvalues</h3>
+<p>The assignment operator requires an <strong>lvalue</strong>, which is the left operand.</p>
+<ul>
+<li><p>The lvalue represents an object stored in memory, not a constant or a result of a computation.</p></li>
+<li><p>Variables are lvalues, whereas expressions are not (<code>10</code>, <code>2*i</code>, etc)</p></li>
+</ul>
+</section>
+<section id="compound-assignment" class="level3">
+<h3 class="anchored" data-anchor-id="compound-assignment">Compound assignment</h3>
+<p>Suppose we want to increase a variable’s value by 2:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1">i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<p>We can also use C’s <strong>compound assignments</strong> to shorten these types of statements:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1">i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* same as i = i + 2*/</span></span></code></pre></div></div>
+<ul>
+<li>The value of the right operand is added to the variable on the left.</li>
+</ul>
+<p>The most popular compound assignment operators:</p>
+<ul>
+<li><p><code>v += e</code> adds <code>v</code> to <code>e</code>, storing the result in <code>v</code></p></li>
+<li><p><code>v -= e</code></p></li>
+<li><p><code>v *= e</code></p></li>
+<li><p><code>v /= e</code></p></li>
+<li><p><code>v %= e</code></p></li>
+</ul>
+<p><strong>Note:</strong> <code>v += e</code> is not equivalent to <code>v = v + e</code></p>
+<ul>
+<li><p>One problem is the operator precedence: <code>i *= j + k</code> isn’t the same as <code>i = i * j + k</code></p></li>
+<li><p>There are cases where <code>v += e</code> differs from <code>v = v + e</code> because <code>v</code> itself has a side effect.</p></li>
+<li><p>This applies to the other compound assignment operators</p></li>
+</ul>
+<p>Compound assignment operators have the same properties as the <code>=</code> operator (e.g.&nbsp;right associative):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* These are equivalent */</span></span>
+<span id="cb7-2">i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> j <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> k<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb7-3">i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>j <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> k<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="increment-and-decrement-operators" class="level2">
+<h2 class="anchored" data-anchor-id="increment-and-decrement-operators">Increment and Decrement operators</h2>
+<p>C allows increments and decrements to be shortened using the <code>++</code> (<strong>increment</strong>) and <code>--</code> (<strong>decrement</strong>)</p>
+<ul>
+<li><p>These can be used as <strong>prefix</strong> operators (e.g.&nbsp;<code>++i</code> and <code>--i</code>)</p></li>
+<li><p>These can be used as <strong>postfix</strong> operators (e.g.&nbsp;<code>i++</code> and <code>i--</code></p></li>
+</ul>
+<p>Like assignment operators, they have side effects.</p>
+<ul>
+<li><p>Prefix (<code>++i</code>) does a pre-increment, where it does <code>i + 1</code> and as a side effect, increments <code>i\</code></p>
+<ul>
+<li>This means - “increment <code>i</code> immediately”.</li>
+</ul></li>
+<li><p>Postfix (<code>i++</code>) does the post-increment, where it produces the result <code>i</code> and as a side effect, increments it afterwards.</p>
+<ul>
+<li><p>This means “use the old value of <code>i</code> for now, and then increment <code>i</code> later”</p></li>
+<li><p><strong>Note:</strong> The C standard doesn’t specify an exact time when it increments <code>i</code> later, but it’s assumed that it will be incremented before the next statement is executed.</p></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1">i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb8-2">printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"i is </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">++);</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* prints "i is 1" */</span></span>
+<span id="cb8-3">printf<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"i is </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">);</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* prints "i is 2" */</span></span></code></pre></div></div>
+<p>The postfix versions of <code>++</code> and <code>==</code> have:</p>
+<ul>
+<li><p>Higher precedence than unary plus and minus</p></li>
+<li><p>Are right associative</p></li>
+</ul>
+</section>
+<section id="expression-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="expression-evaluation">Expression Evaluation</h2>
+<p>The most common operators with their precedence (highest is 1) , symbol, and associativity:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jonbry.github.io/leaRns/posts/cprog-4/images/paste-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Suppose we have the following expression:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> c<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">++</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">--</span>e <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> f</span></code></pre></div></div>
+<ul>
+<li><p>The highest precedence is postfix <code>++</code>, which gives the equivalent expression <code>a = b += (c++) - d  --e / -f</code></p></li>
+<li><p>The next highest is prefix <code>--</code> and unary <code>-</code>, with a precedence of 2, which gives us <code>a = b += (c++) - d + (--e) / (-f)</code></p>
+<ul>
+<li>Since the other <code>-</code> is to the left it must be subtraction not unary</li>
+</ul></li>
+<li><p>The next highest is <code>/</code> with a precedence of 3, which gives us <code>a = b += (c++) - d + ((--e) / (-f))</code></p></li>
+<li><p>The next highest is 4, with both a <code>+</code> and a <code>-</code>.</p>
+<ul>
+<li>These are associative left, so the parentheses go around the subtraction first then adding both parentheses groups, which gives us <code>a = b += (((c++) - d) + ((--e / (-f)))</code></li>
+</ul></li>
+<li><p>Lastly, we have the assignments <code>=</code> and <code>+=</code> that are both 5s, which gives us <code>(a = (b += ((c++) - d + ((--e) / (-f)))))</code></p></li>
+</ul>
+<section id="order-of-subexpression-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="order-of-subexpression-evaluation">Order of subexpression evaluation</h3>
+<p>C doesn’t define the order in which subexpressions are evaluated with the exception of ones involving logical <em>and</em>, logical <em>or</em>, conditional, and comma operators.</p>
+<ul>
+<li>This means for the expression <code>(a + b) * (c - d)</code>, we don’t know if <code>(a + b)</code> is evaluated before/after <code>(c-d)</code></li>
+</ul>
+<p><strong>Note:</strong> Avoid writing expressions that access the value of a variable and also modify the variable elsewhere in the expression. For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+<ul>
+<li><p>This accesses the value of <code>a</code> to compute <code>a + 2</code> but also modifies the value of <code>a</code> by assigning it to 1.</p></li>
+<li><p>Your better off using assignment operators in subexpressions:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb11-2">b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb11-3">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb11-4">c <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> a<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div></div>
+<p>Besides assignment operators, increment and decrement are the only operators that modify their operands. Make sure to be careful using these so they don’t depend on a particular order of operations:</p>
+<ul>
+<li>e.g.&nbsp;<code>i = 2; j = i * i++;</code></li>
+</ul>
+<p>This is an example of <strong>undefined behavior</strong>, which means it the results are dependent on the compiler. Programs could fail to compile, return/assign a random value, or crash.</p>
+</section>
+</section>
+<section id="expression-statements" class="level2">
+<h2 class="anchored" data-anchor-id="expression-statements">Expression Statements</h2>
+<p>Any expression can be used as a statement regardless of the type or what it computes.</p>
+<ul>
+<li><p>Ending an expression with a semicolon turns it into a statement.</p></li>
+<li><p><code>i++;</code> is a valid statement</p></li>
+</ul>
+
+
 </section>
 
  ]]></description>
