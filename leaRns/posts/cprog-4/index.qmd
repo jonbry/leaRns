@@ -118,3 +118,237 @@ Check digit: 5
 ```
 
 -   We will read each 5-digit grouping as five 1-digit numbers.
+
+``` c
+/* Computes a Universal Product Code check digit */
+
+#include <stdio.h>
+
+int main(void)
+{
+    int d, i1, i2, i3, i4, i5, j1, j2, j3, j4, j5,
+        first_sum, second_sum, total;
+
+    printf("Enter the first (single) digit: ");
+    scanf("%1d", &d);
+    printf("Enter first group of five digits: ");
+    scanf("%1d%1d%1d%1d%1d", &i1, &i2, &i3, &i4, &i5);
+    printf("Enter second group of five digits: ");
+    scanf("%1d%1d%1d%1d%1d", &j1, &j2, &j3, &j4, &j5);
+
+    first_sum = d + i2 + i4 + j1 + j3 + j5;
+    second_sum = i1 + i3 + i5 + j2 + j4;
+    total = 3 * first_sum + second_sum;
+
+    printf("Check digit: %d\n", 9 - ((total - 1) % 10));
+
+    return 0;
+
+}
+```
+
+## Assignment Operators
+
+C's `=` (simple assignment) operator is used to store a value in a variable to use later.
+
+-   For updating a value that is already stored n a variable, C has compound assignment operators.
+
+### Simple assignment
+
+-   `v = e` evaluates the expression `e` and copies its value into `v`
+
+-   `v` and `e` doesn't have to be the same type. The value of `e` will be converted to type `v` when the assignment takes place.
+
+While many languages treat assignment as a statement, in C, assignment is an **operator**, just like `+`.
+
+-   The act of assignment produces a result, just as adding two numbers produces a result.
+
+-   The value of an assignment `v = e` is the value `v` *after* the assignment.
+
+    -   e.g. The value `i = 72.99f` is 72 not 72.99
+
+#### Side effects
+
+-   Most operators don't modify their operands - `i + j` doesn't modify `i` or `j`, just, computes the sum of `i` and `j`.
+
+-   Some operators have **side effects** as they do more than just compute their value.
+
+    -   The assignment operator has side effects as it modifies the left operand.
+
+        -   `i = 0` produces the result 0 with a side effect of assigning 0 to `i`
+
+Since assignment is an operator, several can be changed together: `i = j = k = 0;`
+
+-   The `=` operator is right associative, so `i = j = k = 0;` is equal to `i = (j = (k = 0));`
+
+**Note** - Be careful of unexpected results in chained assignments as a result of type conversion:
+
+``` c
+int i;
+float f;
+
+f = i = 33.3f;
+```
+
+-   `i` is assigned the value of 33, then `f` is assigned 33.0 (not 33.3)
+
+The form `v = e` is generally allowed whenever a value of type `v` would be permitted. For example:
+
+``` c
+i = 1;
+k = 1 + (j = i);
+printf("%d %d %d\n", i , j , k); /* prints "1 1 2" */
+```
+
+-   `j = i` copies `i` to `j`
+
+-   The new value of `j` is then added to `1`, giving `k` the value of 2.
+
+-   This is not a recommend way of assignment as "embedded assignments" are hard to read and can be a source of subtle bugs.
+
+### Lvalues
+
+The assignment operator requires an **lvalue**, which is the left operand.
+
+-   The lvalue represents an object stored in memory, not a constant or a result of a computation.
+
+-   Variables are lvalues, whereas expressions are not (`10`, `2*i`, etc)
+
+### Compound assignment
+
+Suppose we want to increase a variable's value by 2:
+
+``` c
+i = i + 2;
+```
+
+We can also use C's **compound assignments** to shorten these types of statements:
+
+``` c
+i += 2; /* same as i = i + 2*/
+```
+
+-   The value of the right operand is added to the variable on the left.
+
+The most popular compound assignment operators:
+
+-   `v += e` adds `v` to `e`, storing the result in `v`
+
+-   `v -= e`
+
+-   `v *= e`
+
+-   `v /= e`
+
+-   `v %= e`
+
+**Note:** `v += e` is not equivalent to `v = v + e`
+
+-   One problem is the operator precedence: `i *= j + k` isn't the same as `i = i * j + k`
+
+-   There are cases where `v += e` differs from `v = v + e` because `v` itself has a side effect.
+
+-   This applies to the other compound assignment operators
+
+Compound assignment operators have the same properties as the `=` operator (e.g. right associative):
+
+``` c
+/* These are equivalent */
+i += j += k;
+i += (j += k);
+```
+
+## Increment and Decrement operators
+
+C allows increments and decrements to be shortened using the `++` (**increment**) and `--` (**decrement**)
+
+-   These can be used as **prefix** operators (e.g. `++i` and `--i`)
+
+-   These can be used as **postfix** operators (e.g. `i++` and `i--`
+
+Like assignment operators, they have side effects.
+
+-   Prefix (`++i`) does a pre-increment, where it does `i + 1` and as a side effect, increments `i\`
+
+    -   This means - "increment `i` immediately".
+
+-   Postfix (`i++`) does the post-increment, where it produces the result `i` and as a side effect, increments it afterwards.
+
+    -   This means "use the old value of `i` for now, and then increment `i` later"
+
+    -   **Note:** The C standard doesn't specify an exact time when it increments `i` later, but it's assumed that it will be incremented before the next statement is executed.
+
+``` c
+i = 1
+printf("i is %d\n", i++); /* prints "i is 1" */
+printf("i is %d\n", i); /* prints "i is 2" */
+```
+
+The postfix versions of `++` and `==` have:
+
+-   Higher precedence than unary plus and minus
+
+-   Are right associative
+
+## Expression Evaluation
+
+The most common operators with their precedence (highest is 1) , symbol, and associativity:
+
+![](images/paste-3.png){fig-align="center" width="500"}
+
+Suppose we have the following expression:
+
+``` c
+a = b += c++ - d + --e / - f
+```
+
+-   The highest precedence is postfix `++`, which gives the equivalent expression `a = b += (c++) - d  --e / -f`
+
+-   The next highest is prefix `--` and unary `-`, with a precedence of 2, which gives us `a = b += (c++) - d + (--e) / (-f)`
+
+    -   Since the other `-` is to the left it must be subtraction not unary
+
+-   The next highest is `/` with a precedence of 3, which gives us `a = b += (c++) - d + ((--e) / (-f))`
+
+-   The next highest is 4, with both a `+` and a `-`.
+
+    -   These are associative left, so the parentheses go around the subtraction first then adding both parentheses groups, which gives us `a = b += (((c++) - d) + ((--e / (-f)))`
+
+-   Lastly, we have the assignments `=` and `+=` that are both 5s, which gives us `(a = (b += ((c++) - d + ((--e) / (-f)))))`
+
+### Order of subexpression evaluation
+
+C doesn't define the order in which subexpressions are evaluated with the exception of ones involving logical *and*, logical *or*, conditional, and comma operators.
+
+-   This means for the expression `(a + b) * (c - d)`, we don't know if `(a + b)` is evaluated before/after `(c-d)`
+
+**Note:** Avoid writing expressions that access the value of a variable and also modify the variable elsewhere in the expression. For example:
+
+``` c
+(b = a + 2) 0 (a = 1)
+```
+
+-   This accesses the value of `a` to compute `a + 2` but also modifies the value of `a` by assigning it to 1.
+
+-   Your better off using assignment operators in subexpressions:
+
+``` c
+a = 5;
+b = a + 2;
+a = 1;
+c = b = a;
+```
+
+Besides assignment operators, increment and decrement are the only operators that modify their operands. Make sure to be careful using these so they don't depend on a particular order of operations:
+
+-   e.g. `i = 2; j = i * i++;`
+
+This is an example of **undefined behavior**, which means it the results are dependent on the compiler. Programs could fail to compile, return/assign a random value, or crash.
+
+## Expression Statements
+
+Any expression can be used as a statement regardless of the type or what it computes.
+
+-   Ending an expression with a semicolon turns it into a statement.
+
+-   `i++;` is a valid statement
