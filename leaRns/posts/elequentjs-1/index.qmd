@@ -1,0 +1,31 @@
+---
+title: 1 Values, Types, and Operators
+subtitle: Notes from Elequent JavaScript 4th Edition
+date: "03/10/2026"
+date-modified: "03/10/2026"
+categories: [code, javascript, elequentjs]
+---
+
+## Strings
+
+Strings written with single or double quotes behave the same. - The only difference is which type of quote is needed to escape inside of them. - Backticked-quoted strings, called **template literals** can span lines and embed other values:
+
+``` js
+`half of 100 is ${100 / 2}`
+```
+
+-   When something is inside of `${}` of a template literal, the result is computed, converted to a string, and included at that position.
+-   The output is the string `half of 100 is 50`
+
+## Unary operators
+
+-   Operators that use two values are called **binary operators**
+
+-   Operators that use one are called **unary operators**
+
+The minus operators, `-` can be used as both a unary and binary operator:
+
+``` js
+console.log(- (10- 2))
+> -8
+```
