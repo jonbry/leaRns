@@ -133,6 +133,27 @@
     "text": "Programming Problems\n4. Write a program that asks the user to enter a dollar and cents amount and then displays the total with 5% added:\nEnter an amount: 100.00\nWith tax added: $105.00\n#include &lt;stdio.h&gt;\n\nint main(void)\n{\n    int amount;\n    float amount_with_tax;\n\n    printf(\"Enter an amount: \");\n    scanf(\"%d\", &amount);\n    amount_with_tax = amount * 1.05;\n    printf(\"With tax added: $%.2f\\n\", amount_with_tax);\n    return(0);\n}"
   },
   {
+    "objectID": "posts/elequentjs-1/index.html",
+    "href": "posts/elequentjs-1/index.html",
+    "title": "1 Values, Types, and Operators",
+    "section": "",
+    "text": "Strings written with single or double quotes behave the same. - The only difference is which type of quote is needed to escape inside of them. - Backticked-quoted strings, called template literals can span lines and embed other values:\n`half of 100 is ${100 / 2}`\n\nWhen something is inside of ${} of a template literal, the result is computed, converted to a string, and included at that position.\nThe output is the string half of 100 is 50"
+  },
+  {
+    "objectID": "posts/elequentjs-1/index.html#strings",
+    "href": "posts/elequentjs-1/index.html#strings",
+    "title": "1 Values, Types, and Operators",
+    "section": "",
+    "text": "Strings written with single or double quotes behave the same. - The only difference is which type of quote is needed to escape inside of them. - Backticked-quoted strings, called template literals can span lines and embed other values:\n`half of 100 is ${100 / 2}`\n\nWhen something is inside of ${} of a template literal, the result is computed, converted to a string, and included at that position.\nThe output is the string half of 100 is 50"
+  },
+  {
+    "objectID": "posts/elequentjs-1/index.html#unary-operators",
+    "href": "posts/elequentjs-1/index.html#unary-operators",
+    "title": "1 Values, Types, and Operators",
+    "section": "Unary operators",
+    "text": "Unary operators\n\nOperators that use two values are called binary operators\nOperators that use one are called unary operators\n\nThe minus operators, - can be used as both a unary and binary operator:\nconsole.log(- (10- 2))\n&gt; -8"
+  },
+  {
     "objectID": "posts/database_systems-1/index.html",
     "href": "posts/database_systems-1/index.html",
     "title": "1 Introduction",
@@ -186,6 +207,6 @@
     "href": "index.html",
     "title": "leaRns",
     "section": "",
-    "text": "4 Expressions\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n3 Formatted I/O\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n1 Introduction\n\n\nNotes from Database System Concepts\n\n\n\ncode\n\ndatabase\n\ndata\n\ndsc\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n2 Fundamentals\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\nNo matching items"
+    "text": "1 Values, Types, and Operators\n\n\nNotes from Elequent JavaScript 4th Edition\n\n\n\ncode\n\njavascript\n\nelequentjs\n\n\n\n\n\n\n\n\n\nMar 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n4 Expressions\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n3 Formatted I/O\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n1 Introduction\n\n\nNotes from Database System Concepts\n\n\n\ncode\n\ndatabase\n\ndata\n\ndsc\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n2 Fundamentals\n\n\nNotes from C Programming a Modern Approach\n\n\n\ncode\n\nC\n\nCPMA\n\n\n\n\n\n\n\n\n\nFeb 2, 2026\n\n\n\n\n\nNo matching items"
   }
 ]

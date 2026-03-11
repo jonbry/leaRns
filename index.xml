@@ -10,7 +10,79 @@
 <atom:link href="https://jonbry.github.io/leaRns/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Sat, 14 Feb 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 10 Mar 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>1 Values, Types, and Operators</title>
+  <link>https://jonbry.github.io/leaRns/posts/elequentjs-1/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="strings" class="level2">
+<h2 class="anchored" data-anchor-id="strings">Strings</h2>
+<p>Strings written with single or double quotes behave the same. - The only difference is which type of quote is needed to escape inside of them. - Backticked-quoted strings, called <strong>template literals</strong> can span lines and embed other values:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`half of 100 is </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span></span></code></pre></div></div>
+<ul>
+<li>When something is inside of <code>${}</code> of a template literal, the result is computed, converted to a string, and included at that position.</li>
+<li>The output is the string <code>half of 100 is 50</code></li>
+</ul>
+</section>
+<section id="unary-operators" class="level2">
+<h2 class="anchored" data-anchor-id="unary-operators">Unary operators</h2>
+<ul>
+<li><p>Operators that use two values are called <strong>binary operators</strong></p></li>
+<li><p>Operators that use one are called <strong>unary operators</strong></p></li>
+</ul>
+<p>The minus operators, <code>-</code> can be used as both a unary and binary operator:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">console</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span>
+<span id="cb2-2"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span></span></code></pre></div></div>
+
+
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <category>javascript</category>
+  <category>elequentjs</category>
+  <guid>https://jonbry.github.io/leaRns/posts/elequentjs-1/</guid>
+  <pubDate>Tue, 10 Mar 2026 05:00:00 GMT</pubDate>
+</item>
 <item>
   <title>4 Expressions</title>
   <link>https://jonbry.github.io/leaRns/posts/cprog-4/</link>
@@ -755,7 +827,7 @@ font-style: inherit;">;</span></span></code></pre></div></div>
   <category>C</category>
   <category>CPMA</category>
   <guid>https://jonbry.github.io/leaRns/posts/cprog-4/</guid>
-  <pubDate>Sat, 14 Feb 2026 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 14 Feb 2026 06:00:00 GMT</pubDate>
 </item>
 <item>
   <title>3 Formatted I/O</title>
@@ -1698,7 +1770,7 @@ font-style: inherit;">}</span></span></code></pre></div></div>
   <category>C</category>
   <category>CPMA</category>
   <guid>https://jonbry.github.io/leaRns/posts/cprog-3/</guid>
-  <pubDate>Sat, 14 Feb 2026 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 14 Feb 2026 06:00:00 GMT</pubDate>
 </item>
 <item>
   <title>1 Introduction</title>
@@ -1726,7 +1798,7 @@ font-style: inherit;">}</span></span></code></pre></div></div>
   <category>data</category>
   <category>dsc</category>
   <guid>https://jonbry.github.io/leaRns/posts/database_systems-1/</guid>
-  <pubDate>Mon, 02 Feb 2026 05:00:00 GMT</pubDate>
+  <pubDate>Mon, 02 Feb 2026 06:00:00 GMT</pubDate>
 </item>
 <item>
   <title>2 Fundamentals</title>
@@ -2833,7 +2905,7 @@ font-style: inherit;">}</span></span></code></pre></div></div>
   <category>C</category>
   <category>CPMA</category>
   <guid>https://jonbry.github.io/leaRns/posts/cprog-2/</guid>
-  <pubDate>Mon, 02 Feb 2026 05:00:00 GMT</pubDate>
+  <pubDate>Mon, 02 Feb 2026 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
