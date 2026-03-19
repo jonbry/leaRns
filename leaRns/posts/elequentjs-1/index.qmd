@@ -6,7 +6,7 @@ date-modified: "03/10/2026"
 categories: [code, javascript, elequentjs]
 ---
 
-## Strings
+### Strings
 
 Strings written with single or double quotes behave the same. - The only difference is which type of quote is needed to escape inside of them. - Backticked-quoted strings, called **template literals** can span lines and embed other values:
 
@@ -17,7 +17,7 @@ Strings written with single or double quotes behave the same. - The only differe
 -   When something is inside of `${}` of a template literal, the result is computed, converted to a string, and included at that position.
 -   The output is the string `half of 100 is 50`
 
-## Unary operators
+### Unary operators
 
 -   Operators that use two values are called **binary operators**
 
@@ -29,3 +29,112 @@ The minus operators, `-` can be used as both a unary and binary operator:
 console.log(- (10- 2))
 > -8
 ```
+
+### Boolean operators
+
+`true` and `false`
+
+-   `NaN` is not equal to itself - Similar to `NA` in R
+
+### Logical operators
+
+The `&&` operator represents logical *and*.
+
+-   It is a binary operator and its result is true only if both values are true
+
+``` js
+console.log(true && false)
+> false
+console.log(true && true)
+> true
+```
+
+The `||` denotes the logical *or* and produces true if either of the values are true
+
+``` js
+console.log(false || true)
+> true
+console.log(false || false)
+> false
+```
+
+`!` is *not*, which is a unary operator that flips the value given to it.
+
+-   `!true` produces `false`
+
+In comparison to other operators, `||` has the lowest precedence, then `&&` then comparison operators (`>`, `==`, etc), and then the rest.
+
+The *conditional* or *ternary* operator uses the value left of the `?` to determine which values on the right side to use.
+
+-   `a ? b : c` - The result will be `b` when `a` is true, otherwise `c`
+
+### Empty values
+
+`null` and `undefined` denote the absence of a meaningful value. They mostly mean the same thing but can have slight differences.
+
+### Automatic type conversion
+
+When an operator is applied to the "wrong" value, JS will quietly convert that value to the type it needs based on the *type coercion* rules. For example:
+
+``` js
+console.log(8 * null)
+> 0
+console.log("5" - 1)
+> 4
+console.log("5" + 1)
+> 51
+console.log("five" + 2)
+> NaN
+console.log(false == 0)
+> true
+```
+
+-   The first one converts null to 0
+
+-   The 5 changes from a string to a number
+
+-   The + concatenations the 5 + 1 as strings
+
+-   The string and number doesn't resolve nicely so it becomes undefined. If converted to a number, it becomes `NaN`
+
+``` js
+console.log(null == undefined)
+> true
+console.log(null == 0)
+> false
+```
+
+-   We can test if a value is null or undefined by comparing it to `null`
+
+To test if something is false, we can't use `0 == false` or `"" == false` because they are true due to automatic type conversion. Therefore, we can use `===` or `!==`, which tests if the values are or are not precisely equal
+
+### Short-circuiting of logical operators
+
+The `&&` and `||` operators handle different types by converting the left side to a boolean value.
+
+-   The `||` operator will return the value to its left when the value can be converted to true, otherwise returns the right:
+
+``` js
+console.log(null || "user")
+> user
+console.log("Agnes" || "user")
+> Agnes
+```
+
+This functionality can be used to fall back to a default value.
+
+-   Suppose we have a value that might be empty, we can put a `||` after it with a replacement/default value.
+
+    -   If the initial value on the left side is false, we get the default.
+
+    -   When converting strings and numbers to boolean - 0, `NaN`, and empty strings (`""`) are false values.
+
+        -   This means `0 || -1` produces `-1`
+
+-   The `??` is similar to `||` but it returns the value on the right only if the left is `null` or `undefined`
+
+-   The `&&` operator works similarly to `||` but the other way around.
+
+    -   If the value on the left is something that converts to false, it returns the left value, otherwise it returns the right.
+
+The value on the right of these operators is only evaluated when necessary, so if given `true || x` , `x` will not be evaluated since `true` is on the left. This is *short-circuit evaluation*
