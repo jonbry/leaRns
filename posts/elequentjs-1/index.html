@@ -195,8 +195,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="strings" class="level2">
-<h2 class="anchored" data-anchor-id="strings">Strings</h2>
+<section id="strings" class="level3">
+<h3 class="anchored" data-anchor-id="strings">Strings</h3>
 <p>Strings written with single or double quotes behave the same. - The only difference is which type of quote is needed to escape inside of them. - Backticked-quoted strings, called <strong>template literals</strong> can span lines and embed other values:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="vs">`half of 100 is </span><span class="sc">${</span><span class="dv">100</span> <span class="op">/</span> <span class="dv">2</span><span class="sc">}</span><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
@@ -204,8 +204,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The output is the string <code>half of 100 is 50</code></li>
 </ul>
 </section>
-<section id="unary-operators" class="level2">
-<h2 class="anchored" data-anchor-id="unary-operators">Unary operators</h2>
+<section id="unary-operators" class="level3">
+<h3 class="anchored" data-anchor-id="unary-operators">Unary operators</h3>
 <ul>
 <li><p>Operators that use two values are called <strong>binary operators</strong></p></li>
 <li><p>Operators that use one are called <strong>unary operators</strong></p></li>
@@ -213,6 +213,98 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The minus operators, <code>-</code> can be used as both a unary and binary operator:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="op">-</span> (<span class="dv">10</span><span class="op">-</span> <span class="dv">2</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="op">-</span><span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="boolean-operators" class="level3">
+<h3 class="anchored" data-anchor-id="boolean-operators">Boolean operators</h3>
+<p><code>true</code> and <code>false</code></p>
+<ul>
+<li><code>NaN</code> is not equal to itself - Similar to <code>NA</code> in R</li>
+</ul>
+</section>
+<section id="logical-operators" class="level3">
+<h3 class="anchored" data-anchor-id="logical-operators">Logical operators</h3>
+<p>The <code>&amp;&amp;</code> operator represents logical <em>and</em>.</p>
+<ul>
+<li>It is a binary operator and its result is true only if both values are true</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">true</span> <span class="op">&amp;&amp;</span> <span class="kw">false</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">true</span> <span class="op">&amp;&amp;</span> <span class="kw">true</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>||</code> denotes the logical <em>or</em> and produces true if either of the values are true</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">false</span> <span class="op">||</span> <span class="kw">true</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">true</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">false</span> <span class="op">||</span> <span class="kw">false</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>!</code> is <em>not</em>, which is a unary operator that flips the value given to it.</p>
+<ul>
+<li><code>!true</code> produces <code>false</code></li>
+</ul>
+<p>In comparison to other operators, <code>||</code> has the lowest precedence, then <code>&amp;&amp;</code> then comparison operators (<code>&gt;</code>, <code>==</code>, etc), and then the rest.</p>
+<p>The <em>conditional</em> or <em>ternary</em> operator uses the value left of the <code>?</code> to determine which values on the right side to use.</p>
+<ul>
+<li><code>a ? b : c</code> - The result will be <code>b</code> when <code>a</code> is true, otherwise <code>c</code></li>
+</ul>
+</section>
+<section id="empty-values" class="level3">
+<h3 class="anchored" data-anchor-id="empty-values">Empty values</h3>
+<p><code>null</code> and <code>undefined</code> denote the absence of a meaningful value. They mostly mean the same thing but can have slight differences.</p>
+</section>
+<section id="automatic-type-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="automatic-type-conversion">Automatic type conversion</h3>
+<p>When an operator is applied to the “wrong” value, JS will quietly convert that value to the type it needs based on the <em>type coercion</em> rules. For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">8</span> <span class="op">*</span> <span class="kw">null</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"5"</span> <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="dv">4</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"5"</span> <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="dv">51</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"five"</span> <span class="op">+</span> <span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">NaN</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">false</span> <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>The first one converts null to 0</p></li>
+<li><p>The 5 changes from a string to a number</p></li>
+<li><p>The + concatenations the 5 + 1 as strings</p></li>
+<li><p>The string and number doesn’t resolve nicely so it becomes undefined. If converted to a number, it becomes <code>NaN</code></p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">null</span> <span class="op">==</span> <span class="kw">undefined</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">true</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">null</span> <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We can test if a value is null or undefined by comparing it to <code>null</code></li>
+</ul>
+<p>To test if something is false, we can’t use <code>0 == false</code> or <code>"" == false</code> because they are true due to automatic type conversion. Therefore, we can use <code>===</code> or <code>!==</code>, which tests if the values are or are not precisely equal</p>
+</section>
+<section id="short-circuiting-of-logical-operators" class="level3">
+<h3 class="anchored" data-anchor-id="short-circuiting-of-logical-operators">Short-circuiting of logical operators</h3>
+<p>The <code>&amp;&amp;</code> and <code>||</code> operators handle different types by converting the left side to a boolean value.</p>
+<ul>
+<li>The <code>||</code> operator will return the value to its left when the value can be converted to true, otherwise returns the right:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">null</span> <span class="op">||</span> <span class="st">"user"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> user</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"Agnes"</span> <span class="op">||</span> <span class="st">"user"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> Agnes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This functionality can be used to fall back to a default value.</p>
+<ul>
+<li><p>Suppose we have a value that might be empty, we can put a <code>||</code> after it with a replacement/default value.</p>
+<ul>
+<li><p>If the initial value on the left side is false, we get the default.</p></li>
+<li><p>When converting strings and numbers to boolean - 0, <code>NaN</code>, and empty strings (<code>""</code>) are false values.</p>
+<ul>
+<li>This means <code>0 || -1</code> produces <code>-1</code></li>
+</ul></li>
+</ul></li>
+<li><p>The <code>??</code> is similar to <code>||</code> but it returns the value on the right only if the left is <code>null</code> or <code>undefined</code></p></li>
+<li><p>The <code>&amp;&amp;</code> operator works similarly to <code>||</code> but the other way around.</p>
+<ul>
+<li>If the value on the left is something that converts to false, it returns the left value, otherwise it returns the right.</li>
+</ul></li>
+</ul>
+<p>The value on the right of these operators is only evaluated when necessary, so if given <code>true || x</code> , <code>x</code> will not be evaluated since <code>true</code> is on the left. This is <em>short-circuit evaluation</em></p>
 
 
 </section>
