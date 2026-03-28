@@ -10,7 +10,213 @@
 <atom:link href="https://jonbry.github.io/leaRns/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Tue, 10 Mar 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 28 Mar 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>JavaScript Fundamentals</title>
+  <link>https://jonbry.github.io/leaRns/posts/js-1/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="code-structure" class="level2">
+<h2 class="anchored" data-anchor-id="code-structure">Code Structure</h2>
+<section id="semicolons" class="level3">
+<h3 class="anchored" data-anchor-id="semicolons">Semicolons</h3>
+<p>We use a semicolon at the end of statements, but they can usually be omitted in cases where a line break exists:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// These are equivalent </span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">alert</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Hello!'</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">alert</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'world'</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">alert</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Hello!'</span>)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">alert</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'world'</span>)</span></code></pre></div></div>
+<ul>
+<li><p>The second works because a line break is an ‘implicit’ semicolon, which is called an <strong>automated semicolon insertion</strong></p>
+<ul>
+<li>This doesn’t always work, so probably best to keep using a <code>;</code> at the end of a statement</li>
+</ul></li>
+</ul>
+</section>
+<section id="comments" class="level3">
+<h3 class="anchored" data-anchor-id="comments">Comments</h3>
+<p>Single line comments use <code>//</code> and comment blocks use <code>/* */</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Single line comment</span></span>
+<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/* </span></span>
+<span id="cb2-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">Block</span></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">Comment</span></span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*/</span></span></code></pre></div></div>
+</section>
+</section>
+<section id="use-strict" class="level2">
+<h2 class="anchored" data-anchor-id="use-strict">use strict</h2>
+<p>The <code>use strict</code> directive switches the engine to “modern” mode, which changes some of the built-in features.</p>
+<ul>
+<li><p>Is enabled by placing <code>use strict</code> at the top of a script or function</p></li>
+<li><p>It is supported by all browsers</p></li>
+<li><p>Generally recommended to always start scripts with <code>use strict</code></p></li>
+</ul>
+</section>
+<section id="variables" class="level2">
+<h2 class="anchored" data-anchor-id="variables">Variables</h2>
+<p>Variables are declared (created) using the <code>let</code> keyword:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> message</span></code></pre></div></div>
+<p>Now that the variable has been declared, we can assign it a value with the assignment operator <code>=</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> message</span>
+<span id="cb4-2">message <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Hello'</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//stores a string</span></span></code></pre></div></div>
+<p>We can declare multiple variables in one line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> user <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Jon'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> age <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'37'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> message <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Hello'</span></span></code></pre></div></div>
+<ul>
+<li>It’s generally easier to read when they are vertically spaced</li>
+</ul>
+<section id="variable-naming" class="level3">
+<h3 class="anchored" data-anchor-id="variable-naming">Variable naming</h3>
+<p>There are two requirements for variable names in JavaScript:</p>
+<ol type="1">
+<li>The name can only be made up of letters, digits, or the symbols <code>$</code> and <code>_</code></li>
+<li>The first character can’t be a digit</li>
+</ol>
+<p>camelCase is common for variables</p>
+<p><strong>Note: Assignment without <code>strict</code></strong></p>
+<blockquote class="blockquote">
+<p>We generally need to define a variable before using it, but that was not always the case with JavaScript. We could create a variable without using <code>let</code>. This still works if we don’t include <code>use strict</code></p>
+</blockquote>
+</section>
+<section id="constants" class="level3">
+<h3 class="anchored" data-anchor-id="constants">Constants</h3>
+<p>Use <code>const</code> instead of <code>let</code> for declaring constant variables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> myBirthday <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'2020-02-02'</span></span></code></pre></div></div>
+<ul>
+<li><p>Constants can’t be changed</p>
+<ul>
+<li>An error will be thrown if we try to alter a constant.</li>
+</ul></li>
+<li><p>Capitalized constants are generally used for hard-coded values</p></li>
+</ul>
+<section id="tasks" class="level4">
+<h4 class="anchored" data-anchor-id="tasks">Tasks</h4>
+<p>1) Declare two variables: <code>admin</code> and <code>name</code></p>
+<p>2) Assign the value <code>Jon</code> to <code>name</code></p>
+<p>3) Copy the value from <code>name</code> to <code>admin</code></p>
+<p>4) Show the value of <code>admin</code> using <code>alert</code></p>
+<p><strong>Answer:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> admin name <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 1</span></span>
+<span id="cb7-2"></span>
+<span id="cb7-3">name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Jon'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 2</span></span>
+<span id="cb7-4">admin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> name<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 3</span></span>
+<span id="cb7-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">alert</span>(admin)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// 4</span></span></code></pre></div></div>
+</section>
+</section>
+</section>
+<section id="data-types" class="level2">
+<h2 class="anchored" data-anchor-id="data-types">Data types</h2>
+
+
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <category>javascript</category>
+  <category>javascript.info</category>
+  <category>webdev</category>
+  <guid>https://jonbry.github.io/leaRns/posts/js-1/</guid>
+  <pubDate>Sat, 28 Mar 2026 05:00:00 GMT</pubDate>
+</item>
 <item>
   <title>1 Values, Types, and Operators</title>
   <link>https://jonbry.github.io/leaRns/posts/elequentjs-1/</link>
