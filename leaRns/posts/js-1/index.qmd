@@ -1,0 +1,120 @@
+---
+title: JavaScript Fundamentals
+subtitle: Notes from javascript.info
+date: "03/28/2026"
+date-modified: "03/28/2026"
+categories: [code, javascript, javascript.info, webdev]
+---
+
+## Code Structure
+
+### Semicolons
+
+We use a semicolon at the end of statements, but they can usually be omitted in cases where a line break exists:
+
+``` js
+// These are equivalent 
+alert('Hello!');
+alert('world');
+
+alert('Hello!')
+alert('world')
+```
+
+-   The second works because a line break is an 'implicit' semicolon, which is called an **automated semicolon insertion**
+
+    -   This doesn't always work, so probably best to keep using a `;` at the end of a statement
+
+### Comments
+
+Single line comments use `//` and comment blocks use `/* */`
+
+``` js
+// Single line comment
+/* 
+Block
+Comment
+*/
+```
+
+## use strict
+
+The `use strict` directive switches the engine to "modern" mode, which changes some of the built-in features.
+
+-   Is enabled by placing `use strict` at the top of a script or function
+
+-   It is supported by all browsers
+
+-   Generally recommended to always start scripts with `use strict`
+
+## Variables
+
+Variables are declared (created) using the `let` keyword:
+
+``` js
+let message
+```
+
+Now that the variable has been declared, we can assign it a value with the assignment operator `=`:
+
+``` js
+let message
+message = 'Hello' //stores a string
+```
+
+We can declare multiple variables in one line:
+
+``` js
+let user = 'Jon', age = '37', message = 'Hello'
+```
+
+-   It's generally easier to read when they are vertically spaced
+
+### Variable naming
+
+There are two requirements for variable names in JavaScript:
+
+1.  The name can only be made up of letters, digits, or the symbols `$` and `_`
+2.  The first character can't be a digit
+
+camelCase is common for variables
+
+**Note: Assignment without `strict`**
+
+> We generally need to define a variable before using it, but that was not always the case with JavaScript. We could create a variable without using `let`. This still works if we don't include `use strict`
+
+### Constants
+
+Use `const` instead of `let` for declaring constant variables:
+
+``` js
+const myBirthday = '2020-02-02'
+```
+
+-   Constants can't be changed
+
+    -   An error will be thrown if we try to alter a constant.
+
+-   Capitalized constants are generally used for hard-coded values
+
+#### Tasks
+
+1\) Declare two variables: `admin` and `name`
+
+2\) Assign the value `Jon` to `name`
+
+3\) Copy the value from `name` to `admin`
+
+4\) Show the value of `admin` using `alert`
+
+**Answer:**
+
+``` js
+let admin name // 1
+
+name = 'Jon'; // 2
+admin = name; // 3
+alert(admin); // 4
+```
+
+## Data types
