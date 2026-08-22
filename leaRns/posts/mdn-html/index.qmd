@@ -1,11 +1,13 @@
 ---
-title: Basic HTML Syntax
+title: Basic HTML
 subtitle: MDN Core Learning Modules - HTML
 date: "06/14/2026"
 date-modified: "06/14/2026"
 categories: [code, html, mdn, webdev]
 draft: false
 ---
+
+# HTML Syntx
 
 ## What is HTML?
 
@@ -124,7 +126,7 @@ An example of a simple web page:
 
 - `<head></head>` element acts as a container for information about the page that <u>isn't</u> part of the of the content that users will see.
 
-  -  Includes keywords, page descriptions of search engines, CSS, character set declarations, etc.
+  - Includes keywords, page descriptions of search engines, CSS, character set declarations, etc.
 
 - `<meta charset="utf-8">` represents metadata that describes the page. The `charset` attribute specifies the character encoding your document will use.
 
@@ -169,3 +171,103 @@ To write "In HTML, you define a paragraph using `<p>` element":
 ## HTML comments
 
 Comments can be made in line with `<!-- -->`
+
+# HTML Metadata
+
+## HTML head
+
+``` html
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>My test page</title>
+    </head>
+    <body>
+        <p>This is my page</p>
+    </body>
+</html>
+```
+
+- The head element contains metadata about the document.
+
+- The `<title>` element is different than the `<h1>` element:
+
+  - The `<h1>` element appears at the top of the page when the page is loaded.
+
+  - The `<title>` element is metadata that represents the title of the overall HTML document (and shows up in the tab)
+
+## Metadata: The `<meta>` element
+
+The metadata element adds the metadata to the HTML document.
+
+### Specifying character encoding
+
+``` html
+<meta charset="utf-8">
+```
+
+- `utf-8` is a universal character set for just about any character from any language.
+
+- `name` attribute specifies the type of metadata
+
+- `content` attribute specifies the meta content.
+
+``` html
+<meta name="author" content="Chris Mills" />
+<meta
+  name="description"
+  content="The MDN Web Docs Learning Area aims to provide
+complete beginners to the Web with all they need to know to get
+started with developing websites and applications." />
+```
+
+- It is helpful to specify the author so everyone know who wrote the content.
+
+- Specifying a description that includes keywords is helpful for SE
+
+## Adding custom icons to the site
+
+Favicons, or favorite icons, are a 16-pixel square that is usually shown next to the address bar or in the favorites menu. Then can be added to a page by:
+
+1.  Saving the image in a format such as `.ico`, `.gif`, or `.png` within the website folder structure.
+2.  Adding a `<link>` element into the `<head>` block, which references the path to the favicon file
+
+``` html
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+```
+
+- The favicon path starts with `/`, which looks at the top-level (root) directory of the site.
+
+  - Web frameworks typically have a special folder for files in the site root, such as `static` or `public`
+
+We can also have different icons for different contexts:
+
+``` html
+<link rel="icon" href="/favicon-48x48.[some hex hash].png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.[some hex hash].png" />
+```
+
+## Applying CSS and JavaScript to HTML
+
+The two most commonly way CCS/JS are applied to a web page is through `<link>` and `<script>` elements.
+
+- The `<link>` element should always go inside the head of the document and takes two attributes
+
+  - `rel="stylesheet"` indicates that it is a stylesheet
+
+  - `href` containing the path to the stylesheet file
+
+<!-- -->
+
+- The `<script>` element also goes in the head and contains two attributes:
+
+  - `src` attribute containing the path to the JS that will be loaded
+
+  - `defer` (boolean) which instructs the browser to load the HS after the page is finished parsing the HTML.
+
+    - The `defer` attribute is useful as it guarantees the HTML is loaded so JS won't cause errors when trying to access HTML elements that don't exist on the page yet.
+
+``` html
+<script src="my-js-file.js" defer></script>
+```
