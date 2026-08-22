@@ -4,6 +4,7 @@ subtitle: Notes from javascript.info
 date: "03/28/2026"
 date-modified: "03/28/2026"
 categories: [code, javascript, javascript.info, webdev]
+draft: true
 ---
 
 ## Code Structure
@@ -21,9 +22,9 @@ alert('Hello!')
 alert('world')
 ```
 
--   The second works because a line break is an 'implicit' semicolon, which is called an **automated semicolon insertion**
+- The second works because a line break is an 'implicit' semicolon, which is called an **automated semicolon insertion**
 
-    -   This doesn't always work, so probably best to keep using a `;` at the end of a statement
+  - This doesn't always work, so probably best to keep using a `;` at the end of a statement
 
 ### Comments
 
@@ -41,11 +42,11 @@ Comment
 
 The `use strict` directive switches the engine to "modern" mode, which changes some of the built-in features.
 
--   Is enabled by placing `use strict` at the top of a script or function
+- Is enabled by placing `use strict` at the top of a script or function
 
--   It is supported by all browsers
+- It is supported by all browsers
 
--   Generally recommended to always start scripts with `use strict`
+- Generally recommended to always start scripts with `use strict`
 
 ## Variables
 
@@ -68,7 +69,7 @@ We can declare multiple variables in one line:
 let user = 'Jon', age = '37', message = 'Hello'
 ```
 
--   It's generally easier to read when they are vertically spaced
+- It's generally easier to read when they are vertically spaced
 
 ### Variable naming
 
@@ -91,11 +92,11 @@ Use `const` instead of `let` for declaring constant variables:
 const myBirthday = '2020-02-02'
 ```
 
--   Constants can't be changed
+- Constants can't be changed
 
-    -   An error will be thrown if we try to alter a constant.
+  - An error will be thrown if we try to alter a constant.
 
--   Capitalized constants are generally used for hard-coded values
+- Capitalized constants are generally used for hard-coded values
 
 #### Tasks
 
@@ -118,3 +119,162 @@ alert(admin); // 4
 ```
 
 ## Data types
+
+### Numbers
+
+**Dynamically typed** programming languages do not require the data type to be bound to variables.
+
+For example, the following `n` can bind an integer or a float:
+
+``` js
+let n = 123;
+n = 12.545
+```
+
+The number type can both be integers or floats.
+
+There are a few special numeric values:
+
+- `Infinity` and `-Infinity`
+
+- `NaN`, which represents a computational error:
+
+``` js
+alert("not a number" / 2);
+#> NaN
+```
+
+`NaN` is sticky, so any further operations on `NaN` result in `Nan`
+
+#### Mathematical operations are safe
+
+Math is "safe" in JavaScript because we can do anything
+
+- e.g. Divide by zero, treat non-numeric strings as numbers. etc.
+
+- The script will never stop with a fatal error, just `NaN`
+
+### A string
+
+A string in JS must be surrounded by quotes:
+
+``` js
+let str = "hello;"
+let str2 'Single quotes are ok;'
+let phrase = 'can embed $(str);'
+```
+
+- There are three different types of quotes:
+
+  - Double `"`
+
+  - Single `'`
+
+  - Back `` ` ``
+
+    - Backticks are extended functionality quotes.
+
+    - They let us embed variables and express into into strings by wrapping them in `${...}}`
+
+``` js
+let name = "Jon";
+
+// Embed a variable
+alert('Hello, ${name}');
+
+// Embed an expression
+alert('The result is ${1 + 3}'); // The result is 3
+```
+
+There is no character type in JS, just string.
+
+### A boolean (logical)
+
+The boolean type has two values: `true` and `false`.
+
+### The "null" value
+
+`null` is a special value that represents "nothing", "empty", or "value unknown"
+
+``` js
+let age = null;
+```
+
+### The "undefined" value
+
+`undefined` means "value not assigned' in JS.
+
+- If a variable is declared but not assigned, then its value is `undefined`
+
+``` js
+let x;
+alert(x); // "undefined"
+```
+
+`null` is usually used to assign an empty or unknown value to variable, and `undefined` to check if a value has been assigned.
+
+### Objects and symbols
+
+The `object` type is special.
+
+All other types are called "primitives" because their value can only being a single thing (string, number, etc.). Objects on the other hand, are used to store collections of data and more complex entities.
+
+The `symbol` type is used to create unique identifiers for objects.
+
+### The typeof operator
+
+The `typeof` operator returns the type of the argument. It supports two different syntax:
+
+- As an operator: `typeof x`
+
+- As a function `typeof(x)`
+
+The result is the same for both syntax.
+
+## Type Conversions
+
+Operators and functions automatically convert the values given to them to the desired type (e.g. `alert` converts any value to a string).
+
+### String
+
+`String(value)` to convert a value to a string
+
+``` js
+let value = true; //boolean
+value = String(value); // string "true"
+```
+
+### Number
+
+- `Number(value)` converts a value to a number
+
+``` js
+let str = "123" // string
+let num = Number(str) // number
+let age = Number("some string") // NaN
+```
+
+#### Numeric conversion rules
+
+| Value           | Becomes                                               |
+|-----------------|-------------------------------------------------------|
+| `undefined`     | `Nan`                                                 |
+| `null`          | 0                                                     |
+| `true`, `false` | 1, 0                                                  |
+| `string`        | number, 0 if empty, or `NaN` if it can't be converted |
+
+### Boolean
+
+`Boolean(value)` converts a value to a boolean.
+
+#### Boolean conversion rules
+
+- Values are that are "empty" (`" "`, `0`, `null`, `undefined`, `nan`) become false
+
+- All other values become `true` (including `"0"`)
+
+``` js
+Boolean(1); // true
+Boolean("hello"); // true
+Boolean(""); // fase
+```

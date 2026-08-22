@@ -1,0 +1,171 @@
+---
+title: Basic HTML Syntax
+subtitle: MDN Core Learning Modules - HTML
+date: "06/14/2026"
+date-modified: "06/14/2026"
+categories: [code, html, mdn, webdev]
+draft: false
+---
+
+## What is HTML?
+
+HTML (HyperText Markup Language) is a *markup* *language* that tells web browsers how to structure a web page.
+
+- HTML consists of a series of [elements]{.underline}, which is used to enclose, wrap, or mark up different parts of the content on a web page.
+
+- The enclosing [tags]{.underline} can also make content a [hyperlink]{.underline}, which will link to another page.
+
+- Tags in HTML are not case sensitive so `<title>` is the same as `<TiTlE>`, but the best practice is to use lowercase.
+
+HTML lives inside of text files called **HTML documents** or **documents**, which have a `.html` extension.
+
+- The most common HTML file is `index.html`, which contains a website's home page.
+
+  - Subfolders can also have their own `index.html` files
+
+### Anatomy of an HTML element
+
+![](images/paste-1.png){fig-align="center" width="429"}
+
+The complete element consists of:
+
+- **Opening tag:** The name of the element (in this case `p` for paragraph). This marks the start of the element or where it starts to take effect
+
+- **Content:** The content of the element
+
+- **Closing tag:** The ending tag, which is where the element ends or stops taking effect.
+
+Tags can also be applied inside of other tags, which is called [nested tags]{.underline}
+
+``` html
+<p> this is <em>strong</em> </p>
+```
+
+- Tags need to be closed in reverse order from which they were open
+
+### Void elements
+
+Not all elements follow the opening, content, and closing tag pattern. Some, like the `<br>` tag are only a single tag.
+
+- These tags are called [void elements]{.underline} because the elements cannot contain other HTML content
+
+``` html
+<p>
+    this is some text on the first line <br> this is the sencond line.
+</p>
+```
+
+## Attributes
+
+Elements can also have attributes:
+
+![](images/paste-2.png){fig-align="center" width="495"}
+
+Attributes contain additional information about the element that isn't part of its content.
+
+- The [class]{.underline} attribute provides identifies specific elements that can be targeted in CSS or JavaScript
+
+Attributes should have:
+
+- Space between it and the element name. If an element has more than one attribute, they should be separated by a space
+
+- Attributes should be `<name>=<value>`
+
+- The attribute value should be wrapped in quotes
+
+### Boolean attributes
+
+These are attributes without a value.
+
+- When they are added, the value is set to `true`, and if it it's not added, then it is `false`
+
+For example,
+
+`disabled` is an attribute that can be assigned to `<input` to stop the user from entering in data:
+
+``` html
+<label for="first-input">This input is disabled</label>
+<input id="first-input" type="text" disabled="disabled" />
+<br />
+```
+
+We can also write `disabled` without a value
+
+``` html
+<label for="first-input">This input is disabled</label>
+<input id="first-input" type="text" disabled/>
+<br />
+```
+
+## Anatomy of an HTML document
+
+An example of a simple web page:
+
+``` html
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is my page</p>
+  </body>
+</html>
+```
+
+- `<!doctype html>` Historical artifact that is required to make sure everything runs smoothly.
+
+  - The shortest string of characters that can be classified as a web page
+
+- `<html></html>` wraps all of the content on the page
+
+  - Known as the root element
+
+- `<head></head>` element acts as a container for information about the page that <u>isn't</u> part of the of the content that users will see.
+
+  -  Includes keywords, page descriptions of search engines, CSS, character set declarations, etc.
+
+- `<meta charset="utf-8">` represents metadata that describes the page. The `charset` attribute specifies the character encoding your document will use.
+
+  - The charset isn't required but it is a good idea to include to help avoid potential problems.
+
+- `<title></title>` Sets the title on the page, which appears in the browser tab and used to describe the page when bookmarked.
+
+- `<body></body>` Containts **all** the content that
+
+## Whitespace
+
+Whitespace is generally ignored but is helpful for making the code readable. For example, the following code snippets are equivalent:
+
+``` html
+<p id="noWhitespace">Dogs are silly</p>
+
+<p id="whitespace">Dogs
+    are
+        silly</p>
+```
+
+The most common way of writing HTML is with nested elements with 2 spaces of indentation.
+
+## Special characters
+
+Character references are special codes used to print special characters:
+
+| Special Character | Character Reference |
+|:-----------------:|:-------------------:|
+|        \<         |       `&lt;`        |
+|        \>         |       `&gt;`        |
+|         "         |      `&quot;`       |
+|         '         |      `&apos;`       |
+|         &         |       `&amp;`       |
+
+To write "In HTML, you define a paragraph using `<p>` element":
+
+``` html
+<p>In HTML, you define a paragraph using &lt;p&gt; eleemnt</p>
+```
+
+## HTML comments
+
+Comments can be made in line with `<!-- -->`
