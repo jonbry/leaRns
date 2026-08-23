@@ -271,3 +271,263 @@ The two most commonly way CCS/JS are applied to a web page is through `<link>` a
 ``` html
 <script src="my-js-file.js" defer></script>
 ```
+
+## Emphasis and importance
+
+The `<em>` tag gives emphasis to words. It shows up in most browsers as italics, but should not be used as italics (use `<i>` for italics fonts).
+
+The `<strong>` element is used to stress or emphasize words, but like `<em>` should not be used to make words bold. In that case us `<b>`
+
+### Presentational elements
+
+Bold, italics, and underline (`<b>`, `<i>`, and `<u>`) were added before CSS was widely supported. These are presentational elements as they only affect the presentation, not the semantics
+
+- Use presentational elements to convey traditional meaning.
+
+- Use the semantic versions for all other cases.
+
+## Lists
+
+### Unordered lists
+
+To create an unordered list, wrap the whole list in the `<ul>` element and wrap each item in a `<li>` element (list item):
+
+``` html
+<ul>
+  <li>milk</li>
+  <li>eggs</li>
+  <li>bread</li>
+  <li>hummus</li>
+</ul>
+```
+
+For lists where order matters, such as instructions, we use `<ol>` (ordered list) instead of `<ul>`:
+
+``` html
+<ol>
+  <li>Drive to the end of the road</li>
+  <li>Turn right</li>
+  <li>Go straight across the first two roundabouts</li>
+  <li>Turn left at the third roundabout</li>
+  <li>The school is on your right, 300 meters up the road</li>
+</ol>
+```
+
+### Nesting lists
+
+We can nest lists within other lists, which will create sub-bullets:
+
+``` html
+<ol>
+  <li>Remove the skin from the garlic, and chop coarsely.</li>
+  <li>Remove all the seeds and stalk from the pepper, and chop coarsely.</li>
+  <li>Add all the ingredients into a food processor.</li>
+  <li>Process all the ingredients into a paste.</li>
+  <li>If you want a coarse "chunky" hummus, process it for a short time.</li>
+  <li>If you want a smooth hummus, process it for a longer time.</li>
+</ol>
+```
+
+### Description lists
+
+Description lists are used to mark up a set of items and their descriptions, such as definitions, or questions/answers.
+
+- `<dl>` is the wrapper over the whole list
+
+- `<dt>` is the description term element
+
+- `<dd>` is the description definition element
+
+``` html
+<dl>
+  <dt>soliloquy</dt>
+  <dd>
+    In drama, where a character speaks to themselves, representing their inner
+    thoughts or feelings and in the process relaying them to the audience (but
+    not to other characters.)
+  </dd>
+  <dt>monologue</dt>
+  <dd>
+    In drama, where a character speaks their thoughts out loud to share them
+    with the audience and any other characters present.
+  </dd>
+  <dt>aside</dt>
+  <dd>
+    In drama, where a character shares a comment only with the audience for
+    humorous or dramatic effect. This is usually a feeling, thought, or piece of
+    additional background information.
+  </dd>
+</dl>
+```
+
+We can have multiple definitions per term:
+
+``` html
+<dl>
+  <dt>aside</dt>
+  <dd>
+    In drama, where a character shares a comment only with the audience for
+    humorous or dramatic effect. This is usually a feeling, thought, or piece of
+    additional background information.
+  </dd>
+  <dd>
+    In writing, a section of content that is related to the current topic, but
+    doesn't fit directly into the main flow of content so is presented nearby
+    (often in a box off to the side.)
+  </dd>
+</dl>
+```
+
+## Advanced text features
+
+### Blockquotes
+
+A section or block of text that can be quoted with `<blockquote>` elements.
+
+- We can include a URL pointing to the source with a `cite` attribute
+
+``` html
+<p>Here is a blockquote:</p>
+<blockquote
+  cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/blockquote">
+  <p>
+    The <strong>HTML <code>&lt;blockquote&gt;</code> Element</strong> (or
+    <em>HTML Block Quotation Element</em>) indicates that the enclosed text is
+    an extended quotation.
+  </p>
+</blockquote>
+```
+
+### Inline quotations
+
+Inline quotes work the same as blockquotes but uses the `<q>` element.
+
+``` html
+<p>
+  The quote element — <code>&lt;q&gt;</code> — is
+  <q
+    cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/q">
+    intended for short quotations that don't require paragraph breaks.
+  </q>
+</p>
+```
+
+### Citations
+
+Browsers generally don't have a way to show the contents of `cite` attributes without additional javascript/CSS.
+
+There is a `<cite>` element, but it is meant to contain the title of the resource being quoted, such as the name of the book. There's no reason for us not to link text inside of `<cite>` to quote the source:
+
+``` html
+<p>
+  According to the
+  <a href="/en-US/docs/Web/HTML/Reference/Elements/blockquote">
+    <cite>MDN blockquote page</cite></a>:
+</p>
+
+<blockquote
+  cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/blockquote">
+  <p>
+    The <strong>HTML <code>&lt;blockquote&gt;</code> Element</strong> (or
+    <em>HTML Block Quotation Element</em>) indicates that the enclosed text is
+    an extended quotation.
+  </p>
+</blockquote>
+
+<p>
+  The quote element — <code>&lt;q&gt;</code> — is
+  <q cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/q">
+    intended for short quotations that don't require paragraph breaks.
+  </q>
+  — <a href="/en-US/docs/Web/HTML/Reference/Elements/q"><cite>MDN q page</cite></a>.
+</p>
+```
+
+### Abbreviations
+
+The `<abbr>` element is used to wrap around an abbreviation or acronym, which provides a full expansion of the term in plain text on first use.
+
+- We can use the `title` attribute to show the unabbreviated version of the word
+
+``` html
+<p>
+  We use <abbr>HTML</abbr>, Hypertext Markup Language, to structure our web
+  documents.
+</p>
+
+<p>
+  I think <abbr title="Reverend">Rev.</abbr> Green did it in the kitchen with
+  the chainsaw.
+</p>
+```
+
+- The second shows "Reverend" when hovering over the abbreviation
+
+### Contact details
+
+HTML has an `<address>` element used for marking up contact details. We can include a more complex markup as well:
+
+``` html
+<address>Chris Mills, Manchester, The Grim North, UK</address>
+
+<address>
+  <p>
+    Chris Mills<br />
+    Manchester<br />
+    The Grim North<br />
+    UK
+  </p>
+
+  <ul>
+    <li>Tel: 01234 567 890</li>
+    <li>Email: me@grim-north.co.uk</li>
+  </ul>
+</address>
+```
+
+### Representing code
+
+There are a number of elements used for marking up computer code:
+
+- `<code>` is used for generic pieces of code
+
+- `<pre>` is for retaining white space, especially for code blocks
+
+  - This stops the browser from ignoring whitespace
+
+- `<var>` is used for marking up variable names
+
+- `<kbd>` for marking up input entered by the keyboard
+
+- `<samp>` used for marking up the output of a computer program
+
+### Times and Dates
+
+The `<time>` element is used for marking up times and dates:
+
+``` html
+<time datetime="2016-01-20">20 January 2016</time>
+```
+
+Since there are many ways of writing dates, the `<time>` element makes it more standardized:
+
+``` html
+<!-- Standard simple date -->
+<time datetime="2016-01-20">20 January 2016</time>
+<!-- Just year and month -->
+<time datetime="2016-01">January 2016</time>
+<!-- Just month and day -->
+<time datetime="01-20">20 January</time>
+<!-- Just time, hours and minutes -->
+<time datetime="19:30">19:30</time>
+<!-- You can do seconds and milliseconds too! -->
+<time datetime="19:30:01.856">19:30:01.856</time>
+<!-- Date and time -->
+<time datetime="2016-01-20T19:30">7.30pm, 20 January 2016</time>
+<!-- Date and time with timezone offset -->
+<time datetime="2016-01-20T19:30+01:00">
+  7.30pm, 20 January 2016 is 8.30pm in France
+</time>
+<!-- Calling out a specific week number -->
+<time datetime="2016-W04">The fourth week of 2016</time>
+```
