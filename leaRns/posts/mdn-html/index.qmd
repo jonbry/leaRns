@@ -2,7 +2,7 @@
 title: Basic HTML
 subtitle: MDN Core Learning Modules - HTML
 date: "06/14/2026"
-date-modified: "06/14/2026"
+date-modified: today
 categories: [code, html, mdn, webdev]
 draft: false
 ---
@@ -531,3 +531,131 @@ Since there are many ways of writing dates, the `<time>` element makes it more s
 <!-- Calling out a specific week number -->
 <time datetime="2016-W04">The fourth week of 2016</time>
 ```
+
+## Structuring documents
+
+The basic sections of an webpage:
+
+**Header**: Strip across the top with a heading, logo, etc. It usually stays the same from page to page.
+
+**Navigation bar**: links to the site's main sections. It generally stays consistent from page to page.
+
+- Some web design include it as part of the header rather than an individual component, but it's better for accessibility to be separate.
+
+**Main content**: The center that contains the majority of the unique content o the webpage.
+
+**Sidebar**: Some links, quotes, ads, etc. can be located in the sidebar.
+
+**Footer**: Strip along the bottom of the webpage that generally contains print, copyright notices, and contact information.
+
+![](images/paste-3.png)
+
+For semantic mark up, we can use the following tags:
+
+- Header - `<header>`
+
+- Nav bar - `<nav>`
+
+- Main content - `<main>` with various subsections:
+
+  - `<article>`
+
+  - `<section>`
+
+  - `<div>`
+
+- Sidebar - `<aside>`; often placed inside `<main>`
+
+- Footer - `<footer>`
+
+### Layout elements in more detail
+
+- `<main>` is for content that is unique for a given page.
+
+  - Only use `<main>` once per page and use it directly inside of `<body>`.
+
+  - It shouldn't be nested within other elements
+
+- `<article>` encloses a block of related content that makes sense on its own without the rest of the page (e.g. a blog post)
+
+- `<section>` similar to article but is more for grouping together a single piece of functionality (e.g. mini map, article headlines/summaries, etc)
+
+  - Each section should start with a heading.
+
+  - Articles can be broken up into sections and vice versa
+
+- `<aside>` contains content that is not directly related to the main content (e.g. glossary entries, author biography, related links, etc.)
+
+- `<header>` contains introductory content and behaves differently due to location
+
+  - If it's a child of `<body>` it defines the global header of the webpage
+
+  - If it's a child of an `<article>` or `<section>` it defines a specific header for that section.
+
+- `<nav>` contains the primary navigation for the page.
+
+- `<footer>` is the group of content at the bottom of the page.
+
+### Non-semantic wrappers
+
+Sometimes you want to group a set of elements together to affect them all as a single identity with CSS or JavaScript.
+
+- This can be done with `<div>` and `<span>` elements
+
+- We should use a class attribute to target them easily,
+
+#### span
+
+`<span>` is an inline non-semantic element, which should be used if we don't wan tto ad any specific mean to a piece of content:
+
+``` html
+<p>
+  The King walked drunkenly back to his room at 01:00, the beer doing nothing to
+  aid him as he staggered through the door.
+  <span class="editor-note">
+    [Editor's note: At this point in the play, the lights should be down low].
+  </span>
+</p>
+```
+
+- In this case the director note is to provide extra direction and not supposed to have extra semantic meaning
+
+#### div
+
+`<div>` is a block-level non-semantic element similar to `<span>`. For example, imagine a shopping cart widget that allows users to pull up at any time while using the website:
+
+``` html
+<div class="shopping-cart">
+  <h2>Shopping cart</h2>
+  <ul>
+    <li>
+      <p>
+        <a href=""><strong>Silver earrings</strong></a>: $99.95.
+      </p>
+      <img src="../products/3333-0985/thumb.png" alt="Silver earrings" />
+    </li>
+    <li>…</li>
+  </ul>
+  <p>Total cost: $237.89</p>
+</div>
+```
+
+- Since this doesn't relate to the main content of the page, it makes sense to use `<div>` instead of `<aside>` or `<section>`
+
+**Note:** Divs are convenient to use so it's easy to use them too much.
+
+- They carry no semantic value, so they can end up cluttering the code
+
+- Use them only when there's no better semantic solution
+
+### Line breaks and horizontal rules
+
+- `<br>` is a line break in a paragraph. Without the `<br>` element, text would form a single line since HTML ignores whitespace.
+
+- `<hr>` is a thematic break element that creates a horizontal rule in the document, which denotes a themanic change in the text (e.g. a new topic)
+
+## Structuring a basic website
+
+![](images/paste-5.png)
+
+## Creating links
