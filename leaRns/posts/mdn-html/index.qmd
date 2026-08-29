@@ -659,3 +659,171 @@ Sometimes you want to group a set of elements together to affect them all as a s
 ![](images/paste-5.png)
 
 ## Creating links
+
+Hyper links allow us to navigate to other documents and resources, even within parts of the same document.
+
+- For accessing other webpages on the internet, we use a URL (Uniform Resource Locator)
+
+  - URLs can point to HTML files, text files, images, documents, videos, audio files, or anything else that lives on the web. If a browser doesn't know how to handle the file type, it will ask if you want to open it. It can also suggest an app to open it in.
+
+### Anatomy of a link
+
+A basic link is created by wrapping the text/content with an `<a>` element and using the `href` attribute (known as a Hypertext Reference or target) that contains the web address.
+
+``` html
+<p>
+  I'm creating a link to
+  <a href="https://www.mozilla.org/en-US/">the Mozilla homepage</a>.
+</p>
+```
+
+- This gives a hyperlink such as [this](https://www.mozilla.org/en-US/)
+
+### Block-level links
+
+Almost anything can become a link, even block elements. For example, we may make a heading element a link by wrapping it in an anchor (`<a>`):
+
+``` html
+<a href="https://developer.mozilla.org/en-US/">
+  <h1>MDN Web Docs</h1>
+</a>
+<p>
+  Documenting web technologies, including CSS, HTML, and JavaScript, since 2005.
+</p>
+```
+
+### Image links
+
+To turn an image into a link, we can wrap the `<img>` element with an `<a>` element. For example, the image below uses a relative path to a reference a locally stored SVG image:
+
+``` html
+<a href="https://developer.mozilla.org/en-US/">
+  <img src="mdn_logo.svg" alt="MDN Web Docs" />
+</a>
+```
+
+### Adding supporting information with title attribute
+
+The `title` attribute allows us to include additional information about the link, such as the kind of information the page contains:
+
+``` html
+<p>
+  I'm creating a link to
+  <a
+    href="https://www.mozilla.org/en-US/"
+    title="The best place to find more information about Mozilla's mission and how to contribute">
+    the Mozilla homepage</a
+  >.
+</p>
+```
+
+### URl and path primer
+
+A web server receives a request for URLs and responds with the corresponding resource.
+
+- The resource needs to live on the server's file system, therefore many appear as file paths.
+
+#### Same directory
+
+If hyperlinking to another file within the same directory, we can just specify the file name. For example, suppose `index.html` links to `contact.html` in the same directory:
+
+``` html
+<p>
+  Want to contact a specific staff member? Find details on our
+  <a href="contacts.html">contacts page</a>.
+</p>
+```
+
+- We could have also started the path with a `./contacts.html`
+
+#### Moving back up into parent directories
+
+To go up a directory use two dots, `..`, so the URL becomes `../pdfs/project-brief.pdf`
+
+#### Document fragments
+
+[Document fragments]{.underline} are links to different parts of the HTML documents.
+
+- Elements with an `id` attribute automatically create a document fragment that cn be linked to.
+
+- Typically used to link to specific heading
+
+``` html
+<h2 id="mailing_address">Mailing address</h2>
+```
+
+We can then link to that using `#`:
+
+``` html
+<p> 
+    Want to write usa letter? Use our
+    <a href="contacts.html#mailing_address">mailing address</a>.
+</p>
+```
+
+A document fragment can also be used to reference another part of the same page:
+
+``` html
+<p>
+    The <a href="#mailing_address">company mailing address</a> can be found at the bottom of the page
+</p>
+```
+
+### How URLs are translated to file paths
+
+Even though URLs are processed by the web server, no web content can directly see the server's file system.
+
+- The server examples so far creates a [static website]{.underline}. The server take the pathname as part of the URL and responds with the appropriate file in the file server.
+
+**Note:** Many servers generate content for a URL on the fly rather than retrieving it from a static file. Web frameworks allow the source code directory to be different than what is deployed on the server.
+
+### The default `index.html` page
+
+When referencing an `index.html` file, we generally don't need to contain `index.html` in the URL/path because web servers look for a default landing page called `index.html` when the filename isn't specified.
+
+For `projects/index.html`, we could write the path as `projects`, which would create a link called `https://www.example.com/projects/index.html`.
+
+**Note:** The trailing slash (/) at the end of the URL is import.
+
+- The trailing slash for relative links `contacts.html` inside `projects/index.html` would resolve to `example.com/projects/contacts.html`. Without it, it would treat it as a file and the url would resolve to `example.com/contacts.html`, which is one directory up.
+
+  - Different web servers handle URLs like `www.example.com/projects` differently. Some will automatically redirect to the URL with a trailing slash, others will server the same `index.html` without redirecting.
+
+    - This can cause relative links to break.
+
+### Link best practices
+
+- [Use clear link wording]{.underline} - This makes it easier for screen readers, search engines, and users to understand where links are going.
+
+- Don't say link or links to in the text.
+
+- Keep links as short as possible
+
+-  Avoid linking to different places with the same text.
+
+### Downloading a file
+
+Use `download` attribute when downloading a file
+
+``` html
+<a href="https://download.example.com/win-installer"
+    download="example-win-installer.exe">Download installer</a>
+```
+
+### Opening link in a new tab
+
+Links by default open in the same tab, which the user can then navigate back using the back button. It's sometimes nice to open links automatically in a new tab, especially for external inks. This can be done with the `target` attribute to `"_blank"`:
+
+``` html
+Example found <a href="https://www.example.com" target="_blank"Example</a>
+```
+
+### Email links
+
+To create links that open the users email application and creates an email, add a `mailto:` to an `<a>` element:
+
+``` html
+<a href="mailto:nowhere@example.com">Send email</a>
+```
+
+- The email address is optional. If we emit it, the email will open without a user's email with a blank To: section of the email.
