@@ -178,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">August 23, 2026</p>
+        <p class="date-modified">August 28, 2026</p>
       </div>
     </div>
       
@@ -781,8 +781,146 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="creating-links" class="level2">
 <h2 class="anchored" data-anchor-id="creating-links">Creating links</h2>
+<p>Hyper links allow us to navigate to other documents and resources, even within parts of the same document.</p>
+<ul>
+<li><p>For accessing other webpages on the internet, we use a URL (Uniform Resource Locator)</p>
+<ul>
+<li>URLs can point to HTML files, text files, images, documents, videos, audio files, or anything else that lives on the web. If a browser doesn’t know how to handle the file type, it will ask if you want to open it. It can also suggest an app to open it in.</li>
+</ul></li>
+</ul>
+<section id="anatomy-of-a-link" class="level3">
+<h3 class="anchored" data-anchor-id="anatomy-of-a-link">Anatomy of a link</h3>
+<p>A basic link is created by wrapping the text/content with an <code>&lt;a&gt;</code> element and using the <code>href</code> attribute (known as a Hypertext Reference or target) that contains the web address.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  I'm creating a link to</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.mozilla.org/en-US/"</span><span class="dt">&gt;</span>the Mozilla homepage<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>.</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>This gives a hyperlink such as <a href="https://www.mozilla.org/en-US/">this</a></li>
+</ul>
+</section>
+<section id="block-level-links" class="level3">
+<h3 class="anchored" data-anchor-id="block-level-links">Block-level links</h3>
+<p>Almost anything can become a link, even block elements. For example, we may make a heading element a link by wrapping it in an anchor (<code>&lt;a&gt;</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://developer.mozilla.org/en-US/"</span><span class="dt">&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>MDN Web Docs<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  Documenting web technologies, including CSS, HTML, and JavaScript, since 2005.</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="image-links" class="level3">
+<h3 class="anchored" data-anchor-id="image-links">Image links</h3>
+<p>To turn an image into a link, we can wrap the <code>&lt;img&gt;</code> element with an <code>&lt;a&gt;</code> element. For example, the image below uses a relative path to a reference a locally stored SVG image:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://developer.mozilla.org/en-US/"</span><span class="dt">&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"mdn_logo.svg"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"MDN Web Docs"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="adding-supporting-information-with-title-attribute" class="level3">
+<h3 class="anchored" data-anchor-id="adding-supporting-information-with-title-attribute">Adding supporting information with title attribute</h3>
+<p>The <code>title</code> attribute allows us to include additional information about the link, such as the kind of information the page contains:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  I'm creating a link to</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    href</span><span class="op">=</span><span class="st">"https://www.mozilla.org/en-US/"</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    title</span><span class="op">=</span><span class="st">"The best place to find more information about Mozilla's mission and how to contribute"</span><span class="dt">&gt;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    the Mozilla homepage<span class="dt">&lt;/</span><span class="kw">a</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&gt;</span>.</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="url-and-path-primer" class="level3">
+<h3 class="anchored" data-anchor-id="url-and-path-primer">URl and path primer</h3>
+<p>A web server receives a request for URLs and responds with the corresponding resource.</p>
+<ul>
+<li>The resource needs to live on the server’s file system, therefore many appear as file paths.</li>
+</ul>
+<section id="same-directory" class="level4">
+<h4 class="anchored" data-anchor-id="same-directory">Same directory</h4>
+<p>If hyperlinking to another file within the same directory, we can just specify the file name. For example, suppose <code>index.html</code> links to <code>contact.html</code> in the same directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  Want to contact a specific staff member? Find details on our</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"contacts.html"</span><span class="dt">&gt;</span>contacts page<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>.</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We could have also started the path with a <code>./contacts.html</code></li>
+</ul>
+</section>
+<section id="moving-back-up-into-parent-directories" class="level4">
+<h4 class="anchored" data-anchor-id="moving-back-up-into-parent-directories">Moving back up into parent directories</h4>
+<p>To go up a directory use two dots, <code>..</code>, so the URL becomes <code>../pdfs/project-brief.pdf</code></p>
+</section>
+<section id="document-fragments" class="level4">
+<h4 class="anchored" data-anchor-id="document-fragments">Document fragments</h4>
+<p><u>Document fragments</u> are links to different parts of the HTML documents.</p>
+<ul>
+<li><p>Elements with an <code>id</code> attribute automatically create a document fragment that cn be linked to.</p></li>
+<li><p>Typically used to link to specific heading</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h2</span><span class="ot"> id</span><span class="op">=</span><span class="st">"mailing_address"</span><span class="dt">&gt;</span>Mailing address<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can then link to that using <code>#</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    Want to write usa letter? Use our</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"contacts.html#mailing_address"</span><span class="dt">&gt;</span>mailing address<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span>.</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A document fragment can also be used to reference another part of the same page:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    The <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"#mailing_address"</span><span class="dt">&gt;</span>company mailing address<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span> can be found at the bottom of the page</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="how-urls-are-translated-to-file-paths" class="level3">
+<h3 class="anchored" data-anchor-id="how-urls-are-translated-to-file-paths">How URLs are translated to file paths</h3>
+<p>Even though URLs are processed by the web server, no web content can directly see the server’s file system.</p>
+<ul>
+<li>The server examples so far creates a <u>static website</u>. The server take the pathname as part of the URL and responds with the appropriate file in the file server.</li>
+</ul>
+<p><strong>Note:</strong> Many servers generate content for a URL on the fly rather than retrieving it from a static file. Web frameworks allow the source code directory to be different than what is deployed on the server.</p>
+</section>
+<section id="the-default-index.html-page" class="level3">
+<h3 class="anchored" data-anchor-id="the-default-index.html-page">The default <code>index.html</code> page</h3>
+<p>When referencing an <code>index.html</code> file, we generally don’t need to contain <code>index.html</code> in the URL/path because web servers look for a default landing page called <code>index.html</code> when the filename isn’t specified.</p>
+<p>For <code>projects/index.html</code>, we could write the path as <code>projects</code>, which would create a link called <code>https://www.example.com/projects/index.html</code>.</p>
+<p><strong>Note:</strong> The trailing slash (/) at the end of the URL is import.</p>
+<ul>
+<li><p>The trailing slash for relative links <code>contacts.html</code> inside <code>projects/index.html</code> would resolve to <code>example.com/projects/contacts.html</code>. Without it, it would treat it as a file and the url would resolve to <code>example.com/contacts.html</code>, which is one directory up.</p>
+<ul>
+<li><p>Different web servers handle URLs like <code>www.example.com/projects</code> differently. Some will automatically redirect to the URL with a trailing slash, others will server the same <code>index.html</code> without redirecting.</p>
+<ul>
+<li>This can cause relative links to break.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="link-best-practices" class="level3">
+<h3 class="anchored" data-anchor-id="link-best-practices">Link best practices</h3>
+<ul>
+<li><p><u>Use clear link wording</u> - This makes it easier for screen readers, search engines, and users to understand where links are going.</p></li>
+<li><p>Don’t say link or links to in the text.</p></li>
+<li><p>Keep links as short as possible</p></li>
+<li><p>Avoid linking to different places with the same text.</p></li>
+</ul>
+</section>
+<section id="downloading-a-file" class="level3">
+<h3 class="anchored" data-anchor-id="downloading-a-file">Downloading a file</h3>
+<p>Use <code>download</code> attribute when downloading a file</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://download.example.com/win-installer"</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    download</span><span class="op">=</span><span class="st">"example-win-installer.exe"</span><span class="dt">&gt;</span>Download installer<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opening-link-in-a-new-tab" class="level3">
+<h3 class="anchored" data-anchor-id="opening-link-in-a-new-tab">Opening link in a new tab</h3>
+<p>Links by default open in the same tab, which the user can then navigate back using the back button. It’s sometimes nice to open links automatically in a new tab, especially for external inks. This can be done with the <code>target</code> attribute to <code>"_blank"</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Example found <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.example.com"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot">Example</span><span class="er">&lt;/</span><span class="ot">a</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="email-links" class="level3">
+<h3 class="anchored" data-anchor-id="email-links">Email links</h3>
+<p>To create links that open the users email application and creates an email, add a <code>mailto:</code> to an <code>&lt;a&gt;</code> element:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"mailto:nowhere@example.com"</span><span class="dt">&gt;</span>Send email<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The email address is optional. If we emit it, the email will open without a user’s email with a blank To: section of the email.</li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
