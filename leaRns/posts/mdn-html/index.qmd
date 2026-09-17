@@ -799,7 +799,7 @@ For `projects/index.html`, we could write the path as `projects`, which would cr
 
 - Keep links as short as possible
 
--  Avoid linking to different places with the same text.
+- Avoid linking to different places with the same text.
 
 ### Downloading a file
 
@@ -827,3 +827,5 @@ To create links that open the users email application and creates an email, add 
 ```
 
 - The email address is optional. If we emit it, the email will open without a user's email with a blank To: section of the email.
+
+## HTML Images
