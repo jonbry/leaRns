@@ -382,7 +382,21 @@
     "href": "posts/mdn-html/index.html#html-images",
     "title": "Basic HTML",
     "section": "HTML Images",
-    "text": "HTML Images"
+    "text": "HTML Images\nThe &lt;img&gt; tag is a void element (cannot have child content or end tag) that has two main attributes:\n\nsrc attribute contains a URL pointing to the image that will be embedded into the page. Can be an absolute or relative path/URL\nalt attribute contains alternate text for the image\n\nLinking an absolute URL is not recommended as images should be hosted on the same server as the HTML.\n\nIt’s easier to maintain\n\n\nAlt text\nAlt text is good for page readers and and search engines. The content of the alt text should change based on the use:\n\nDecoration - CSS background images for decorative images should have a blank alt=\"\". The screen reader shouldn’t read alt for non-content images.\nContent - If the image provides significant information, including a brief alt text. If the image is described, use alt=\"\"\nLink - If an image inside of &lt;a&gt; tags, which turns them to a link, it’s a good idea to provide accessible link text.\n\nThis can be done in the same &lt;a&gt; element or inside the images alt attribute.\n\nText - Do not put text in images. If text needs a drop shadow, use CSS rather than putting it in an image. If it does need to be an image, use alt attribute.\n\n\n\nWidth and height\nThe width and height attributes are given without unit as represent the images width and height in pixels\nBrowsers fetch HTML for the page and images separately. Since the HTML is generally much smaller than the image files, it will render first."
+  },
+  {
+    "objectID": "posts/mdn-html/index.html#annotating-images-with-figures-and-figure-captions",
+    "href": "posts/mdn-html/index.html#annotating-images-with-figures-and-figure-captions",
+    "title": "Basic HTML",
+    "section": "Annotating images with figures and figure captions",
+    "text": "Annotating images with figures and figure captions\n&lt;figure&gt; and &lt;figcaption&gt; elements are used to semantically link the image to its caption.\n\n&lt;figcaption&gt; tells the browser/assistive technology that caption describes the content of the &lt;figure&gt; element.\n\nFigures don’t have to be images, they can be:\n\ncode snippits, audio, video, equations, a table, etc.\n\nTo create a figure with an image, wrap the &lt;img&gt; element in a &lt;figure&gt; element.\n\nCopy the text out of the title attribute and put it inside the &lt;figcaption&gt; below the &lt;img&gt; element and remove the title element\n\n\nCSS Background images\nCSS can be used to embed images into websites.\n\nThe CSS background-image property and the other background-* properties are used to control background image placement."
+  },
+  {
+    "objectID": "posts/mdn-html/index.html#html-video-and-audio",
+    "href": "posts/mdn-html/index.html#html-video-and-audio",
+    "title": "Basic HTML",
+    "section": "HTML video and audio",
+    "text": "HTML video and audio"
   },
   {
     "objectID": "index.html",

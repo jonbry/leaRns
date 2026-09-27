@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">September 16, 2026</p>
+        <p class="date-modified">September 27, 2026</p>
       </div>
     </div>
       
@@ -925,6 +925,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="html-images" class="level2">
 <h2 class="anchored" data-anchor-id="html-images">HTML Images</h2>
+<p>The <code>&lt;img&gt;</code> tag is a void element (cannot have child content or end tag) that has two main attributes:</p>
+<ul>
+<li><p><code>src</code> attribute contains a URL pointing to the image that will be embedded into the page. Can be an absolute or relative path/URL</p></li>
+<li><p><code>alt</code> attribute contains alternate text for the image</p></li>
+</ul>
+<p>Linking an absolute URL is not recommended as images should be hosted on the same server as the HTML.</p>
+<ul>
+<li>It’s easier to maintain</li>
+</ul>
+<section id="alt-text" class="level3">
+<h3 class="anchored" data-anchor-id="alt-text">Alt text</h3>
+<p>Alt text is good for page readers and and search engines. The content of the alt text should change based on the use:</p>
+<ul>
+<li><p><strong>Decoration -</strong> CSS background images for decorative images should have a blank <code>alt=""</code>. The screen reader shouldn’t read alt for non-content images.</p></li>
+<li><p><strong>Content -</strong> If the image provides significant information, including a brief <code>alt</code> text. If the image is described, use <code>alt=""</code></p></li>
+<li><p><strong>Link -</strong> If an image inside of <code>&lt;a&gt;</code> tags, which turns them to a link, it’s a good idea to provide accessible link text.</p>
+<ul>
+<li>This can be done in the same <code>&lt;a&gt;</code> element or inside the images <code>alt</code> attribute.</li>
+</ul></li>
+<li><p><strong>Text -</strong> Do not put text in images. If text needs a drop shadow, use CSS rather than putting it in an image. If it does need to be an image, use <code>alt</code> attribute.</p></li>
+</ul>
+</section>
+<section id="width-and-height" class="level3">
+<h3 class="anchored" data-anchor-id="width-and-height">Width and height</h3>
+<p>The <code>width</code> and <code>height</code> attributes are given without unit as represent the images width and height in pixels</p>
+<p>Browsers fetch HTML for the page and images separately. Since the HTML is generally much smaller than the image files, it will render first.</p>
+</section>
+</section>
+<section id="annotating-images-with-figures-and-figure-captions" class="level2">
+<h2 class="anchored" data-anchor-id="annotating-images-with-figures-and-figure-captions">Annotating images with figures and figure captions</h2>
+<p><code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> elements are used to semantically link the image to its caption.</p>
+<ul>
+<li><code>&lt;figcaption&gt;</code> tells the browser/assistive technology that caption describes the content of the <code>&lt;figure&gt;</code> element.</li>
+</ul>
+<p>Figures don’t have to be images, they can be:</p>
+<ul>
+<li>code snippits, audio, video, equations, a table, etc.</li>
+</ul>
+<p>To create a figure with an image, wrap the <code>&lt;img&gt;</code> element in a <code>&lt;figure&gt;</code> element.</p>
+<ul>
+<li>Copy the text out of the <code>title</code> attribute and put it inside the <code>&lt;figcaption&gt;</code> below the <code>&lt;img&gt;</code> element and remove the title element</li>
+</ul>
+<section id="css-background-images" class="level3">
+<h3 class="anchored" data-anchor-id="css-background-images">CSS Background images</h3>
+<p>CSS can be used to embed images into websites.</p>
+<ul>
+<li>The CSS <code>background-image</code> property and the other <code>background-*</code> properties are used to control background image placement.</li>
+</ul>
+</section>
+</section>
+<section id="html-video-and-audio" class="level2">
+<h2 class="anchored" data-anchor-id="html-video-and-audio">HTML video and audio</h2>
 
 
 </section>
